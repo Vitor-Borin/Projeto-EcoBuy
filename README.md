@@ -1,3 +1,3 @@
-# ![image](https://github.com/user-attachments/assets/ca40d210-06f6-4337-a788-2853ae3a17f4) Project EcoBuy
+# ![planet-earth_1598196](https://github.com/user-attachments/assets/d4020d68-90d1-4467-a024-e41a640a7bba) Project EcoBuy
 
 Em Desenvolvimento...
