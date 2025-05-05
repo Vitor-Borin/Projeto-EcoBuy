@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastreio de Pedido - ecobuy</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+  <!-- Banner de frete -->
+  <div class="shipping-banner">
+    <p>FRETE GRÁTIS para Regiões Sul e Sudeste : compras acima de R$399,90 | <a href="/regras">Confira as regras</a></p>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <button class="menu-button">☰</button>
+      <a href="/" class="logo">
+        <img src="images/logo.png" alt="ecobuy" width="120">
+      </a>
+      <div class="header-icons">
+        <a href="/conta" class="account-icon">👤</a>
+        <a href="cart.html" class="cart-icon">🛒</a>
+      </div>
+    </div>
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" placeholder="O que você está buscando hoje?">
+        <button class="search-button">🔍</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="tracking-container">
+      <h1 class="product-title">KIT DE LIMPEZA ZERO RESÍDUOS</h1>
+      <p class="quantity-info">1 quantidade</p>
+
+      <div class="tracking-box">
+        <h2 class="delivery-date">Chegará quinta-feira dia 2 de Setembro</h2>
+
+        <div class="tracking-timeline">
+          <div class="timeline-item completed">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Em preparação</h3>
+            </div>
+          </div>
+
+          <div class="timeline-item completed">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>A Caminho</h3>
+              <p>O vendedor despachou o seu pacote.</p>
+              <p class="timeline-date">31 ago 17:08</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Chegará quinta-feira dia 2 de Setembro</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="tracking-actions">
+          <button class="btn btn-full">Detalhe do pedido</button>
+          <button class="btn btn-outline-red">Cancelar Compra</button>
+        </div>
+      </div>
+
+      <div class="help-box">
+        <h2>Ajuda com a compra</h2>
+        <button class="help-button">Tenho um Problema com o pagamento</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="newsletter-box">
+        <h3>NEWSLETTER</h3>
+        <p>Junte-se a milhares de clientes satisfeitos e receba as últimas novidades sobre lançamentos, dicas e promoções exclusivas para membros.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="E-mail">
+          <button class="btn btn-purple">Inscrever-se</button>
+        </div>
+      </div>
+
+      <div class="social-media">
+        <h3>SIGA-NOS NAS REDES SOCIAIS</h3>
+        <div class="social-icons">
+          <a href="https://facebook.com" class="social-icon">Facebook</a>
+          <a href="https://instagram.com" class="social-icon">Instagram</a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <a href="/contato">Contato</a>
+          <a href="/termos">Termos de uso</a>
+        </div>
+        <div class="footer-column">
+          <a href="/afiliados">Seja um afiliado</a>
+          <a href="/faq">FAQ</a>
+        </div>
+        <div class="footer-column">
+          <a href="/blog">Blog Zero Desperdício</a>
+          <a href="/termos">Termos e Condições</a>
+        </div>
+        <div class="footer-column">
+          <a href="/privacidade">Privacidade</a>
+          <a href="/envio">Envios e prazos</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>© 2024 ecobuy. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js"></script>    
+  <script src="./assets/js/tracking.js"></script>
+</body>
+</html>

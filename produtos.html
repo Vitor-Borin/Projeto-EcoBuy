@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos - ecobuy</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Banner de frete -->
+  <div class="shipping-banner">
+    <div class="container">
+      <p>Frete grátis para compras acima de R$ 150,00. <a href="#">Saiba mais</a></p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <button class="menu-button mobile-only">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      
+      <a href="index.html" class="logo">
+        <h1>ecobuy</h1>
+      </a>
+      
+      <!-- Menu de navegação desktop -->
+      <nav class="desktop-nav">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li class="dropdown">
+            <a href="produtos.html" class="nav-link active">Produtos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+            <div class="dropdown-content">
+              <a href="produtos.html?categoria=skincare">Skincare</a>
+              <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
+              <a href="produtos.html?categoria=cabelo">Cabelos</a>
+              <a href="produtos.html?categoria=rosto">Rosto</a>
+              <a href="produtos.html?categoria=maquiagem">Maquiagem Natural</a>
+              <a href="produtos.html?categoria=kits">Kits e Presentes</a>
+              <a href="produtos.html?categoria=casa">Casa Sustentável</a>
+              <a href="produtos.html?categoria=perfumaria">Perfumaria</a>
+              <a href="produtos.html?categoria=vegano">Vegano</a>
+              <a href="produtos.html?categoria=organico">Orgânico</a>
+            </div>
+          </li>
+          <li><a href="#" class="nav-link">Parceiros</a></li>
+          <li><a href="#" class="nav-link">Contato</a></li>
+          <li><a href="#" class="nav-link">Sobre nós</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-icons">
+        <a href="#" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </a>
+        <a href="#" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </a>
+        <a href="cart.html" class="icon-link cart-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+    
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" placeholder="O que você está procurando?">
+        <button class="search-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cupom banner -->
+  <div class="coupon-banner">
+    <div class="container">
+      <p>Use o cupom <strong>ECO</strong> e ganhe 3% OFF em sua compra!</p>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="products-page">
+      <!-- Filtros e ordenação -->
+      <aside class="filters-sidebar">
+        <div class="filter-section">
+          <h3>Categorias</h3>
+          <ul class="filter-list">
+            <li><a href="produtos.html?categoria=skincare" class="filter-link">Skincare</a></li>
+            <li><a href="produtos.html?categoria=corpo" class="filter-link">Corpo e Banho</a></li>
+            <li><a href="produtos.html?categoria=cabelo" class="filter-link">Cabelos</a></li>
+            <li><a href="produtos.html?categoria=rosto" class="filter-link">Rosto</a></li>
+            <li><a href="produtos.html?categoria=maquiagem" class="filter-link">Maquiagem Natural</a></li>
+            <li><a href="produtos.html?categoria=kits" class="filter-link">Kits e Presentes</a></li>
+            <li><a href="produtos.html?categoria=casa" class="filter-link">Casa Sustentável</a></li>
+            <li><a href="produtos.html?categoria=perfumaria" class="filter-link">Perfumaria</a></li>
+          </ul>
+        </div>
+
+        <div class="filter-section">
+          <h3>Preço</h3>
+          <ul class="filter-list">
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="price" value="0-50">
+                <span>Até R$ 50</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="price" value="50-100">
+                <span>R$ 50 a R$ 100</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="price" value="100-150">
+                <span>R$ 100 a R$ 150</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="price" value="150-">
+                <span>Acima de R$ 150</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-section">
+          <h3>Características</h3>
+          <ul class="filter-list">
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="feature" value="vegano">
+                <span>Vegano</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="feature" value="organico">
+                <span>Orgânico</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="feature" value="natural">
+                <span>100% Natural</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="feature" value="cruelty-free">
+                <span>Cruelty Free</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-checkbox">
+                <input type="checkbox" name="feature" value="zero-waste">
+                <span>Zero Waste</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <button class="btn btn-outline-green filter-button">Aplicar Filtros</button>
+        <button class="btn btn-outline filter-button">Limpar Filtros</button>
+      </aside>
+
+      <div class="products-content">
+        <div class="products-header">
+          <h1 id="category-title">Todos os Produtos</h1>
+          <div class="products-sort">
+            <label for="sort-select">Ordenar por:</label>
+            <select id="sort-select" class="sort-select">
+              <option value="relevance">Relevância</option>
+              <option value="price-asc">Menor preço</option>
+              <option value="price-desc">Maior preço</option>
+              <option value="rating">Avaliações</option>
+              <option value="newest">Mais recentes</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="products-grid" id="products-grid">
+          <!-- Os produtos serão carregados dinamicamente pelo JavaScript -->
+        </div>
+
+        <div class="pagination">
+          <button class="pagination-btn" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <span class="pagination-current">1</span>
+          <button class="pagination-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="newsletter-box">
+        <h3>Receba nossas novidades</h3>
+        <p>Cadastre-se para receber ofertas exclusivas e dicas de sustentabilidade</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Seu e-mail">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+      </div>
+
+      <div class="social-media">
+        <h3>Siga-nos nas redes sociais</h3>
+        <div class="social-icons">
+          <a href="#" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Institucional</h3>
+          <a href="#">Sobre nós</a>
+          <a href="#">Sustentabilidade</a>
+          <a href="#">Trabalhe conosco</a>
+          <a href="#">Termos de uso</a>
+          <a href="#">Política de privacidade</a>
+        </div>
+        <div class="footer-column">
+          <h3>Ajuda</h3>
+          <a href="#">Central de atendimento</a>
+          <a href="#">Como comprar</a>
+          <a href="#">Prazos de entrega</a>
+          <a href="#">Trocas e devoluções</a>
+          <a href="#">Pagamentos</a>
+        </div>
+        <div class="footer-column">
+          <h3>Minha conta</h3>
+          <a href="#">Meus pedidos</a>
+          <a href="#">Meus dados</a>
+          <a href="#">Minhas avaliações</a>
+          <a href="#">Favoritos</a>
+        </div>
+        <div class="footer-column">
+          <h3>Formas de pagamento</h3>
+          <div class="payment-methods">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2023 ecobuy - Todos os direitos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/produtos.js"></script>
+</body>
+</html>
