@@ -1188,6 +1188,14 @@ img {
 
 .summary-row {
   display: flex;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-row {
+  display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
@@ -1478,4 +1486,216 @@ img {
   border-radius: 4px;
   margin-bottom: 15px;
   resize: vertical;
+}
+
+/* Adicionar estilos melhorados para o cálculo de frete */
+.shipping-calculator {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.shipping-calculator h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shipping-calculator h3::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234caf50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1' y='3' width='15' height='13'%3E%3C/rect%3E%3Cpolygon points='16 8 20 8 23 11 23 16 16 16 16 8'%3E%3C/polygon%3E%3Ccircle cx='5.5' cy='18.5' r='2.5'%3E%3C/circle%3E%3Ccircle cx='18.5' cy='18.5' r='2.5'%3E%3C/circle%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.shipping-form {
+  display: flex;
+  gap: 10px;
+}
+
+.shipping-form input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.shipping-form input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.btn-shipping {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-shipping:hover {
+  background-color: #3d8b40;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-shipping::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Estilos para as opções de frete após o cálculo */
+.shipping-options-container {
+  margin-top: 15px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.shipping-options-container h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.shipping-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.shipping-option {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.shipping-option:hover {
+  border-color: #c5e6b8;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
+}
+
+.shipping-option label {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.shipping-option input[type="radio"] {
+  margin-right: 12px;
+  accent-color: #4caf50;
+  cursor: pointer;
+}
+
+.option-details {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.option-price {
+  font-weight: 600;
+  color: #4caf50;
+}
+
+.option-time {
+  font-size: 13px;
+  color: #777;
+}
+
+.free-shipping-message {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #e8f5e9;
+  border-radius: 8px;
+  color: #2e7d32;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.free-shipping-message p::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'%3E%3C/path%3E%3Cpolyline points='22 4 12 14.01 9 11.01'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Estilos específicos para o cálculo de frete no carrinho */
+.cart-summary .shipping-calculator {
+  margin: 15px 0;
+  background-color: #f9f9f9;
+}
+
+.cart-summary .shipping-form {
+  flex-direction: column;
+}
+
+.cart-summary .shipping-form input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.cart-summary .btn-shipping {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .shipping-form {
+    flex-direction: column;
+  }
+
+  .shipping-form input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .btn-shipping {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .option-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
 }
