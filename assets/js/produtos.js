@@ -1,459 +1,241 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Carregar produtos na página
-    loadProducts()
-  
-    // Adicionar event listeners para filtros
-    setupFilters()
-  
-    // Adicionar event listener para ordenação
-    setupSorting()
-  })
-  
-  // Mock productsDatabase (replace with actual data loading if needed)
-  const productsDatabase = {}
-  
-  function loadProducts() {
-    // Obter parâmetros da URL
-    const urlParams = new URLSearchParams(window.location.search)
-    const categoria = urlParams.get("categoria")
-    const sort = urlParams.get("sort")
-  
-    // Filtrar produtos por categoria se especificado
-    let filteredProducts = Object.values(productsDatabase)
-  
-    if (categoria) {
-      filteredProducts = filteredProducts.filter(
-        (product) =>
-          product.category.toLowerCase() === categoria.toLowerCase() ||
-          (product.tags && product.tags.includes(categoria.toLowerCase())),
-      )
-  
-      // Atualizar título da página
-      updateCategoryTitle(categoria)
-    }
-  
-    // Ordenar produtos se especificado
-    if (sort) {
-      sortProducts(filteredProducts, sort)
-    }
-  
-    // Renderizar produtos
-    renderProducts(filteredProducts)
+// Dados dos produtos
+const produtos = [
+  {
+    id: 1,
+    nome: "Creme Facial Vegano",
+    preco: 89.9,
+    imagem: "./assets/img/Produto1.jpeg",
+    categoria: "skincare",
+    descricao: "Creme facial vegano com ingredientes naturais para hidratação profunda.",
+    destaque: true,
+    maisVendido: true,
+    estoque: 15,
+  },
+  {
+    id: 2,
+    nome: "Kit Skincare Completo",
+    preco: 199.9,
+    imagem: "./assets/img/Produto2.jpeg",
+    categoria: "kits",
+    descricao: "Kit completo com produtos para cuidados com a pele, 100% vegano e sustentável.",
+    destaque: true,
+    maisVendido: true,
+    estoque: 8,
+  },
+  {
+    id: 3,
+    nome: "Kit Limpeza Facial",
+    preco: 129.9,
+    imagem: "./assets/img/Produto3.jpeg",
+    categoria: "skincare",
+    descricao: "Kit com produtos para limpeza facial profunda, livre de parabenos.",
+    destaque: true,
+    maisVendido: false,
+    estoque: 12,
+  },
+  {
+    id: 4,
+    nome: "Loção Corporal Hidratante",
+    preco: 69.9,
+    imagem: "./assets/img/Produto4.jpeg",
+    categoria: "corpo",
+    descricao: "Loção corporal hidratante com ingredientes naturais e fragrância suave.",
+    destaque: true,
+    maisVendido: true,
+    estoque: 20,
+  },
+]
+
+// Função para exibir os produtos na página
+function exibirProdutos(produtosParaExibir) {
+  const produtosContainer = document.querySelector(".product-grid")
+
+  if (!produtosContainer) {
+    console.error("Container de produtos não encontrado")
+    return
   }
-  
-  function updateCategoryTitle(categoria) {
-    const categoryTitle = document.getElementById("category-title")
-    if (categoryTitle) {
-      // Formatar o nome da categoria (primeira letra maiúscula)
-      const formattedCategory = categoria.charAt(0).toUpperCase() + categoria.slice(1)
-      categoryTitle.textContent = formattedCategory
-    }
+
+  produtosContainer.innerHTML = ""
+
+  if (produtosParaExibir.length === 0) {
+    produtosContainer.innerHTML = '<p class="no-products">Nenhum produto encontrado.</p>'
+    return
   }
-  
-  function sortProducts(products, sortType) {
-    switch (sortType) {
-      case "price-asc":
-        products.sort((a, b) => a.price - b.price)
-        break
-      case "price-desc":
-        products.sort((a, b) => b.price - a.price)
-        break
-      case "rating":
-        products.sort((a, b) => b.rating - a.rating)
-        break
-      case "newest":
-        // Simulando produtos mais recentes (aleatório para este exemplo)
-        products.sort(() => Math.random() - 0.5)
-        break
-      case "bestseller":
-        products.sort((a, b) => b.rating - a.rating)
-        break
-      default:
-        // Relevância (padrão)
-        break
-    }
-  
-    // Atualizar select de ordenação
-    const sortSelect = document.getElementById("sort-select")
-    if (sortSelect && sortType) {
-      sortSelect.value = sortType
-    }
-  }
-  
-  function renderProducts(products) {
-    const productsGrid = document.getElementById("products-grid")
-    if (!productsGrid) return
-  
-    // Limpar grid
-    productsGrid.innerHTML = ""
-  
-    if (products.length === 0) {
-      productsGrid.innerHTML = `
-        <div class="no-products-message">
-          <h2>Nenhum produto encontrado</h2>
-          <p>Tente buscar por outros termos ou categorias.</p>
-          <a href="produtos.html" class="btn btn-outline-green">Ver todos os produtos</a>
-        </div>
-      `
-      return
-    }
-  
-    // Adicionar produtos
-    products.forEach((product) => {
-      productsGrid.appendChild(createProductCard(product))
+
+  produtosParaExibir.forEach((produto) => {
+    const produtoElement = document.createElement("div")
+    produtoElement.className = "product-card"
+
+    const precoFormatado = produto.preco.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
     })
-  }
-  
-  // Mock toggleWishlist function (replace with actual implementation)
-  function toggleWishlist(productId) {
-    console.log(`Toggle wishlist for product ID: ${productId}`)
-    // Implement your wishlist logic here
-  }
-  
-  function createProductCard(product) {
-    const productCard = document.createElement("div")
-    productCard.className = "product-card"
-  
-    // Adicionar badge de desconto se houver
-    if (product.discount) {
-      const discountBadge = document.createElement("div")
-      discountBadge.className = "discount-badge"
-      discountBadge.textContent = `-${product.discount}%`
-      productCard.appendChild(discountBadge)
-    }
-  
-    // Adicionar botão de favoritos
-    const wishlistButton = document.createElement("button")
-    wishlistButton.className = "btn-wishlist"
-    wishlistButton.setAttribute("data-id", product.id)
-  
-    // Verificar se o produto está na lista de desejos
-    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
-    const isInWishlist = wishlist.includes(product.id)
-  
-    wishlistButton.innerHTML = isInWishlist
-      ? `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ff6b6b" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
-      : `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
-  
-    if (isInWishlist) {
-      wishlistButton.classList.add("active")
-    }
-  
-    wishlistButton.addEventListener("click", () => {
-      toggleWishlist(product.id)
-    })
-  
-    productCard.appendChild(wishlistButton)
-  
-    // Adicionar conteúdo do card
-    productCard.innerHTML += `
-      <a href="product.html?id=${product.id}">
-        <div class="product-image">
-          <img src="${product.image}" alt="${product.name}">
+
+    produtoElement.innerHTML = `
+      <div class="product-image">
+        <img src="${produto.imagem}" alt="${produto.nome}">
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" data-id="${produto.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          </button>
+          <button class="action-btn add-to-wishlist" data-id="${produto.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
         </div>
-      </a>
+      </div>
       <div class="product-info">
-        <h3>${product.name}</h3>
-        <div class="product-price">
-          <span class="current-price">R$ ${product.price.toFixed(2)}</span>
-          ${product.originalPrice ? `<span class="original-price">R$ ${product.originalPrice.toFixed(2)}</span>` : ""}
-        </div>
-        <div class="product-rating">
-          ${generateStarRating(product.rating)}
-          <span class="rating-value">${product.rating.toFixed(1)}</span>
-        </div>
-        <button class="btn btn-add-cart">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          Adicionar ao carrinho
-        </button>
+        <h3 class="product-name">${produto.nome}</h3>
+        <p class="product-price">${precoFormatado}</p>
+        <a href="product.html?id=${produto.id}" class="btn btn-outline">Ver detalhes</a>
       </div>
     `
-  
-    return productCard
+
+    produtosContainer.appendChild(produtoElement)
+  })
+
+  // Adicionar eventos aos botões
+  document.querySelectorAll(".add-to-cart").forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault()
+      const produtoId = Number.parseInt(this.getAttribute("data-id"))
+      adicionarAoCarrinho(produtoId)
+    })
+  })
+
+  document.querySelectorAll(".add-to-wishlist").forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault()
+      const produtoId = Number.parseInt(this.getAttribute("data-id"))
+      adicionarAosFavoritos(produtoId)
+    })
+  })
+}
+
+// Função para filtrar produtos por categoria
+function filtrarProdutosPorCategoria(categoria) {
+  if (!categoria || categoria === "todos") {
+    return produtos
   }
-  
-  function generateStarRating(rating) {
-    const fullStars = Math.floor(rating)
-    const halfStar = rating % 1 >= 0.5
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0)
-  
-    let starsHTML = ""
-  
-    // Full stars
-    for (let i = 0; i < fullStars; i++) {
-      starsHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#ffc107" stroke="#ffc107" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
-    }
-  
-    // Half star
-    if (halfStar) {
-      starsHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#ffc107" stroke="#ffc107" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></path><path d="M12 2L12 17.77" fill="none"></path></svg>`
-    }
-  
-    // Empty stars
-    for (let i = 0; i < emptyStars; i++) {
-      starsHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffc107" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
-    }
-  
-    return starsHTML
+
+  return produtos.filter((produto) => produto.categoria === categoria)
+}
+
+// Função para adicionar produto ao carrinho
+function adicionarAoCarrinho(produtoId) {
+  // Buscar o produto pelo ID
+  const produto = produtos.find((p) => p.id === produtoId)
+
+  if (!produto) {
+    console.error("Produto não encontrado")
+    return
   }
-  
-  function setupFilters() {
-    // Adicionar event listener para botão de aplicar filtros
-    const applyFilterButton = document.querySelector(".btn-outline-green.filter-button")
-    if (applyFilterButton) {
-      applyFilterButton.addEventListener("click", applyFilters)
-    }
-  
-    // Adicionar event listener para botão de limpar filtros
-    const clearFilterButton = document.querySelector(".btn-outline.filter-button")
-    if (clearFilterButton) {
-      clearFilterButton.addEventListener("click", () => {
-        window.location.href = "produtos.html"
-      })
-    }
-  
-    // Marcar filtros ativos com base na URL
-    markActiveFilters()
+
+  // Obter o carrinho atual do localStorage ou criar um novo
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || []
+
+  // Verificar se o produto já está no carrinho
+  const produtoNoCarrinho = carrinho.find((item) => item.id === produtoId)
+
+  if (produtoNoCarrinho) {
+    // Se já estiver, aumentar a quantidade
+    produtoNoCarrinho.quantidade += 1
+  } else {
+    // Se não estiver, adicionar ao carrinho
+    carrinho.push({
+      id: produto.id,
+      nome: produto.nome,
+      preco: produto.preco,
+      imagem: produto.imagem,
+      quantidade: 1,
+    })
   }
-  
-  function markActiveFilters() {
-    const urlParams = new URLSearchParams(window.location.search)
-    const categoria = urlParams.get("categoria")
-  
-    if (categoria) {
-      // Marcar link de categoria ativo
-      const categoryLinks = document.querySelectorAll(".filter-link")
-      categoryLinks.forEach((link) => {
-        const href = new URL(link.href)
-        const linkCategoria = new URLSearchParams(href.search).get("categoria")
-  
-        if (linkCategoria && linkCategoria.toLowerCase() === categoria.toLowerCase()) {
-          link.classList.add("active")
-        }
-      })
-    }
+
+  // Salvar o carrinho atualizado no localStorage
+  localStorage.setItem("carrinho", JSON.stringify(carrinho))
+
+  // Atualizar o contador do carrinho
+  atualizarContadorCarrinho()
+
+  // Mostrar mensagem de sucesso
+  alert(`${produto.nome} adicionado ao carrinho!`)
+}
+
+// Função para adicionar produto aos favoritos
+function adicionarAosFavoritos(produtoId) {
+  // Buscar o produto pelo ID
+  const produto = produtos.find((p) => p.id === produtoId)
+
+  if (!produto) {
+    console.error("Produto não encontrado")
+    return
   }
-  
-  function applyFilters() {
-    // Obter valores dos filtros de preço
-    const priceFilters = document.querySelectorAll('input[name="price"]:checked')
-    const priceRanges = Array.from(priceFilters).map((input) => input.value)
-  
-    // Obter valores dos filtros de características
-    const featureFilters = document.querySelectorAll('input[name="feature"]:checked')
-    const features = Array.from(featureFilters).map((input) => input.value)
-  
-    // Obter categoria atual da URL
-    const urlParams = new URLSearchParams(window.location.search)
-    const categoria = urlParams.get("categoria")
-  
-    // Construir nova URL com filtros
-    const newUrl = new URL(window.location.href)
-    const newParams = new URLSearchParams()
-  
-    if (categoria) {
-      newParams.set("categoria", categoria)
-    }
-  
-    if (priceRanges.length > 0) {
-      newParams.set("price", priceRanges.join(","))
-    }
-  
-    if (features.length > 0) {
-      newParams.set("features", features.join(","))
-    }
-  
-    // Atualizar URL e recarregar
-    newUrl.search = newParams.toString()
-    window.location.href = newUrl.toString()
+
+  // Obter a lista de favoritos atual do localStorage ou criar uma nova
+  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || []
+
+  // Verificar se o produto já está nos favoritos
+  const produtoNosFavoritos = favoritos.find((item) => item.id === produtoId)
+
+  if (produtoNosFavoritos) {
+    // Se já estiver, remover dos favoritos
+    favoritos = favoritos.filter((item) => item.id !== produtoId)
+    alert(`${produto.nome} removido dos favoritos!`)
+  } else {
+    // Se não estiver, adicionar aos favoritos
+    favoritos.push({
+      id: produto.id,
+      nome: produto.nome,
+      preco: produto.preco,
+      imagem: produto.imagem,
+    })
+    alert(`${produto.nome} adicionado aos favoritos!`)
   }
-  
-  function setupSorting() {
-    const sortSelect = document.getElementById("sort-select")
-    if (sortSelect) {
-      // Definir valor inicial com base na URL
-      const urlParams = new URLSearchParams(window.location.search)
-      const sort = urlParams.get("sort")
-      if (sort) {
-        sortSelect.value = sort
+
+  // Salvar a lista de favoritos atualizada no localStorage
+  localStorage.setItem("favoritos", JSON.stringify(favoritos))
+}
+
+// Função para atualizar o contador do carrinho
+function atualizarContadorCarrinho() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || []
+  const contador = document.querySelector(".cart-count")
+
+  if (contador) {
+    const totalItens = carrinho.reduce((total, item) => total + item.quantidade, 0)
+    contador.textContent = totalItens
+  }
+}
+
+// Função para obter parâmetros da URL
+function obterParametroURL(nome) {
+  const urlParams = new URLSearchParams(window.location.search)
+  return urlParams.get(nome)
+}
+
+// Inicialização da página
+document.addEventListener("DOMContentLoaded", () => {
+  // Atualizar o contador do carrinho
+  atualizarContadorCarrinho()
+
+  // Verificar se estamos na página de produtos
+  const isPaginaProdutos = window.location.pathname.includes("produtos.html")
+
+  if (isPaginaProdutos) {
+    // Obter a categoria da URL
+    const categoriaURL = obterParametroURL("categoria")
+
+    // Filtrar produtos pela categoria (se houver)
+    const produtosFiltrados = filtrarProdutosPorCategoria(categoriaURL)
+
+    // Exibir os produtos
+    exibirProdutos(produtosFiltrados)
+
+    // Destacar a categoria selecionada no menu
+    if (categoriaURL) {
+      const linkCategoria = document.querySelector(`.dropdown-content a[href*="categoria=${categoriaURL}"]`)
+      if (linkCategoria) {
+        linkCategoria.classList.add("active")
       }
-  
-      // Adicionar event listener para mudança de ordenação
-      sortSelect.addEventListener("change", () => {
-        const newUrl = new URL(window.location.href)
-        const newParams = new URLSearchParams(newUrl.search)
-  
-        newParams.set("sort", sortSelect.value)
-        newUrl.search = newParams.toString()
-  
-        window.location.href = newUrl.toString()
-      })
     }
   }
-  
-  // Adicionar novos produtos ao banco de dados
-  const newProducts = {
-    "shampoo-bar": {
-      id: "shampoo-bar",
-      name: "Shampoo em Barra Natural",
-      price: 35.0,
-      originalPrice: 45.0,
-      image: "images/placeholder.jpg",
-      discount: 22,
-      description: "Shampoo em barra 100% natural, sem sulfatos e sem plástico. Ideal para cabelos normais a secos.",
-      category: "cabelo",
-      rating: 4.7,
-      stock: 30,
-      tags: ["cabelo", "zero waste", "vegano", "natural"],
-    },
-    "conditioner-bar": {
-      id: "conditioner-bar",
-      name: "Condicionador em Barra",
-      price: 38.0,
-      originalPrice: 48.0,
-      image: "images/placeholder.jpg",
-      discount: 20,
-      description: "Condicionador em barra que hidrata profundamente os cabelos sem deixar resíduos.",
-      category: "cabelo",
-      rating: 4.6,
-      stock: 25,
-      tags: ["cabelo", "zero waste", "vegano", "natural"],
-    },
-    "face-serum": {
-      id: "face-serum",
-      name: "Sérum Facial Vitamina C",
-      price: 89.0,
-      originalPrice: 110.0,
-      image: "images/placeholder.jpg",
-      discount: 19,
-      description:
-        "Sérum facial com vitamina C que ilumina, uniformiza o tom da pele e combate os sinais de envelhecimento.",
-      category: "rosto",
-      rating: 4.9,
-      stock: 15,
-      tags: ["rosto", "skincare", "vegano"],
-    },
-    "bamboo-toothbrush": {
-      id: "bamboo-toothbrush",
-      name: "Escova de Dentes de Bambu",
-      price: 15.0,
-      originalPrice: null,
-      image: "images/placeholder.jpg",
-      discount: null,
-      description: "Escova de dentes sustentável feita de bambu biodegradável com cerdas macias.",
-      category: "casa",
-      rating: 4.5,
-      stock: 50,
-      tags: ["casa", "zero waste", "sustentável"],
-    },
-    "coconut-soap": {
-      id: "coconut-soap",
-      name: "Sabonete de Coco Orgânico",
-      price: 18.0,
-      originalPrice: 22.0,
-      image: "images/placeholder.jpg",
-      discount: 18,
-      description: "Sabonete artesanal feito com óleo de coco orgânico, ideal para peles sensíveis.",
-      category: "corpo",
-      rating: 4.8,
-      stock: 40,
-      tags: ["corpo", "organico", "vegano"],
-    },
-    "makeup-remover": {
-      id: "makeup-remover",
-      name: "Demaquilante Natural",
-      price: 45.0,
-      originalPrice: null,
-      image: "images/placeholder.jpg",
-      discount: null,
-      description:
-        "Demaquilante suave e eficaz feito com ingredientes naturais que removem até maquiagem à prova d'água.",
-      category: "maquiagem",
-      rating: 4.7,
-      stock: 20,
-      tags: ["maquiagem", "rosto", "vegano"],
-    },
-    "lip-tint": {
-      id: "lip-tint",
-      name: "Lip Tint Natural",
-      price: 32.0,
-      originalPrice: null,
-      image: "images/placeholder.jpg",
-      discount: null,
-      description: "Lip tint natural com pigmentos de frutas que hidrata e dá cor aos lábios.",
-      category: "maquiagem",
-      rating: 4.6,
-      stock: 35,
-      tags: ["maquiagem", "vegano", "natural"],
-    },
-    "reusable-pads": {
-      id: "reusable-pads",
-      name: "Discos Desmaquilantes Reutilizáveis",
-      price: 28.0,
-      originalPrice: 35.0,
-      image: "images/placeholder.jpg",
-      discount: 20,
-      description: "Conjunto com 6 discos desmaquilantes reutilizáveis e laváveis, feitos de algodão orgânico.",
-      category: "casa",
-      rating: 4.8,
-      stock: 30,
-      tags: ["casa", "zero waste", "sustentável"],
-    },
-    "hair-oil": {
-      id: "hair-oil",
-      name: "Óleo Capilar Nutritivo",
-      price: 65.0,
-      originalPrice: null,
-      image: "images/placeholder.jpg",
-      discount: null,
-      description: "Óleo capilar com blend de óleos vegetais que nutre, fortalece e dá brilho aos cabelos.",
-      category: "cabelo",
-      rating: 4.9,
-      stock: 18,
-      tags: ["cabelo", "vegano", "natural"],
-    },
-    "face-mask": {
-      id: "face-mask",
-      name: "Máscara Facial de Argila Verde",
-      price: 42.0,
-      originalPrice: 55.0,
-      image: "images/placeholder.jpg",
-      discount: 24,
-      description: "Máscara facial de argila verde que purifica, controla a oleosidade e minimiza os poros.",
-      category: "rosto",
-      rating: 4.7,
-      stock: 25,
-      tags: ["rosto", "skincare", "natural"],
-    },
-    "gift-box": {
-      id: "gift-box",
-      name: "Kit Presente Eco Spa",
-      price: 180.0,
-      originalPrice: 220.0,
-      image: "images/placeholder.jpg",
-      discount: 18,
-      description:
-        "Kit presente com produtos sustentáveis para um spa day em casa: sabonete, máscara facial, óleo corporal e vela aromática.",
-      category: "kits",
-      rating: 4.9,
-      stock: 10,
-      tags: ["kits", "presente", "sustentável"],
-    },
-    "solid-perfume": {
-      id: "solid-perfume",
-      name: "Perfume Sólido Floral",
-      price: 55.0,
-      originalPrice: null,
-      image: "images/placeholder.jpg",
-      discount: null,
-      description: "Perfume sólido com notas florais, fácil de transportar e com longa duração.",
-      category: "perfumaria",
-      rating: 4.6,
-      stock: 20,
-      tags: ["perfumaria", "zero waste", "vegano"],
-    },
-  }
-  
-  // Adicionar novos produtos ao banco de dados existente
-  Object.assign(productsDatabase, newProducts)
-  
+})

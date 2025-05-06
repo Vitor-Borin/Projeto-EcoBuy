@@ -130,7 +130,7 @@ function updateCartSummary() {
       const newDiscountRow = document.createElement("div")
       newDiscountRow.className = "summary-row discount-row"
       newDiscountRow.innerHTML = `
-        <span>Desconto (${appliedCoupon})</span>
+        <span>Desconto (${appliedCoupon}):</span>
         <span class="discount-value">-R$ ${discount.toFixed(2)}</span>
       `
 
@@ -558,9 +558,9 @@ function updateCartCount() {
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0)
 
   // Atualizar o ícone do carrinho
-  const cartIcon = document.querySelector(".cart-icon")
-  if (cartIcon) {
-    cartIcon.textContent = totalItems > 0 ? `🛒 ${totalItems}` : "🛒"
+  const cartCountElement = document.querySelector(".cart-count")
+  if (cartCountElement) {
+    cartCountElement.textContent = totalItems > 0 ? totalItems : "0"
   }
 }
 

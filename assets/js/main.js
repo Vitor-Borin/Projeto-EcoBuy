@@ -5,7 +5,7 @@ const productsDatabase = {
     name: "Mini Kit Completo Skincare",
     price: 146.0,
     originalPrice: 227.0,
-    image: "images/placeholder.jpg",
+    image: "./assets/img/Produto1.jpeg",
     discount: 35,
     description: "Kit completo para cuidados com a pele, contendo produtos veganos e sustentáveis.",
     category: "skincare",
@@ -18,7 +18,7 @@ const productsDatabase = {
     name: "Creme Facial Vegano",
     price: 98.0,
     originalPrice: 120.0,
-    image: "images/placeholder.jpg",
+    image: "./assets/img/Produto2.jpeg",
     discount: 18,
     description: "Creme facial vegano com ingredientes naturais para hidratação profunda.",
     category: "skincare",
@@ -31,7 +31,7 @@ const productsDatabase = {
     name: "Loção Corporal - Skin Veg",
     price: 99.0,
     originalPrice: 110.0,
-    image: "images/placeholder.jpg",
+    image: "./assets/img/Produto3.jpeg",
     discount: 10,
     description: "Loção corporal vegana para hidratação intensa da pele.",
     category: "corpo",
@@ -44,7 +44,7 @@ const productsDatabase = {
     name: "Kit de Limpeza Zero Resíduos",
     price: 180.0,
     originalPrice: 300.0,
-    image: "images/placeholder.jpg",
+    image: "./assets/img/Produto4.jpeg",
     discount: 40,
     description:
       "O trio perfeito para uma pele radiante e sustentável! Nosso Kit de Limpeza Zero Resíduos vem com sérum facial, protetor solar e loção corporal.",
@@ -58,7 +58,7 @@ const productsDatabase = {
     name: "Óleo para massagem",
     price: 85.0,
     originalPrice: null,
-    image: "images/placeholder.jpg",
+    image: "./assets/img/Produto1.jpeg",
     discount: null,
     description: "Óleo natural para massagem corporal, com propriedades relaxantes.",
     category: "corpo",
@@ -71,7 +71,7 @@ const productsDatabase = {
     name: "Perfume natural spray",
     price: 120.0,
     originalPrice: null,
-    image: "images/placeholder.jpg",
+    image: "./assets/img/Produto2.jpeg",
     discount: null,
     description: "Perfume natural em spray com fragrância duradoura e ingredientes sustentáveis.",
     category: "perfumaria",
@@ -84,7 +84,7 @@ const productsDatabase = {
     name: "Lip Balm Hidratante",
     price: 35.0,
     originalPrice: null,
-    image: "images/placeholder.jpg",
+    image: "./assets/img/Produto3.jpeg",
     discount: null,
     description: "Hidratante labial com ingredientes naturais para lábios macios e protegidos.",
     category: "lábios",
@@ -97,7 +97,7 @@ const productsDatabase = {
     name: "Kit hidratação profunda",
     price: 97.0,
     originalPrice: null,
-    image: "images/placeholder.jpg",
+    image: "./assets/img/Produto4.jpeg",
     discount: null,
     description: "Kit completo para hidratação profunda da pele, com produtos veganos e naturais.",
     category: "hidratação",
@@ -126,6 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/")) {
     loadFeaturedProducts()
     loadBestSellingProducts()
+
+    // Inicializar o carrossel de categorias infinito
+    setupInfiniteCarousel()
   }
 
   // Adicionar event listeners para botões de adicionar ao carrinho
@@ -200,6 +203,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // Verificar se há cupom aplicado
   checkAppliedCoupon()
 })
+
+// Configurar o carrossel infinito
+function setupInfiniteCarousel() {
+  const slider = document.querySelector(".categories-slider")
+  if (!slider) return
+
+  // Duplicar os itens para criar o efeito infinito
+  const items = slider.querySelectorAll(".category-card")
+  const itemsArray = Array.from(items)
+
+  // Clonar os itens e adicionar ao final
+  itemsArray.forEach((item) => {
+    const clone = item.cloneNode(true)
+    slider.appendChild(clone)
+  })
+}
 
 // Funções auxiliares
 function addToCart(product) {

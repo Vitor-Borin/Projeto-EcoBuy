@@ -30,7 +30,7 @@
       <nav class="desktop-nav">
         <ul class="nav-menu">
           <li><a href="index.html" class="nav-link active">Home</a></li>
-          <li><a href="#" class="nav-link">Sobre nós</a></li>
+          <li><a href="sobre.html" class="nav-link">Sobre nós</a></li>
           <li class="dropdown">
             <a href="produtos.html" class="nav-link">Produtos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
             <div class="dropdown-content">
@@ -46,12 +46,15 @@
               <a href="produtos.html?categoria=organico">Orgânico</a>
             </div>
           </li>
-          <li><a href="#" class="nav-link">Parceiros</a></li>
-          <li><a href="#" class="nav-link">Contato</a></li>
+          <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
+          <li><a href="contato.html" class="nav-link">Contato</a></li>
         </ul>
       </nav>
       
       <div class="header-icons">
+        <a href="#" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </a>
         <a href="#" class="icon-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
         </a>
@@ -89,39 +92,71 @@
       </div>
     </div>
 
-    <!-- Categorias -->
+    <!-- Categorias - Carrossel -->
     <div class="categories-section">
-      <div class="categories-grid">
-        <a href="produtos.html?categoria=skincare" class="category-card">
-          <div class="category-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          </div>
-          <span>Skincare</span>
-        </a>
-        <a href="produtos.html?categoria=corpo" class="category-card">
-          <div class="category-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"></path><rect x="5" y="3" width="14" height="6" rx="2"></rect><path d="M5 9v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"></path></svg>
-          </div>
-          <span>Corpo</span>
-        </a>
-        <a href="produtos.html?categoria=cabelo" class="category-card">
-          <div class="category-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2"></path><path d="M18 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg>
-          </div>
-          <span>Cabelos</span>
-        </a>
-        <a href="produtos.html?categoria=perfumaria" class="category-card">
-          <div class="category-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path d="M10 13v-2"></path><path d="M17 10h2v7a2 2 0 0 1-2 2v0a2 2 0 0 1-2-2v-7h2Z"></path><path d="M7 3h6"></path></svg>
-          </div>
-          <span>Perfumaria</span>
-        </a>
-        <a href="produtos.html?categoria=casa" class="category-card">
-          <div class="category-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          </div>
-          <span>Casa</span>
-        </a>
+      <div class="categories-carousel">
+        <div class="categories-slider">
+          <a href="produtos.html?categoria=skincare" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <span>Skincare</span>
+          </a>
+          <a href="produtos.html?categoria=corpo" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"></path><rect x="5" y="3" width="14" height="6" rx="2"></rect><path d="M5 9v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"></path></svg>
+            </div>
+            <span>Corpo</span>
+          </a>
+          <a href="produtos.html?categoria=cabelo" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2"></path><path d="M18 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg>
+            </div>
+            <span>Cabelos</span>
+          </a>
+          <a href="produtos.html?categoria=rosto" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+            </div>
+            <span>Rosto</span>
+          </a>
+          <a href="produtos.html?categoria=maquiagem" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M9 11h.01"></path><path d="M12 11h.01"></path><path d="M15 11h.01"></path></svg>
+            </div>
+            <span>Maquiagem</span>
+          </a>
+          <a href="produtos.html?categoria=kits" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            </div>
+            <span>Kits</span>
+          </a>
+          <a href="produtos.html?categoria=casa" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </div>
+            <span>Casa</span>
+          </a>
+          <a href="produtos.html?categoria=perfumaria" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path d="M10 13v-2"></path><path d="M17 10h2v7a2 2 0 0 1-2 2v0a2 2 0 0 1-2-2v-7h2Z"></path><path d="M7 3h6"></path></svg>
+            </div>
+            <span>Perfumaria</span>
+          </a>
+          <a href="produtos.html?categoria=vegano" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22c1.25-1.25 2.5-2.5 3.5-4 .83-1.25 1.5-2.5 2-4 .5-1.5.5-3 0-4.5-.5-1.5-1.17-2.75-2-4C4.5 4 3.25 2.75 2 2c0 0 5 2 8 5s5 8 5 8-2 5-5 8-8 5-8 5Z"></path><path d="M17 8c.5 1.5.5 3 0 4.5-.5 1.5-1.17 2.75-2 4-.83 1.25-1.75 2.25-3 3"></path><path d="M22 2c-1.25.75-2.5 1.75-3.5 3-.83 1.25-1.5 2.5-2 4"></path></svg>
+            </div>
+            <span>Vegano</span>
+          </a>
+          <a href="produtos.html?categoria=organico" class="category-card">
+            <div class="category-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path><path d="M8.5 8.5v.01"></path><path d="M16 15.5v.01"></path><path d="M12 12v.01"></path><path d="M11 17v.01"></path><path d="M7 14v.01"></path></svg>
+            </div>
+            <span>Orgânico</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -135,11 +170,6 @@
         <!-- Os produtos serão carregados dinamicamente pelo JavaScript -->
       </div>
     </section>
-
-    <!-- Banner de natureza -->
-    <div class="nature-banner">
-      <img src="/placeholder.svg?height=200&width=1200" alt="Produtos naturais e sustentáveis">
-    </div>
 
     <!-- Produtos mais vendidos -->
     <section class="products-section">
@@ -186,7 +216,7 @@
       <div class="footer-links">
         <div class="footer-column">
           <h3>Institucional</h3>
-          <a href="#">Sobre nós</a>
+          <a href="sobre.html">Sobre nós</a>
           <a href="#">Sustentabilidade</a>
           <a href="#">Trabalhe conosco</a>
           <a href="#">Termos de uso</a>
@@ -194,7 +224,7 @@
         </div>
         <div class="footer-column">
           <h3>Ajuda</h3>
-          <a href="#">Central de atendimento</a>
+          <a href="contato.html">Central de atendimento</a>
           <a href="#">Como comprar</a>
           <a href="#">Prazos de entrega</a>
           <a href="#">Trocas e devoluções</a>
@@ -207,19 +237,10 @@
           <a href="#">Minhas avaliações</a>
           <a href="#">Favoritos</a>
         </div>
-        <div class="footer-column">
-          <h3>Formas de pagamento</h3>
-          <div class="payment-methods">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-          </div>
-        </div>
       </div>
 
       <div class="copyright">
-        <p>&copy; 2023 ecobuy - Todos os direitos reservados</p>
+        <p>&copy; 2025 ecobuy - Todos os direitos reservados</p>
       </div>
     </div>
   </footer>

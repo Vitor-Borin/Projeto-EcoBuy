@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nós - ecobuy</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/pages.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Banner de frete -->
+  <div class="shipping-banner">
+    <div class="container">
+      <p>Frete grátis para compras acima de R$ 150,00. <a href="#">Saiba mais</a></p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <button class="menu-button mobile-only">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      
+      <a href="index.html" class="logo">
+        <h1>ecobuy</h1>
+      </a>
+      
+      <!-- Menu de navegação desktop -->
+      <nav class="desktop-nav">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="sobre.html" class="nav-link">Sobre nós</a></li>
+          <li class="dropdown">
+            <a href="produtos.html" class="nav-link">Produtos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+            <div class="dropdown-content">
+              <a href="produtos.html?categoria=skincare">Skincare</a>
+              <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
+              <a href="produtos.html?categoria=cabelo">Cabelos</a>
+              <a href="produtos.html?categoria=rosto">Rosto</a>
+              <a href="produtos.html?categoria=maquiagem">Maquiagem Natural</a>
+              <a href="produtos.html?categoria=kits">Kits e Presentes</a>
+              <a href="produtos.html?categoria=casa">Casa Sustentável</a>
+              <a href="produtos.html?categoria=perfumaria">Perfumaria</a>
+              <a href="produtos.html?categoria=vegano">Vegano</a>
+              <a href="produtos.html?categoria=organico">Orgânico</a>
+            </div>
+          </li>
+          <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
+          <li><a href="contato.html" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-icons">
+        <a href="#" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </a>
+        <a href="#" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </a>
+        <a href="cart.html" class="icon-link cart-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+    
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" placeholder="O que você está procurando?">
+        <button class="search-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="quem-somos-hero">
+      <div class="container">
+        <div class="quem-somos-content">
+          <div class="quem-somos-text">
+            <h1>Sobre a EcoBuy</h1>
+            <p>A EcoBuy nasceu da paixão por produtos sustentáveis e do compromisso com o meio ambiente. Somos uma empresa dedicada a oferecer alternativas eco-friendly para o seu dia a dia, com produtos que respeitam a natureza e os animais.</p>
+            <p>Nossa jornada começou com a visão de transformar o mercado de consumo, tornando produtos sustentáveis mais acessíveis e incentivando um estilo de vida consciente.</p>
+            <a href="#valores" class="green-button">Conheça nossos valores</a>
+          </div>
+          <div class="quem-somos-image">
+            <div class="diamond-image">
+              <img src="./assets/img/Produto1.jpeg" alt="Produtos sustentáveis ecobuy">
+              <div class="diamond-shape"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Missão e Visão -->
+    <section class="values-section" id="valores">
+      <div class="container">
+        <div class="section-title">
+          <h2>Nossa Missão e Visão</h2>
+          <p>Conheça os princípios que guiam nosso trabalho e nosso compromisso com a sustentabilidade</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              Nossa Missão
+            </h3>
+            <p>Proporcionar acesso a produtos de qualidade que sejam veganos, cruelty-free e sustentáveis, incentivando um estilo de vida mais consciente e responsável com o planeta.</p>
+          </div>
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              Nossa Visão
+            </h3>
+            <p>Ser referência no mercado de produtos sustentáveis, promovendo a conscientização ambiental e contribuindo para um mundo mais equilibrado e saudável.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nossos Valores -->
+    <section class="team-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Nossos Valores</h2>
+          <p>Princípios que norteiam nossas decisões e ações no dia a dia</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22c1.25-1.25 2.5-2.5 3.5-4 .83-1.25 1.5-2.5 2-4 .5-1.5.5-3 0-4.5-.5-1.5-1.17-2.75-2-4C4.5 4 3.25 2.75 2 2c0 0 5 2 8 5s5 8 5 8-2 5-5 8-8 5-8 5Z"></path><path d="M17 8c.5 1.5.5 3 0 4.5-.5 1.5-1.17 2.75-2 4-.83 1.25-1.75 2.25-3 3"></path><path d="M22 2c-1.25.75-2.5 1.75-3.5 3-.83 1.25-1.5 2.5-2 4"></path></svg>
+              Sustentabilidade
+            </h3>
+            <p>Comprometimento com práticas que minimizam o impacto ambiental em toda nossa cadeia de produção e distribuição.</p>
+          </div>
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              Ética
+            </h3>
+            <p>Respeito aos animais, com produtos 100% veganos e cruelty-free, garantindo que nenhum ser vivo seja prejudicado.</p>
+          </div>
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v18h18z"></path><path d="M21 9H3"></path><path d="M21 16H3"></path></svg>
+              Transparência
+            </h3>
+            <p>Informações claras sobre a composição e origem dos produtos, permitindo que nossos clientes façam escolhas conscientes.</p>
+          </div>
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              Qualidade
+            </h3>
+            <p>Produtos eficientes que cumprem o que prometem, oferecendo resultados reais sem comprometer o meio ambiente.</p>
+          </div>
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"></path></svg>
+              Inovação
+            </h3>
+            <p>Busca constante por novas soluções sustentáveis, investindo em pesquisa e desenvolvimento de produtos eco-friendly.</p>
+          </div>
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              Comunidade
+            </h3>
+            <p>Valorização das relações com clientes, fornecedores e parceiros, construindo uma comunidade engajada com a sustentabilidade.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nosso Compromisso -->
+    <section class="values-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Nosso Compromisso</h2>
+          <p>Conheça as iniciativas que fazem parte do nosso dia a dia</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Embalagens Sustentáveis
+            </h3>
+            <p>Utilizamos embalagens biodegradáveis, recicláveis ou reutilizáveis em todos os nossos produtos, reduzindo o impacto ambiental.</p>
+          </div>
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              Logística Verde
+            </h3>
+            <p>Otimizamos nossas rotas de entrega e utilizamos materiais sustentáveis para embalagem de transporte, minimizando nossa pegada de carbono.</p>
+          </div>
+          <div class="value-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6v18h18V6"></path><path d="M19 6V4a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2"></path><path d="M8 11h8"></path><path d="M8 15h8"></path><path d="M8 19h8"></path></svg>
+              Educação Ambiental
+            </h3>
+            <p>Promovemos conteúdos educativos sobre sustentabilidade e consumo consciente, incentivando práticas mais responsáveis.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="newsletter-box">
+        <h3>Receba nossas novidades</h3>
+        <p>Cadastre-se para receber ofertas exclusivas e dicas de sustentabilidade</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Seu e-mail">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+      </div>
+
+      <div class="social-media">
+        <h3>Siga-nos nas redes sociais</h3>
+        <div class="social-icons">
+          <a href="#" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Institucional</h3>
+          <a href="sobre.html">Sobre nós</a>
+          <a href="#">Sustentabilidade</a>
+          <a href="#">Trabalhe conosco</a>
+          <a href="#">Termos de uso</a>
+          <a href="#">Política de privacidade</a>
+        </div>
+        <div class="footer-column">
+          <h3>Ajuda</h3>
+          <a href="contato.html">Central de atendimento</a>
+          <a href="#">Como comprar</a>
+          <a href="#">Prazos de entrega</a>
+          <a href="#">Trocas e devoluções</a>
+          <a href="#">Pagamentos</a>
+        </div>
+        <div class="footer-column">
+          <h3>Minha conta</h3>
+          <a href="#">Meus pedidos</a>
+          <a href="#">Meus dados</a>
+          <a href="#">Minhas avaliações</a>
+          <a href="#">Favoritos</a>
+        </div>
+        <div class="footer-column">
+          <h3>Formas de pagamento</h3>
+          <div class="payment-methods">
+            <img src="./assets/img/visa.png" alt="Visa">
+            <img src="./assets/img/mastercard.png" alt="Mastercard">
+            <img src="./assets/img/amex.png" alt="American Express">
+            <img src="./assets/img/pix.png" alt="Pix">
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2025 ecobuy - Todos os direitos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>
