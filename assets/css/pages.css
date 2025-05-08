@@ -1,13 +1,15 @@
+/* Utiliza variáveis CSS definidas em :root no styles.css */
+
 /* Estilos compartilhados para as páginas Sobre Nós e Contato */
 
 /* Hero Sections */
 .quem-somos-hero,
 .contact-hero {
-  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%) -50px 0,
-    linear-gradient(225deg, #f5f5f5 25%, transparent 25%) -50px 0, linear-gradient(315deg, #f5f5f5 25%, transparent 25%),
-    linear-gradient(45deg, #f5f5f5 25%, transparent 25%);
+  background: linear-gradient(135deg, #f9f5ef 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, #f9f5ef 25%, transparent 25%) -50px 0, linear-gradient(315deg, #f9f5ef 25%, transparent 25%),
+    linear-gradient(45deg, #f9f5ef 25%, transparent 25%);
   background-size: 100px 100px;
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -21,9 +23,9 @@
   left: -10%;
   width: 120%;
   height: 120%;
-  background: linear-gradient(135deg, #4caf50 25%, transparent 25%) -50px 0,
-    linear-gradient(225deg, #4caf50 25%, transparent 25%) -50px 0, linear-gradient(315deg, #4caf50 25%, transparent 25%),
-    linear-gradient(45deg, #4caf50 25%, transparent 25%);
+  background: linear-gradient(135deg, var(--verde) 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, var(--verde) 25%, transparent 25%) -50px 0, linear-gradient(315deg, var(--verde) 25%, transparent 25%),
+    linear-gradient(45deg, var(--verde) 25%, transparent 25%);
   background-size: 100px 100px;
   background-color: transparent;
   opacity: 0.1;
@@ -51,7 +53,7 @@
 .quem-somos-text h1,
 .contact-text h1 {
   font-size: 2.5rem;
-  color: #4caf50;
+  color: var(--verde);
   margin-bottom: 20px;
 }
 
@@ -86,7 +88,7 @@
   position: absolute;
   width: 80%;
   height: 80%;
-  background-color: #4caf50;
+  background-color: var(--verde);
   transform: rotate(45deg);
   top: 10%;
   left: 10%;
@@ -104,7 +106,7 @@
 .team-section,
 .contact-form-section {
   padding: 60px 0;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 /* Cards */
@@ -132,7 +134,7 @@
 }
 
 .value-card h3 {
-  color: #4caf50;
+  color: var(--verde);
   margin-bottom: 15px;
   font-size: 1.3rem;
   display: flex;
@@ -170,7 +172,7 @@
 /* Buttons */
 .green-button {
   display: inline-block;
-  background-color: #4caf50;
+  background-color: var(--verde);
   color: white;
   padding: 12px 30px;
   border-radius: 30px;
@@ -197,7 +199,7 @@
 }
 
 .method-icon svg {
-  stroke: #4caf50;
+  stroke: var(--verde);
 }
 
 .method-card {
@@ -212,7 +214,7 @@
 
 .method-card a {
   display: inline-block;
-  color: #4caf50;
+  color: var(--verde);
   font-weight: 600;
   margin-top: 15px;
   text-decoration: none;
@@ -268,7 +270,7 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #4caf50;
+  border-color: var(--verde);
   outline: none;
 }
 
@@ -278,7 +280,7 @@
 }
 
 .submit-btn {
-  background-color: #4caf50;
+  background-color: var(--verde);
   color: white;
   border: none;
   padding: 14px 30px;

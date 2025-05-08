@@ -1,179 +1,230 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compra Confirmada - ecobuy</title>
-  <link rel="stylesheet" href="./assets/css/styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Compra Confirmada - ecobuy</title>
+    <link href="./assets/css/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"rel="stylesheet" />
 </head>
 <body>
-  <!-- Banner de frete -->
-  <div class="shipping-banner">
-    <p>FRETE GRÁTIS para Regiões Sul e Sudeste : compras acima de R$399,90 | <a href="/regras">Confira as regras</a></p>
-  </div>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="header-container">
-      <button class="menu-button mobile-only">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
-      
-      <a href="index.html" class="logo">
-        <h1>ecobuy</h1>
-      </a>
-      
-      <!-- Menu de navegação desktop -->
-      <nav class="desktop-nav">
-        <ul class="nav-menu">
-          <li><a href="index.html" class="nav-link active">Home</a></li>
-          <li><a href="sobre.html" class="nav-link">Sobre nós</a></li>
-          <li class="dropdown">
-            <a href="produtos.html" class="nav-link">Produtos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
-            <div class="dropdown-content">
-              <a href="produtos.html?categoria=skincare">Skincare</a>
-              <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
-              <a href="produtos.html?categoria=cabelo">Cabelos</a>
-              <a href="produtos.html?categoria=rosto">Rosto</a>
-              <a href="produtos.html?categoria=maquiagem">Maquiagem Natural</a>
-              <a href="produtos.html?categoria=kits">Kits e Presentes</a>
-              <a href="produtos.html?categoria=casa">Casa Sustentável</a>
-              <a href="produtos.html?categoria=perfumaria">Perfumaria</a>
-              <a href="produtos.html?categoria=vegano">Vegano</a>
-              <a href="produtos.html?categoria=organico">Orgânico</a>
-            </div>
-          </li>
-          <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
-          <li><a href="contato.html" class="nav-link">Contato</a></li>
-        </ul>
-      </nav>
-      
-      <div class="header-icons">
-        <a href="#" class="icon-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </a>
-        <a href="#" class="icon-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        </a>
-        <a href="cart.html" class="icon-link cart-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          <span class="cart-count">0</span>
-        </a>
-      </div>
+    <!-- Banner de frete -->
+    <div class="shipping-banner">
+        <p>FRETE GRÁTIS para Regiões Sul e Sudeste : compras acima de R$399,90 | <a href="/regras">Confira as regras</a>
+        </p>
     </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <button aria-label="Botão" class="menu-button mobile-only">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="3" x2="21" y1="12" y2="12"></line>
+                    <line x1="3" x2="21" y1="6" y2="6"></line>
+                    <line x1="3" x2="21" y1="18" y2="18"></line>
+                </svg>
+            </button>
+            <a class="logo" href="index.html">
+                <img src="./assets/img/Logo.svg" alt="Logo da Ecobuy">
+            </a>
+
+            <!-- Menu de navegação desktop -->
+            <nav class="desktop-nav">
+                <ul class="nav-menu">
+                    <li><a class="nav-link active" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="sobre.html">Sobre nós</a></li>
+                    <li class="dropdown">
+                        <a class="nav-link" href="produtos.html">Produtos <svg fill="none" height="16"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></a>
+                        <div class="dropdown-content">
+                            <a href="produtos.html?categoria=skincare">Skincare</a>
+                            <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
+                            <a href="produtos.html?categoria=cabelo">Cabelos</a>
+                            <a href="produtos.html?categoria=rosto">Rosto</a>
+                            <a href="produtos.html?categoria=maquiagem">Maquiagem Natural</a>
+                            <a href="produtos.html?categoria=kits">Kits e Presentes</a>
+                            <a href="produtos.html?categoria=casa">Casa Sustentável</a>
+                            <a href="produtos.html?categoria=perfumaria">Perfumaria</a>
+                            <a href="produtos.html?categoria=vegano">Vegano</a>
+                            <a href="produtos.html?categoria=organico">Orgânico</a>
+                        </div>
+                    </li>
+                    <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
+                    <li><a class="nav-link" href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a class="icon-link" href="javascript:void(0)">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                    </svg>
+                </a>
+                <a class="icon-link" href="javascript:void(0)">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </a>
+                <a class="icon-link cart-icon" href="cart.html">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input placeholder="O que você está buscando hoje?" type="text" />
+                <button class="search-button">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="confirmation-box">
+            <h1>COMPRA CONFIRMADA</h1>
+            <p>Você comprou Kit de Limpeza Zero Resíduos</p>
+        </div>
+        <div class="purchase-summary">
+            <h2>Resumo da Compra:</h2>
+            <div class="payment-info">
+                <div class="payment-icon">$</div>
+                <div class="payment-details">
+                    <p class="payment-amount">Você pagou R$ 180,00</p>
+                    <p class="payment-method">1x SEM JUROS com o cartão de crédito VISA terminado em 2539</p>
+                </div>
+            </div>
+        </div>
+        <div class="confirmation-actions">
+            <button class="btn btn-outline">Voltar ao menu</button>
+            <button class="btn btn-purple">Acompanhar pedido</button>
+        </div>
+
+        <!-- Produtos recomendados -->
+        <section class="recommended-section">
+            <h2>APROVEITE E LEVE TAMBÉM</h2>
+            <div class="bundle-offer">
+                <div class="bundle-products">
+                    <div class="bundle-product">
+                        <div class="product-image">
+                            <img alt="Kit de Limpeza Zero Resíduos" src="images/placeholder.jpg" />
+                        </div>
+                        <h3>Kit de Limpeza Zero Resíduos</h3>
+                        <p class="bundle-price">R$ 180,00</p>
+                    </div>
+                    <span class="bundle-plus">+</span>
+                    <div class="bundle-product">
+                        <div class="product-image">
+                            <img alt="Lip Balm Hidratante" src="images/placeholder.jpg" />
+                        </div>
+                        <h3>Lip Balm Hidratante</h3>
+                        <p class="bundle-price">R$ 35,00</p>
+                    </div>
+                    <span class="bundle-equals">=</span>
+                    <div class="bundle-total">
+                        <p class="bundle-total-price">R$ 215,00</p>
+                        <button class="btn btn-add-cart">Adicionar à sacola</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     
-    <div class="search-container">
-      <div class="search-box">
-        <input type="text" placeholder="O que você está buscando hoje?">
-        <button class="search-button">🔍</button>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="confirmation-box">
-      <h1>COMPRA CONFIRMADA</h1>
-      <p>Você comprou Kit de Limpeza Zero Resíduos</p>
-    </div>
-
-    <div class="purchase-summary">
-      <h2>Resumo da Compra:</h2>
-      <div class="payment-info">
-        <div class="payment-icon">$</div>
-        <div class="payment-details">
-          <p class="payment-amount">Você pagou R$ 180,00</p>
-          <p class="payment-method">1x SEM JUROS com o cartão de crédito VISA terminado em 2539</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="confirmation-actions">
-      <button class="btn btn-outline">Voltar ao menu</button>
-      <button class="btn btn-purple">Acompanhar pedido</button>
-    </div>
-
-    <!-- Produtos recomendados -->
-    <section class="recommended-section">
-      <h2>APROVEITE E LEVE TAMBÉM</h2>
-
-      <div class="bundle-offer">
-        <div class="bundle-products">
-          <div class="bundle-product">
-            <div class="product-image">
-              <img src="images/placeholder.jpg" alt="Kit de Limpeza Zero Resíduos">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="newsletter-box">
+                <h3>Receba nossas novidades</h3>
+                <p>Cadastre-se para receber ofertas exclusivas e dicas de sustentabilidade</p>
+                <form class="newsletter-form">
+                    <input placeholder="Seu e-mail" type="email" />
+                    <button class="btn btn-primary" type="submit">Cadastrar</button>
+                </form>
             </div>
-            <h3>Kit de Limpeza Zero Resíduos</h3>
-            <p class="bundle-price">R$ 180,00</p>
-          </div>
-
-          <span class="bundle-plus">+</span>
-
-          <div class="bundle-product">
-            <div class="product-image">
-              <img src="images/placeholder.jpg" alt="Lip Balm Hidratante">
+            <div class="social-media">
+                <h3>Siga-nos nas redes sociais</h3>
+                <div class="social-icons">
+                    <a class="social-icon" href="javascript:void(0)">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                            </path>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <h3>Lip Balm Hidratante</h3>
-            <p class="bundle-price">R$ 35,00</p>
-          </div>
-
-          <span class="bundle-equals">=</span>
-
-          <div class="bundle-total">
-            <p class="bundle-total-price">R$ 215,00</p>
-            <button class="btn btn-add-cart">Adicionar à sacola</button>
-          </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <a href="sobre.html">Sobre nós</a>
+                    <a href="javascript:void(0)">Sustentabilidade</a>
+                    <a href="javascript:void(0)">Trabalhe conosco</a>
+                    <a href="javascript:void(0)">Termos de uso</a>
+                    <a href="javascript:void(0)">Política de privacidade</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Ajuda</h3>
+                    <a href="contato.html">Central de atendimento</a>
+                    <a href="javascript:void(0)">Como comprar</a>
+                    <a href="javascript:void(0)">Prazos de entrega</a>
+                    <a href="javascript:void(0)">Trocas e devoluções</a>
+                    <a href="javascript:void(0)">Pagamentos</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Minha conta</h3>
+                    <a href="javascript:void(0)">Meus pedidos</a>
+                    <a href="javascript:void(0)">Meus dados</a>
+                    <a href="javascript:void(0)">Minhas avaliações</a>
+                    <a href="javascript:void(0)">Favoritos</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Ecobuy - Todos os direitos reservados</p>
+            </div>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="newsletter-box">
-        <h3>NEWSLETTER</h3>
-        <p>Junte-se a milhares de clientes satisfeitos e receba as últimas novidades sobre lançamentos, dicas e promoções exclusivas para membros.</p>
-        <div class="newsletter-form">
-          <input type="email" placeholder="E-mail">
-          <button class="btn btn-purple">Inscrever-se</button>
-        </div>
-      </div>
-
-      <div class="social-media">
-        <h3>SIGA-NOS NAS REDES SOCIAIS</h3>
-        <div class="social-icons">
-          <a href="https://facebook.com" class="social-icon">Facebook</a>
-          <a href="https://instagram.com" class="social-icon">Instagram</a>
-        </div>
-      </div>
-
-      <div class="footer-links">
-        <div class="footer-column">
-          <a href="/contato">Contato</a>
-          <a href="/termos">Termos de uso</a>
-        </div>
-        <div class="footer-column">
-          <a href="/afiliados">Seja um afiliado</a>
-          <a href="/faq">FAQ</a>
-        </div>
-        <div class="footer-column">
-          <a href="/blog">Blog Zero Desperdício</a>
-          <a href="/termos">Termos e Condições</a>
-        </div>
-        <div class="footer-column">
-          <a href="/privacidade">Privacidade</a>
-          <a href="/envio">Envios e prazos</a>
-        </div>
-      </div>
-
-      <div class="copyright">
-        <p>© 2024 ecobuy. Todos os direitos reservados.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="./assets/js/main.js"></script>
-  <script src="./assets/js/confirmation.js"></script>
+    </footer>
+    <script src="./assets/js/scripts.js"></script>
+    <script src="./assets/js/confirmation.js"></script>
 </body>
 </html>

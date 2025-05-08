@@ -1,3 +1,5 @@
+// cart.js refatorado
+
 document.addEventListener("DOMContentLoaded", () => {
   // Carregar itens do carrinho
   loadCartItems()
@@ -14,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function loadCartItems() {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]")
-  const cartItemsContainer = document.querySelector(".cart-items")
+  const cartItemsContainer = document.querySelector(".cart-items") || document.createElement("div")
 
   if (!cartItemsContainer) return
 
@@ -170,7 +172,7 @@ function setupCartActions() {
   }
 
   // Event delegation para ações de itens do carrinho
-  document.querySelector(".cart-items")?.addEventListener("click", (e) => {
+  document.querySelector(".cart-items") || document.createElement("div")?.addEventListener("click", (e) => {
     const target = e.target
     const cartItem = target.closest(".cart-item")
 
@@ -221,7 +223,7 @@ function setupCartActions() {
   })
 
   // Event listener para mudanças na quantidade
-  document.querySelector(".cart-items")?.addEventListener("change", (e) => {
+  document.querySelector(".cart-items") || document.createElement("div")?.addEventListener("change", (e) => {
     if (e.target.classList.contains("quantity-select")) {
       const cartItem = e.target.closest(".cart-item")
       const itemId = cartItem.getAttribute("data-id")
@@ -379,7 +381,7 @@ function applyCoupon() {
 
 function setupShippingCalculator() {
   // Adicionar campo de CEP e botão de calcular frete
-  const cartSummary = document.querySelector(".cart-summary")
+  const cartSummary = document.querySelector(".cart-summary") || document.createElement("div")
 
   if (!cartSummary) return
 

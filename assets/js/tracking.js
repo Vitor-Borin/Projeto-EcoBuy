@@ -1,3 +1,5 @@
+// tracking.js refatorado
+
 document.addEventListener("DOMContentLoaded", () => {
     // Obter número do pedido da URL
     const urlParams = new URLSearchParams(window.location.search)
@@ -13,17 +15,20 @@ document.addEventListener("DOMContentLoaded", () => {
     loadOrderDetails(orderNumber)
   
     // Adicionar event listeners para botões
-    document.querySelector(".btn-full").addEventListener("click", () => {
+    const btnFull = document.querySelector(".btn-full");
+  if (btnFull) btnFull.addEventListener("click", () => {
       showOrderDetails(orderNumber)
     })
   
-    document.querySelector(".btn-outline-red").addEventListener("click", () => {
+    const btnCancel = document.querySelector(".btn-outline-red");
+  if (btnCancel) btnCancel.addEventListener("click", () => {
       if (confirm("Tem certeza que deseja cancelar esta compra?")) {
         cancelOrder(orderNumber)
       }
     })
   
-    document.querySelector(".help-button").addEventListener("click", () => {
+    const helpBtn = document.querySelector(".help-button");
+  if (helpBtn) helpBtn.addEventListener("click", () => {
       showPaymentProblemForm()
     })
   })

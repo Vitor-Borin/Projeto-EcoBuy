@@ -1,273 +1,330 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contato - ecobuy</title>
-  <link rel="stylesheet" href="./assets/css/styles.css">
-  <link rel="stylesheet" href="./assets/css/pages.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contato - ecobuy</title>
+    <link href="./assets/css/styles.css" rel="stylesheet" />
+    <link href="./assets/css/pages.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"rel="stylesheet" />
 </head>
 <body>
-  <!-- Banner de frete -->
-  <div class="shipping-banner">
-    <div class="container">
-      <p>Frete grátis para compras acima de R$ 150,00. <a href="#">Saiba mais</a></p>
+
+    <!-- Banner de frete -->
+    <div class="shipping-banner">
+        <div class="container">
+            <p>Frete grátis para compras acima de R$ 150,00. <a href="javascript:void(0)">Saiba mais</a></p>
+        </div>
     </div>
-  </div>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="header-container">
-      <button class="menu-button mobile-only">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
-      
-      <a href="index.html" class="logo">
-        <h1>ecobuy</h1>
-      </a>
-      
-      <!-- Menu de navegação desktop -->
-      <nav class="desktop-nav">
-        <ul class="nav-menu">
-          <li><a href="index.html" class="nav-link active">Home</a></li>
-          <li><a href="sobre.html" class="nav-link">Sobre nós</a></li>
-          <li class="dropdown">
-            <a href="produtos.html" class="nav-link">Produtos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
-            <div class="dropdown-content">
-              <a href="produtos.html?categoria=skincare">Skincare</a>
-              <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
-              <a href="produtos.html?categoria=cabelo">Cabelos</a>
-              <a href="produtos.html?categoria=rosto">Rosto</a>
-              <a href="produtos.html?categoria=maquiagem">Maquiagem Natural</a>
-              <a href="produtos.html?categoria=kits">Kits e Presentes</a>
-              <a href="produtos.html?categoria=casa">Casa Sustentável</a>
-              <a href="produtos.html?categoria=perfumaria">Perfumaria</a>
-              <a href="produtos.html?categoria=vegano">Vegano</a>
-              <a href="produtos.html?categoria=organico">Orgânico</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <button aria-label="Botão" class="menu-button mobile-only">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="3" x2="21" y1="12" y2="12"></line>
+                    <line x1="3" x2="21" y1="6" y2="6"></line>
+                    <line x1="3" x2="21" y1="18" y2="18"></line>
+                </svg>
+            </button>
+            <a class="logo" href="index.html">
+                <img src="./assets/img/Logo.svg" alt="Logo da Ecobuy">
+            </a>
+
+            <!-- Menu de navegação desktop -->
+            <nav class="desktop-nav">
+                <ul class="nav-menu">
+                    <li><a class="nav-link active" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="sobre.html">Sobre nós</a></li>
+                    <li class="dropdown">
+                        <a class="nav-link" href="produtos.html">Produtos <svg fill="none" height="16"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></a>
+                        <div class="dropdown-content">
+                            <a href="produtos.html?categoria=skincare">Skincare</a>
+                            <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
+                            <a href="produtos.html?categoria=cabelo">Cabelos</a>
+                            <a href="produtos.html?categoria=rosto">Rosto</a>
+                            <a href="produtos.html?categoria=maquiagem">Maquiagem Natural</a>
+                            <a href="produtos.html?categoria=kits">Kits e Presentes</a>
+                            <a href="produtos.html?categoria=casa">Casa Sustentável</a>
+                            <a href="produtos.html?categoria=perfumaria">Perfumaria</a>
+                            <a href="produtos.html?categoria=vegano">Vegano</a>
+                            <a href="produtos.html?categoria=organico">Orgânico</a>
+                        </div>
+                    </li>
+                    <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
+                    <li><a class="nav-link" href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a class="icon-link" href="javascript:void(0)">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                    </svg>
+                </a>
+                <a class="icon-link" href="javascript:void(0)">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </a>
+                <a class="icon-link cart-icon" href="cart.html">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
             </div>
-          </li>
-          <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
-          <li><a href="contato.html" class="nav-link">Contato</a></li>
-        </ul>
-      </nav>
-      
-      <div class="header-icons">
-        <a href="#" class="icon-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </a>
-        <a href="#" class="icon-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        </a>
-        <a href="cart.html" class="icon-link cart-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          <span class="cart-count">0</span>
-        </a>
-      </div>
-    </div>
-    
-    <div class="search-container">
-      <div class="search-box">
-        <input type="text" placeholder="O que você está procurando?">
-        <button class="search-button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- Hero Section -->
-    <section class="contact-hero">
-      <div class="container">
-        <div class="contact-content">
-          <div class="contact-text">
-            <h1>Entre em Contato</h1>
-            <p>Estamos sempre à disposição para ouvir você. Seja para tirar dúvidas, fazer sugestões ou resolver problemas, nossa equipe está pronta para ajudar.</p>
-            <p>Escolha a forma de contato que for mais conveniente para você e entraremos em contato o mais breve possível.</p>
-          </div>
-          <div class="contact-image">
-            <div class="diamond-image">
-              <img src="./assets/img/Produto2.jpeg" alt="Atendimento ecobuy">
-              <div class="diamond-shape"></div>
+        </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input placeholder="O que você está procurando?" type="text" />
+                <button aria-label="Botão" class="search-button">
+                    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                    </svg>
+                </button>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+    </header>
+    <main>
 
-    <!-- Métodos de Contato -->
-    <section class="contact-methods">
-      <div class="container">
-        <div class="section-title">
-          <h2>Como Podemos Ajudar?</h2>
-          <p>Escolha a melhor forma de entrar em contato conosco</p>
-        </div>
-        <div class="methods-grid">
-          <div class="method-card">
-            <div class="method-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-text">
+                        <h1>Entre em Contato</h1>
+                        <p>Estamos sempre à disposição para ouvir você. Seja para tirar dúvidas, fazer sugestões ou
+                            resolver problemas, nossa equipe está pronta para ajudar.</p>
+                        <p>Escolha a forma de contato que for mais conveniente para você e entraremos em contato o mais
+                            breve possível.</p>
+                    </div>
+                    <div class="contact-image">
+                        <div class="diamond-image">
+                            <img alt="Atendimento ecobuy" src="./assets/img/Produto2.jpeg" />
+                            <div class="diamond-shape"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h3>Telefone</h3>
-            <p>(11) 4002-8922</p>
-            <p>Segunda a Sexta, das 9h às 18h</p>
-            <a href="tel:+551140028922">Ligar agora</a>
-          </div>
-          <div class="method-card">
-            <div class="method-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </section>
+
+        <!-- Métodos de Contato -->
+        <section class="contact-methods">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Como Podemos Ajudar?</h2>
+                    <p>Escolha a melhor forma de entrar em contato conosco</p>
+                </div>
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3>Telefone</h3>
+                        <p>(11) 4002-8922</p>
+                        <p>Segunda a Sexta, das 9h às 18h</p>
+                        <a href="tel:+551140028922">Ligar agora</a>
+                    </div>
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <h3>E-mail</h3>
+                        <p>contato@ecobuy.com.br</p>
+                        <p>Respondemos em até 24 horas úteis</p>
+                        <a href="mailto:contato@ecobuy.com.br">Enviar e-mail</a>
+                    </div>
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p>(11) 98765-4321</p>
+                        <p>Atendimento rápido via mensagem</p>
+                        <a href="https://wa.me/5511987654321">Conversar agora</a>
+                    </div>
+                </div>
             </div>
-            <h3>E-mail</h3>
-            <p>contato@ecobuy.com.br</p>
-            <p>Respondemos em até 24 horas úteis</p>
-            <a href="mailto:contato@ecobuy.com.br">Enviar e-mail</a>
-          </div>
-          <div class="method-card">
-            <div class="method-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </section>
+
+        <!-- Formulário de Contato -->
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Envie sua Mensagem</h2>
+                    <p>Preencha o formulário abaixo e entraremos em contato o mais breve possível</p>
+                </div>
+                <div class="form-container">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nome completo</label>
+                                <input id="name" name="name" required="" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input id="email" name="email" required="" type="email" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Telefone</label>
+                                <input id="phone" name="phone" type="tel" />
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Assunto</label>
+                                <select id="subject" name="subject" required="">
+                                    <option value="">Selecione um assunto</option>
+                                    <option value="duvida">Dúvida sobre produto</option>
+                                    <option value="pedido">Informações sobre pedido</option>
+                                    <option value="reclamacao">Reclamação</option>
+                                    <option value="sugestao">Sugestão</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="message">Mensagem</label>
+                                <textarea id="message" name="message" required="" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <button class="submit-btn" type="submit">Enviar mensagem</button>
+                    </form>
+                </div>
             </div>
-            <h3>WhatsApp</h3>
-            <p>(11) 98765-4321</p>
-            <p>Atendimento rápido via mensagem</p>
-            <a href="https://wa.me/5511987654321">Conversar agora</a>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Formulário de Contato -->
-    <section class="contact-form-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Envie sua Mensagem</h2>
-          <p>Preencha o formulário abaixo e entraremos em contato o mais breve possível</p>
-        </div>
-        <div class="form-container">
-          <form id="contactForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Nome completo</label>
-                <input type="text" id="name" name="name" required>
-              </div>
-              <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" required>
-              </div>
+        <!-- Mapa -->
+        <section class="map-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Nossa Localização</h2>
+                    <p>Rua das Flores, 123 - Jardim Botânico, São Paulo - SP, 04567-000</p>
+                </div>
+                <div class="map-container">
+                    <iframe allowfullscreen="" height="450" loading="lazy"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975874651647!2d-46.6394677!3d-23.5651116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1651234567890!5m2!1spt-BR!2sbr"
+                        style="border:0;" width="100%"></iframe>
+                </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="phone">Telefone</label>
-                <input type="tel" id="phone" name="phone">
-              </div>
-              <div class="form-group">
-                <label for="subject">Assunto</label>
-                <select id="subject" name="subject" required>
-                  <option value="">Selecione um assunto</option>
-                  <option value="duvida">Dúvida sobre produto</option>
-                  <option value="pedido">Informações sobre pedido</option>
-                  <option value="reclamacao">Reclamação</option>
-                  <option value="sugestao">Sugestão</option>
-                  <option value="outro">Outro</option>
-                </select>
-              </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="newsletter-box">
+                <h3>Receba nossas novidades</h3>
+                <p>Cadastre-se para receber ofertas exclusivas e dicas de sustentabilidade</p>
+                <form class="newsletter-form">
+                    <input placeholder="Seu e-mail" type="email" />
+                    <button class="btn btn-primary" type="submit">Cadastrar</button>
+                </form>
             </div>
-            <div class="form-row">
-              <div class="form-group full-width">
-                <label for="message">Mensagem</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-              </div>
+            <div class="social-media">
+                <h3>Siga-nos nas redes sociais</h3>
+                <div class="social-icons">
+                    <a class="social-icon" href="javascript:void(0)">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                            </path>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <button type="submit" class="submit-btn">Enviar mensagem</button>
-          </form>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <a href="sobre.html">Sobre nós</a>
+                    <a href="javascript:void(0)">Sustentabilidade</a>
+                    <a href="javascript:void(0)">Trabalhe conosco</a>
+                    <a href="javascript:void(0)">Termos de uso</a>
+                    <a href="javascript:void(0)">Política de privacidade</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Ajuda</h3>
+                    <a href="contato.html">Central de atendimento</a>
+                    <a href="javascript:void(0)">Como comprar</a>
+                    <a href="javascript:void(0)">Prazos de entrega</a>
+                    <a href="javascript:void(0)">Trocas e devoluções</a>
+                    <a href="javascript:void(0)">Pagamentos</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Minha conta</h3>
+                    <a href="javascript:void(0)">Meus pedidos</a>
+                    <a href="javascript:void(0)">Meus dados</a>
+                    <a href="javascript:void(0)">Minhas avaliações</a>
+                    <a href="javascript:void(0)">Favoritos</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Ecobuy - Todos os direitos reservados</p>
+            </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Mapa -->
-    <section class="map-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Nossa Localização</h2>
-          <p>Rua das Flores, 123 - Jardim Botânico, São Paulo - SP, 04567-000</p>
-        </div>
-        <div class="map-container">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975874651647!2d-46.6394677!3d-23.5651116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1651234567890!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="newsletter-box">
-        <h3>Receba nossas novidades</h3>
-        <p>Cadastre-se para receber ofertas exclusivas e dicas de sustentabilidade</p>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Seu e-mail">
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
-      </div>
-
-      <div class="social-media">
-        <h3>Siga-nos nas redes sociais</h3>
-        <div class="social-icons">
-          <a href="#" class="social-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-          </a>
-          <a href="#" class="social-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          </a>
-          <a href="#" class="social-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-          </a>
-          <a href="#" class="social-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-links">
-        <div class="footer-column">
-          <h3>Institucional</h3>
-          <a href="sobre.html">Sobre nós</a>
-          <a href="#">Sustentabilidade</a>
-          <a href="#">Trabalhe conosco</a>
-          <a href="#">Termos de uso</a>
-          <a href="#">Política de privacidade</a>
-        </div>
-        <div class="footer-column">
-          <h3>Ajuda</h3>
-          <a href="contato.html">Central de atendimento</a>
-          <a href="#">Como comprar</a>
-          <a href="#">Prazos de entrega</a>
-          <a href="#">Trocas e devoluções</a>
-          <a href="#">Pagamentos</a>
-        </div>
-        <div class="footer-column">
-          <h3>Minha conta</h3>
-          <a href="#">Meus pedidos</a>
-          <a href="#">Meus dados</a>
-          <a href="#">Minhas avaliações</a>
-          <a href="#">Favoritos</a>
-        </div>
-        <div class="footer-column">
-          <h3>Formas de pagamento</h3>
-          <div class="payment-methods">
-            <img src="./assets/img/visa.png" alt="Visa">
-            <img src="./assets/img/mastercard.png" alt="Mastercard">
-            <img src="./assets/img/amex.png" alt="American Express">
-            <img src="./assets/img/pix.png" alt="Pix">
-          </div>
-        </div>
-      </div>
-
-      <div class="copyright">
-        <p>&copy; 2025 ecobuy - Todos os direitos reservados</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="./assets/js/main.js"></script>
+    </footer>
+    <script src="./assets/js/scripts.js"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+// confirmation.js refatorado
+
 document.addEventListener("DOMContentLoaded", () => {
     // Obter dados do carrinho para mostrar na confirmação
     const cart = JSON.parse(localStorage.getItem("cart") || "[]")
@@ -40,7 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
     displayPurchaseDetails(orderNumber, cart, subtotal, discount, shippingCost, total, appliedCoupon)
   
     // Adicionar event listeners para botões
-    document.querySelector(".btn-outline").addEventListener("click", () => {
+    const btn = document.querySelector(".btn-outline");
+  if (btn) btn.addEventListener("click", () => {
       window.location.href = "index.html"
     })
   
