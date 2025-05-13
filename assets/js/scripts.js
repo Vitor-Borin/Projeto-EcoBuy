@@ -173,7 +173,7 @@ function createProductCard(product) {
   // Adicionar conteúdo do card
   const productContent = document.createElement("div");
   productContent.innerHTML = `
-    <a href="produtos.html?id=${product.id}">
+    <a href="produto.html?id=${product.id}">
       <div class="product-image">
         <img src="${product.image}" alt="${product.name}" onerror="this.src='./assets/img/placeholder.jpg'">
       </div>
@@ -654,29 +654,39 @@ function showNotification(message) {
 function addToCart(productId) {
   // Obter carrinho atual do localStorage
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  
+  const product = window.productsDatabase[productId];
+  if (!product) return;
+
   // Verificar se o produto já está no carrinho
   const existingItem = cart.find(item => item.id === productId);
-  
+
   if (existingItem) {
     // Incrementar quantidade
     existingItem.quantity += 1;
   } else {
-    // Adicionar novo item
+    // Adicionar novo item com dados completos
     cart.push({
       id: productId,
+      name: product.name,
+      image: product.image,
+      price: product.price,
       quantity: 1
     });
   }
-  
+
   // Salvar carrinho atualizado
   localStorage.setItem("cart", JSON.stringify(cart));
-  
-  // Atualizar contador do carrinho
-  updateCartCount();
-  
+
+  // Atualizar contador do carrinho imediatamente
+  if (typeof updateCartCount === 'function') updateCartCount();
+
   // Mostrar notificação
   showNotification("Produto adicionado ao carrinho!");
+
+  // Se estiver na página do carrinho, recarregar os itens
+  if (window.location.pathname.includes('cart.html')) {
+    if (typeof loadCartItems === 'function') loadCartItems();
+  }
 }
 
 // Função para atualizar contador do carrinho
@@ -809,6 +819,38 @@ document.addEventListener("DOMContentLoaded", () => {
     favIcon.addEventListener('click', (e) => {
       e.preventDefault();
       showFavoritesModal();
+    });
+  }
+
+  // Destacar menu ativo
+  const path = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    if (
+      (path === '' && href === 'index.html') ||
+      (path === href) ||
+      (path.startsWith('produtos') && href.startsWith('produtos')) ||
+      (path.startsWith('parceiros') && href.startsWith('parceiros')) ||
+      (path.startsWith('contato') && href.startsWith('contato')) ||
+      (path.startsWith('sobre') && href.startsWith('sobre'))
+    ) {
+      link.classList.add('active');
+    }
+  });
+
+  // Corrigir clique no menu Produtos para não recarregar a home
+  const produtosDropdown = document.querySelector('.dropdown > .nav-link');
+  if (produtosDropdown) {
+    produtosDropdown.addEventListener('click', function(e) {
+      // Se o link for apenas '#', previne o comportamento padrão
+      if (this.getAttribute('href') === 'produtos.html') {
+        // Se já está na página de produtos, não faz nada
+        if (window.location.pathname.includes('produtos.html')) {
+          e.preventDefault();
+        }
+      }
     });
   }
 });

@@ -381,137 +381,74 @@ img {
 }
 
 /* Botões */
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 50px;
-  font-weight: 500;
-  cursor: pointer;
-  text-align: center;
+.btn,
+.btn-primary,
+.btn-add-cart,
+.btn-add-cart-large,
+.btn-checkout,
+.btn-shipping,
+.btn-full,
+.btn-outline,
+.btn-outline-green,
+.btn-outline-red,
+.btn-wishlist-large {
   border: none;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-white {
-  background-color: white;
-  color: black;
-}
-
-.btn-white:hover {
-  background-color: #f0f0f0;
-}
-
-.btn-primary {
-  background-color: var(--verde);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #3d8b40;
-}
-
-.btn-outline-green {
-  background-color: transparent;
-  border: 1px solid var(--verde);
-  color: var(--verde);
-}
-
-.btn-outline-green:hover {
-  background-color: var(--verde);
-  color: white;
-}
-
-.btn-outline {
-  background-color: transparent;
-  border: 1px solid #ddd;
-  color: #666;
-}
-
-.btn-outline:hover {
-  background-color: #f5f5f5;
-}
-
-.btn-add-cart {
-  background-color: var(--verde);
-  color: white;
-  width: 100%;
   border-radius: 50px;
-  padding: 8px 15px;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.btn-add-cart:hover {
-  background-color: #3d8b40;
-}
-
-.btn-add-cart-large {
-  background-color: var(--verde);
-  color: white;
-  width: 100%;
-  border-radius: 50px;
-  padding: 12px 20px;
   font-size: 16px;
-  margin: 20px 0;
+  font-weight: 500;
+  padding: 12px 24px;
+  color: #fff;
+  background-color: var(--verde);
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
 
-.btn-add-cart-large:hover {
+.btn:hover,
+.btn-primary:hover,
+.btn-add-cart:hover,
+.btn-add-cart-large:hover,
+.btn-checkout:hover,
+.btn-shipping:hover,
+.btn-full:hover {
   background-color: #3d8b40;
 }
 
-.btn-wishlist {
-  background-color: white;
-  color: #999;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  padding: 0;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  z-index: 1;
-  border: 1px solid #ddd;
-  transition: all 0.2s ease;
+.btn-outline,
+.btn-outline-green,
+.btn-outline-red {
+  background: #fff;
+  color: var(--verde);
+  border: 2px solid var(--verde);
 }
-
-.btn-wishlist:hover,
-.btn-wishlist.active {
-  background-color: #ffe6e6;
-  color: #ff6b6b;
-  border-color: #ffcccc;
+.btn-outline-red {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+.btn-outline-green {
+  color: var(--verde);
+  border-color: var(--verde);
+}
+.btn-outline:hover,
+.btn-outline-green:hover {
+  background: var(--verde);
+  color: #fff;
+}
+.btn-outline-red:hover {
+  background: #e74c3c;
+  color: #fff;
 }
 
 .btn-wishlist-large {
-  background-color: white;
+  background: #fff;
   color: #999;
-  width: 100%;
-  border-radius: 50px;
-  padding: 12px 20px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  border: 1.5px solid #ddd;
 }
-
 .btn-wishlist-large:hover,
 .btn-wishlist-large.active {
   background-color: #ffe6e6;
@@ -524,11 +461,12 @@ img {
   color: white;
   width: 100%;
   padding: 12px;
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  border-radius: 50px;
 }
 
 .btn-checkout:hover {
@@ -544,17 +482,6 @@ img {
 
 .btn-full:hover {
   background-color: #a5d698;
-}
-
-.btn-outline-red {
-  background-color: white;
-  border: 1px solid #ffcccc;
-  color: #e74c3c;
-  width: 100%;
-}
-
-.btn-outline-red:hover {
-  background-color: #fff5f5;
 }
 
 /* Seções de produtos */
@@ -606,6 +533,7 @@ img {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
+  padding-bottom: 16px;
 }
 
 .product-card:hover {
@@ -644,54 +572,54 @@ img {
 }
 
 .product-info {
-  padding: 15px;
+  padding: 12px 12px 0 12px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .product-info h3 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 48px;
+  height: 40px;
 }
 
 .product-price {
   display: flex;
   align-items: baseline;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
 .current-price {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--verde);
 }
 
 .original-price {
-  font-size: 14px;
+  font-size: 13px;
   color: #999;
   text-decoration: line-through;
 }
 
 .product-rating {
   color: #ffc107;
-  font-size: 14px;
-  margin-bottom: 15px;
+  font-size: 13px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
 }
 
 .rating-value {
   color: #666;
-  margin-left: 5px;
-  font-size: 12px;
+  margin-left: 4px;
+  font-size: 11px;
 }
 
 .rating-count {
@@ -920,16 +848,27 @@ img {
 }
 
 .sort-select {
-  padding: 8px 30px 8px 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: white;
-  font-size: 14px;
+  padding: 10px 36px 10px 15px;
+  border: 1.5px solid #ddd;
+  border-radius: 50px;
+  background-color: #fff;
+  font-size: 15px;
+  color: #333;
+  font-family: 'Inter', sans-serif;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 8px center;
-  background-size: 16px;
+  background-position: right 12px center;
+  background-size: 18px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.sort-select:focus {
+  border-color: var(--verde);
+  outline: none;
+  box-shadow: 0 0 0 2px #c5e6b8;
+}
+.sort-select:hover {
+  border-color: var(--verde);
 }
 
 .products-grid {
@@ -1195,7 +1134,8 @@ img {
 
 .cart-item-actions {
   display: flex;
-  gap: 15px;
+  gap: 10px;
+  align-items: center;
 }
 
 .cart-action {
@@ -1536,6 +1476,7 @@ img {
 .rating-input {
   display: flex;
   align-items: center;
+  gap: 10px;
   margin-bottom: 15px;
 }
 
@@ -1619,6 +1560,9 @@ img {
   display: flex;
   align-items: center;
   gap: 5px;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 12px;
 }
 
 .btn-shipping:hover {
@@ -1905,6 +1849,72 @@ img {
 }
 
 :focus {
-  outline: 2px dashed var(--verde);
-  outline-offset: 4px;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #c5e6b8;
+}
+
+/* Melhorar design do campo de avaliação na página de produto */
+#review-form .rating-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+#review-form label[for="review-rating"] {
+  font-weight: 500;
+  font-size: 15px;
+}
+#review-rating {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #f9f9f9;
+  transition: border-color 0.2s;
+}
+#review-rating:focus {
+  border-color: var(--verde);
+  outline: none;
+}
+
+.btn-wishlist {
+  background-color: white;
+  color: #999;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 1;
+  border: 1.5px solid #ddd;
+  transition: all 0.2s ease;
+  box-shadow: none;
+}
+.btn-wishlist:hover,
+.btn-wishlist.active {
+  background-color: #ffe6e6;
+  color: #ff6b6b;
+  border-color: #ffcccc;
+}
+
+/* Exemplo para botões dentro dos cards de produto */
+.product-card .btn,
+.product-card .btn-add-cart,
+.product-card .btn-add-cart-large {
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 20px;
+  min-width: 0;
 }

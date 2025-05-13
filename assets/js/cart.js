@@ -41,15 +41,15 @@ function loadCartItems() {
     const cartItemHTML = `
       <div class="cart-item" data-id="${item.id}">
         <div class="cart-item-image">
-          <img src="${item.image}" alt="${item.name}">
+          <img src="${item.image || './assets/img/placeholder.jpg'}" alt="${item.name || ''}">
         </div>
         <div class="cart-item-details">
           <div class="cart-item-info">
-            <h3>${item.name}</h3>
+            <h3>${item.name || ''}</h3>
             <div class="cart-item-actions">
               <button class="cart-action remove-item">Excluir</button>
               <button class="cart-action save-for-later">Salvar</button>
-              <a href="product.html?id=${item.id}" class="cart-action">Comprar</a>
+              <!-- <a href="produtos.html?id=${item.id}" class="cart-action">Comprar</a> -->
             </div>
           </div>
           <div class="cart-item-bottom">
@@ -81,76 +81,15 @@ function generateQuantityOptions(selected) {
 
 function updateCartSummary() {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]")
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
-
-  // Verificar se há cupom aplicado
-  const appliedCoupon = localStorage.getItem("appliedCoupon")
-  let discount = 0
-
-  if (appliedCoupon) {
-    // Aplicar desconto de 3%
-    discount = subtotal * 0.03
-  }
-
-  // Verificar se há frete selecionado
-  const selectedShipping = localStorage.getItem("selectedShipping")
-  let shippingCost = 0
-
-  if (selectedShipping) {
-    shippingCost = Number.parseFloat(selectedShipping)
-  }
-
-  const total = subtotal - discount + shippingCost
-
-  // Atualizar valores no resumo do carrinho
-  const subtotalElement = document.querySelector(".summary-row:first-child span:last-child")
-  if (subtotalElement) {
-    subtotalElement.textContent = `R$ ${subtotal.toFixed(2)}`
-  }
-
-  // Atualizar elemento de frete
-  const shippingElement = document.querySelector(".summary-row:nth-child(2) span:last-child")
-  if (shippingElement) {
-    if (shippingCost > 0) {
-      shippingElement.textContent = `R$ ${shippingCost.toFixed(2)}`
-      shippingElement.className = ""
-    } else {
-      shippingElement.textContent = "Grátis"
-      shippingElement.className = "free-shipping"
-    }
-  }
-
-  // Adicionar linha de desconto se houver cupom aplicado
-  const discountRow = document.querySelector(".discount-row")
-
-  if (discount > 0) {
-    if (discountRow) {
-      // Atualizar valor do desconto
-      discountRow.querySelector("span:last-child").textContent = `-R$ ${discount.toFixed(2)}`
-    } else {
-      // Criar linha de desconto
-      const newDiscountRow = document.createElement("div")
-      newDiscountRow.className = "summary-row discount-row"
-      newDiscountRow.innerHTML = `
-        <span>Desconto (${appliedCoupon}):</span>
-        <span class="discount-value">-R$ ${discount.toFixed(2)}</span>
-      `
-
-      // Inserir após a linha de frete
-      if (shippingElement) {
-        shippingElement.closest(".summary-row").after(newDiscountRow)
-      }
-    }
-  } else if (discountRow) {
-    // Remover linha de desconto se não houver cupom
-    discountRow.remove()
-  }
-
-  // Atualizar total
-  const totalElement = document.querySelector(".total-price")
-  if (totalElement) {
-    totalElement.textContent = `R$ ${total.toFixed(2)}`
-  }
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+  const shipping = Number(localStorage.getItem("selectedShipping") || 0)
+  const total = subtotal + shipping
+  const subtotalEl = document.querySelector('.cart-summary-subtotal')
+  const shippingEl = document.querySelector('.cart-summary-shipping')
+  const totalEl = document.querySelector('.cart-summary-total')
+  if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2)}`
+  if (shippingEl) shippingEl.textContent = shipping > 0 ? `R$ ${shipping.toFixed(2)}` : '--'
+  if (totalEl) totalEl.textContent = `R$ ${total.toFixed(2)}`
 }
 
 function setupCartActions() {
@@ -172,72 +111,58 @@ function setupCartActions() {
   }
 
   // Event delegation para ações de itens do carrinho
-  document.querySelector(".cart-items") || document.createElement("div")?.addEventListener("click", (e) => {
-    const target = e.target
-    const cartItem = target.closest(".cart-item")
-
-    if (!cartItem) return
-
-    const itemId = cartItem.getAttribute("data-id")
-
+  const cartItemsContainer = document.querySelector(".cart-items") || document.createElement("div");
+  cartItemsContainer.addEventListener("click", (e) => {
+    const target = e.target;
+    const cartItem = target.closest(".cart-item");
+    if (!cartItem) return;
+    const itemId = cartItem.getAttribute("data-id");
     // Remover item
     if (target.classList.contains("remove-item")) {
-      removeCartItem(itemId)
-      cartItem.remove()
-
-      // Verificar se o carrinho está vazio
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]")
+      removeCartItem(itemId);
+      cartItem.remove();
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
       if (cart.length === 0) {
-        loadCartItems() // Recarregar para mostrar mensagem de carrinho vazio
+        loadCartItems();
       } else {
-        // Atualizar resumo do carrinho
-        updateCartSummary()
+        updateCartSummary();
       }
     }
-
     // Salvar para depois
     if (target.classList.contains("save-for-later")) {
-      // Adicionar à lista de desejos
-      const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
-
+      const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
       if (!wishlist.includes(itemId)) {
-        wishlist.push(itemId)
-        localStorage.setItem("wishlist", JSON.stringify(wishlist))
+        wishlist.push(itemId);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
       }
-
-      // Remover do carrinho
-      removeCartItem(itemId)
-      cartItem.remove()
-
-      showNotification("Item salvo para comprar depois!")
-
-      // Verificar se o carrinho está vazio
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]")
+      removeCartItem(itemId);
+      cartItem.remove();
+      showNotification("Item salvo para comprar depois!");
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
       if (cart.length === 0) {
-        loadCartItems() // Recarregar para mostrar mensagem de carrinho vazio
+        loadCartItems();
       } else {
-        // Atualizar resumo do carrinho
-        updateCartSummary()
+        updateCartSummary();
       }
     }
-  })
+    // Comprar (ir para página do produto)
+    if (target.classList.contains("cart-action") && target.textContent.trim().toLowerCase() === "comprar") {
+      window.location.href = `produtos.html?id=${itemId}`;
+    }
+  });
 
   // Event listener para mudanças na quantidade
-  document.querySelector(".cart-items") || document.createElement("div")?.addEventListener("change", (e) => {
+  cartItemsContainer.addEventListener("change", (e) => {
     if (e.target.classList.contains("quantity-select")) {
       const cartItem = e.target.closest(".cart-item")
       const itemId = cartItem.getAttribute("data-id")
       const newQuantity = Number.parseInt(e.target.value)
-
       updateCartItemQuantity(itemId, newQuantity)
-
       // Atualizar preço exibido
       const cart = JSON.parse(localStorage.getItem("cart") || "[]")
       const item = cart.find((i) => i.id === itemId)
-
       if (item) {
         cartItem.querySelector(".cart-item-price").textContent = `R$ ${(item.price * item.quantity).toFixed(2)}`
-
         // Atualizar resumo do carrinho
         updateCartSummary()
       }
@@ -411,31 +336,46 @@ function setupShippingCalculator() {
   const calculateButton = shippingCalculator.querySelector(".btn-shipping")
   calculateButton.addEventListener("click", () => {
     const cepInput = shippingCalculator.querySelector("input")
-    const cep = cepInput.value.replace(/\D/g, "")
-
-    if (cep.length !== 8) {
+    const cepRaw = cepInput.value.replace(/\D/g, "")
+    if (cepRaw.length !== 8) {
       showNotification("Por favor, digite um CEP válido.")
+      cepInput.focus()
       return
     }
-
     // Simular cálculo de frete
-    calculateShipping(cep)
+    const shippingValue = calculateShipping(cepRaw)
+    // Exibir valor do frete formatado
+    const shippingResult = shippingCalculator.querySelector('.shipping-result')
+    if (shippingResult) {
+      shippingResult.textContent = `Frete: R$ ${shippingValue.toFixed(2)}`
+    }
+    // Salvar valor do frete selecionado
+    localStorage.setItem("selectedShipping", shippingValue)
+    // Atualizar resumo do carrinho
+    if (typeof updateCartSummary === 'function') updateCartSummary();
   })
 
-  // Formatar CEP automaticamente
+  // Máscara e validação de CEP ao digitar
   const cepInput = shippingCalculator.querySelector("input")
   cepInput.addEventListener("input", function () {
-    let value = this.value.replace(/\D/g, "")
-
+    let value = this.value.replace(/\D/g, "");
+    if (value.length > 8) value = value.slice(0, 8);
     if (value.length > 5) {
-      value = value.substring(0, 5) + "-" + value.substring(5)
+      value = value.slice(0, 5) + "-" + value.slice(5, 8);
     }
-
-    this.value = value
-  })
+    this.value = value;
+  });
+  cepInput.addEventListener("paste", function (e) {
+    let paste = (e.clipboardData || window.clipboardData).getData('text');
+    paste = paste.replace(/\D/g, "").slice(0, 8);
+    if (paste.length > 5) {
+      paste = paste.slice(0, 5) + '-' + paste.slice(5, 8);
+    }
+    this.value = paste;
+    e.preventDefault();
+  });
 }
 
-// Atualizar a função de cálculo de frete no carrinho para usar os novos estilos
 function calculateShipping(cep) {
   // Simular carregamento
   showNotification("Calculando frete...")
@@ -454,6 +394,12 @@ function calculateShipping(cep) {
       if (shippingCalculator) {
         shippingCalculator.appendChild(shippingTable)
       }
+    }
+
+    // Garantir formatação do CEP
+    let cepFormatado = cep.replace(/\D/g, "")
+    if (cepFormatado.length === 8) {
+      cepFormatado = cepFormatado.substring(0,5) + '-' + cepFormatado.substring(5)
     }
 
     // Gerar opções de frete aleatórias
@@ -479,23 +425,22 @@ function calculateShipping(cep) {
     ]
 
     // Verificar se o CEP está na região de frete grátis (começando com 0, 1, 2, 3, 4)
-    const firstDigit = cep.charAt(0)
+    const firstDigit = cepFormatado.charAt(0)
     const isFreeShipping = ["0", "1", "2", "3", "4"].includes(firstDigit)
 
     // Renderizar tabela de fretes
     let tableHTML = `
-      <h3>Opções de entrega para o CEP ${cep.slice(0, 5)}-${cep.slice(5)}</h3>
+      <h3>Opções de entrega para o CEP ${cepFormatado}</h3>
       <div class="shipping-options">
     `
 
-    shippingOptions.forEach((option) => {
+    shippingOptions.forEach((option, idx) => {
       const price = isFreeShipping && option.name === "Padrão" ? 0 : option.price
       const priceText = price === 0 ? "Grátis" : `R$ ${price.toFixed(2)}`
-
       tableHTML += `
         <div class="shipping-option">
           <label>
-            <input type="radio" name="shipping" value="${option.id}" data-price="${price}">
+            <input type="radio" name="shipping" value="${option.id}" data-price="${price}" ${idx === 0 ? 'checked' : ''}>
             <div class="option-details">
               <div class="option-name">${option.name}</div>
               <div class="option-price">${priceText}</div>
@@ -519,18 +464,23 @@ function calculateShipping(cep) {
 
     shippingTable.innerHTML = tableHTML
 
+    // Selecionar o primeiro frete por padrão
+    const firstRadio = shippingTable.querySelector('input[type="radio"]')
+    if (firstRadio) {
+      localStorage.setItem("selectedShipping", firstRadio.getAttribute("data-price"))
+      if (typeof updateCartSummary === 'function') updateCartSummary();
+    }
+
     // Adicionar event listeners para as opções de frete
     const shippingRadios = shippingTable.querySelectorAll('input[type="radio"]')
     shippingRadios.forEach((radio) => {
       radio.addEventListener("change", function () {
         if (this.checked) {
           const shippingPrice = Number.parseFloat(this.getAttribute("data-price"))
-
           // Salvar opção de frete selecionada
           localStorage.setItem("selectedShipping", shippingPrice)
-
-          // Atualizar resumo do carrinho
-          updateCartSummary()
+          // Atualizar resumo do carrinho imediatamente
+          if (typeof updateCartSummary === 'function') updateCartSummary();
         }
       })
     })
@@ -586,3 +536,13 @@ function showNotification(message) {
     notification.classList.remove("show")
   }, 3000)
 }
+
+// Função para adicionar produto ao carrinho e atualizar a view se estiver na página do carrinho
+function addToCartAndReload(productId) {
+  addToCart(productId);
+  // Se estiver na página do carrinho, recarregar os itens
+  if (window.location.pathname.includes('cart.html')) {
+    loadCartItems();
+  }
+}
+
