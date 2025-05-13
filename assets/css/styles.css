@@ -249,13 +249,26 @@ img {
   width: max-content;
 }
 
+.categories-slider:hover {
+  animation-play-state: paused;
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-100% / 2));
+    transform: translateX(calc(-50%));
   }
+}
+
+/* Esconde a barra de rolagem em navegadores modernos */
+.categories-carousel::-webkit-scrollbar {
+  display: none;
+}
+.categories-carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .category-card {
@@ -837,6 +850,7 @@ img {
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 40px;
 }
 
 .filter-section {

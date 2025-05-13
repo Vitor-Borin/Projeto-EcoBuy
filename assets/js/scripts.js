@@ -795,4 +795,148 @@ document.addEventListener("DOMContentLoaded", () => {
       sortSelect.value = urlSort;
     }
   }
+
+  // Duplicar categorias para carrossel infinito
+  const slider = document.querySelector('.categories-slider');
+  if (slider && slider.children.length > 0) {
+    slider.innerHTML += slider.innerHTML;
+  }
+
+  // FAVORITOS NO MENU
+  const headerIcons = document.querySelectorAll('.header-icons .icon-link');
+  if (headerIcons.length > 1) {
+    const favIcon = headerIcons[1]; // O segundo ícone é o de favoritos
+    favIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      showFavoritesModal();
+    });
+  }
 });
+
+function showFavoritesModal() {
+  // Remove modal antigo se existir
+  const oldModal = document.getElementById('favorites-modal');
+  if (oldModal) oldModal.remove();
+
+  const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  const products = window.productsDatabase || {};
+
+  // Cria modal
+  const modal = document.createElement('div');
+  modal.id = 'favorites-modal';
+  modal.style.position = 'fixed';
+  modal.style.top = '0';
+  modal.style.left = '0';
+  modal.style.width = '100vw';
+  modal.style.height = '100vh';
+  modal.style.background = 'rgba(0,0,0,0.4)';
+  modal.style.display = 'flex';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
+  modal.style.zIndex = '9999';
+
+  const content = document.createElement('div');
+  content.style.background = '#fff';
+  content.style.borderRadius = '12px';
+  content.style.padding = '32px 24px 24px 24px';
+  content.style.maxWidth = '95vw';
+  content.style.width = '400px';
+  content.style.maxHeight = '80vh';
+  content.style.overflowY = 'auto';
+  content.style.position = 'relative';
+
+  const closeBtn = document.createElement('button');
+  closeBtn.textContent = '×';
+  closeBtn.style.position = 'absolute';
+  closeBtn.style.top = '10px';
+  closeBtn.style.right = '16px';
+  closeBtn.style.fontSize = '2rem';
+  closeBtn.style.background = 'none';
+  closeBtn.style.border = 'none';
+  closeBtn.style.cursor = 'pointer';
+  closeBtn.addEventListener('click', () => modal.remove());
+  content.appendChild(closeBtn);
+
+  const title = document.createElement('h2');
+  title.textContent = 'Favoritos';
+  title.style.marginBottom = '18px';
+  title.style.fontSize = '1.3rem';
+  title.style.textAlign = 'center';
+  content.appendChild(title);
+
+  if (!wishlist.length) {
+    const empty = document.createElement('p');
+    empty.textContent = 'Nenhum produto favoritado.';
+    empty.style.textAlign = 'center';
+    content.appendChild(empty);
+  } else {
+    wishlist.forEach(id => {
+      const p = products[id];
+      if (!p) return;
+      const item = document.createElement('div');
+      item.style.display = 'flex';
+      item.style.alignItems = 'center';
+      item.style.gap = '12px';
+      item.style.marginBottom = '18px';
+
+      const img = document.createElement('img');
+      img.src = p.image;
+      img.alt = p.name;
+      img.style.width = '56px';
+      img.style.height = '56px';
+      img.style.objectFit = 'cover';
+      img.style.borderRadius = '8px';
+      item.appendChild(img);
+
+      const info = document.createElement('div');
+      info.style.flex = '1';
+      info.innerHTML = `<strong>${p.name}</strong><br><span style='color:#4caf50;font-weight:600;'>R$ ${p.price.toFixed(2).replace('.', ',')}</span>`;
+      item.appendChild(info);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = 'Remover';
+      removeBtn.style.background = '#eee';
+      removeBtn.style.border = 'none';
+      removeBtn.style.borderRadius = '6px';
+      removeBtn.style.padding = '6px 10px';
+      removeBtn.style.cursor = 'pointer';
+      removeBtn.style.fontSize = '0.9rem';
+      removeBtn.addEventListener('click', () => {
+        toggleWishlist(p.id);
+        modal.remove();
+        showFavoritesModal();
+      });
+      item.appendChild(removeBtn);
+
+      content.appendChild(item);
+    });
+
+    // Botão geral para comprar todos
+    const buyAllBtn = document.createElement('button');
+    buyAllBtn.textContent = 'Comprar todos';
+    buyAllBtn.style.background = '#4caf50';
+    buyAllBtn.style.color = '#fff';
+    buyAllBtn.style.border = 'none';
+    buyAllBtn.style.borderRadius = '8px';
+    buyAllBtn.style.padding = '12px 0';
+    buyAllBtn.style.width = '100%';
+    buyAllBtn.style.fontSize = '1rem';
+    buyAllBtn.style.marginTop = '10px';
+    buyAllBtn.style.cursor = 'pointer';
+    buyAllBtn.addEventListener('click', () => {
+      wishlist.forEach(id => {
+        if (products[id]) addToCart(id);
+      });
+      window.location.href = 'cart.html';
+    });
+    content.appendChild(buyAllBtn);
+  }
+
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+
+  // Fechar ao clicar fora do conteúdo
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.remove();
+  });
+}

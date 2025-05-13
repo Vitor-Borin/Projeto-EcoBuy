@@ -101,29 +101,78 @@
     </div>
   </header>
 
-  <main class="container">
-    <div class="breadcrumbs">
-      <a href="index.html">Home</a> &gt;
-      <span>Produtos</span>
-    </div>
-    <section class="products-section">
-      <div class="section-header">
-        <h2>Nossos Produtos</h2>
-        <div class="filter-options">
-          <select id="sort-products">
-            <option value="default">Ordenar por</option>
-            <option value="price-asc">Menor preço</option>
-            <option value="price-desc">Maior preço</option>
-            <option value="name-asc">A-Z</option>
-            <option value="name-desc">Z-A</option>
-          </select>
+  <div class="container">
+    <main class="products-page">
+      <aside class="filters-sidebar">
+        <form id="filters-form">
+          <div class="filter-section">
+            <h3>Categoria</h3>
+            <ul class="filter-list" id="filter-categories">
+              <li><label class="filter-checkbox"><input type="checkbox" value="skincare"> Skincare</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="corpo"> Corpo e Banho</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="cabelo"> Cabelos</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="rosto"> Rosto</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="maquiagem"> Maquiagem</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="kits"> Kits e Presentes</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="casa"> Casa Sustentável</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="perfumaria"> Perfumaria</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="vegano"> Vegano</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="organico"> Orgânico</label></li>
+            </ul>
+          </div>
+          <div class="filter-section">
+            <h3>Preço</h3>
+            <input type="range" id="filter-price" min="0" max="500" step="10" value="500">
+            <div style="display:flex;justify-content:space-between;font-size:13px;">
+              <span>R$0</span><span id="price-value">R$500</span>
+            </div>
+          </div>
+          <div class="filter-section">
+            <h3>Avaliação</h3>
+            <ul class="filter-list">
+              <li><label class="filter-checkbox"><input type="radio" name="rating" value="4"> 4 estrelas ou mais</label></li>
+              <li><label class="filter-checkbox"><input type="radio" name="rating" value="3"> 3 estrelas ou mais</label></li>
+              <li><label class="filter-checkbox"><input type="radio" name="rating" value="2"> 2 estrelas ou mais</label></li>
+              <li><label class="filter-checkbox"><input type="radio" name="rating" value="1"> 1 estrela ou mais</label></li>
+            </ul>
+          </div>
+          <div class="filter-section">
+            <h3>Disponibilidade</h3>
+            <label class="filter-checkbox"><input type="checkbox" id="filter-instock"> Em estoque</label>
+          </div>
+          <div class="filter-section">
+            <h3>Tags</h3>
+            <ul class="filter-list" id="filter-tags">
+              <li><label class="filter-checkbox"><input type="checkbox" value="vegano"> Vegano</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="organico"> Orgânico</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="kit"> Kit</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="hidratação"> Hidratação</label></li>
+              <li><label class="filter-checkbox"><input type="checkbox" value="limpeza"> Limpeza</label></li>
+            </ul>
+          </div>
+          <button class="btn btn-full filter-button" type="submit">Filtrar</button>
+          <button class="btn btn-outline filter-button" type="button" id="clear-filters">Limpar filtros</button>
+        </form>
+      </aside>
+      <section class="products-section">
+        <div class="section-header">
+          <h2>Nossos Produtos</h2>
+          <div class="filter-options">
+            <select id="sort-products">
+              <option value="default">Ordenar por</option>
+              <option value="price-asc">Menor preço</option>
+              <option value="price-desc">Maior preço</option>
+              <option value="name-asc">A-Z</option>
+              <option value="name-desc">Z-A</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="product-grid">
-        <!-- Os produtos serão carregados dinamicamente pelo JavaScript -->
-      </div>
-    </section>
-  </main>
+        <div class="product-grid">
+          <!-- Os produtos serão carregados dinamicamente pelo JavaScript -->
+        </div>
+      </section>
+    </main>
+  </div>
 
   <!-- Footer -->
     <footer class="footer">
