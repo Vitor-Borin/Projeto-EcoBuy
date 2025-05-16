@@ -6,13 +6,28 @@
     <title>ecobuy - Produtos Sustentáveis</title>
     <link href="./assets/css/styles.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-    <!-- Banner de frete -->
+    <!-- Banner de frete com slider -->
     <div class="shipping-banner">
         <div class="container">
-            <p>Frete grátis para compras acima de R$ 150,00. <a href="javascript:void(0)">Saiba mais</a></p>
+            <div class="info-slider">
+                <div class="info-slide">
+                    <p><i class="fa-solid fa-truck-fast"></i> Frete grátis para compras acima de R$ 150,00. <a href="javascript:void(0)">Saiba mais</a></p>
+                </div>
+                <div class="info-slide">
+                    <p><i class="fa-solid fa-map-location-dot"></i> FRETE GRÁTIS para Regiões Sul e Sudeste: compras acima de R$399,90 | <a href="javascript:void(0)">Confira as regras</a></p>
+                </div>
+                <div class="info-slide">
+                    <p><i class="fa-solid fa-tags"></i> PAGUE COM PIX E TENHA +5% OFF* em compras acima de R$150,00 | <a href="javascript:void(0)">Consulte as condições</a></p>
+                </div>
+                <div class="info-slide">
+                    <p><i class="fa-solid fa-rotate-left"></i> COMUNICADO: Trocas e Devoluções | <a href="javascript:void(0)">Saiba mais</a></p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -20,12 +35,7 @@
     <header class="header">
         <div class="header-container">
             <button aria-label="Botão" class="menu-button mobile-only">
-                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="3" x2="21" y1="12" y2="12"></line>
-                    <line x1="3" x2="21" y1="6" y2="6"></line>
-                    <line x1="3" x2="21" y1="18" y2="18"></line>
-                </svg>
+                <i class="fa-solid fa-bars"></i>
             </button>
             <a class="logo" href="index.html">
                 <img src="./assets/img/Logo.svg" alt="Logo da Ecobuy">
@@ -37,11 +47,7 @@
                     <li><a class="nav-link active" href="index.html">Home</a></li>
                     <li><a class="nav-link" href="sobre.html">Sobre nós</a></li>
                     <li class="dropdown">
-                        <a class="nav-link" href="produtos.html">Produtos <svg fill="none" height="16"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg></a>
+                        <a class="nav-link" href="produtos.html">Produtos <i class="fa-solid fa-chevron-down"></i></a>
                         <div class="dropdown-content">
                             <a href="produtos.html?categoria=skincare">Skincare</a>
                             <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
@@ -61,27 +67,10 @@
             </nav>
             <div class="header-icons">
                 <a class="icon-link" href="javascript:void(0)">
-                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
-                    </svg>
-                </a>
-                <a class="icon-link" href="javascript:void(0)">
-                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                        </path>
-                    </svg>
+                    <i class="fa-solid fa-heart"></i>
                 </a>
                 <a class="icon-link cart-icon" href="cart.html">
-                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
+                    <i class="fa-solid fa-cart-shopping"></i>
                     <span class="cart-count">0</span>
                 </a>
             </div>
@@ -90,11 +79,7 @@
             <div class="search-box">
                 <input placeholder="O que você está procurando?" type="text" />
                 <button aria-label="Botão" class="search-button">
-                    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
-                    </svg>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
         </div>
@@ -123,131 +108,61 @@
                 <div class="categories-slider">
                     <a class="category-card" href="produtos.html?categoria=skincare">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
+                            <i class="fa-solid fa-leaf"></i>
                         </div>
                         <span>Skincare</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=corpo">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7 21h10"></path>
-                                <rect height="6" rx="2" width="14" x="5" y="3"></rect>
-                                <path d="M5 9v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"></path>
-                            </svg>
+                            <i class="fa-solid fa-bath"></i>
                         </div>
                         <span>Corpo</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=cabelo">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
-                                <path d="M7 2v20"></path>
-                                <path d="M21 15V2"></path>
-                                <path d="M18 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path>
-                            </svg>
+                            <i class="fa-solid fa-droplet"></i>
                         </div>
                         <span>Cabelos</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=rosto">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                                <line x1="9" x2="9.01" y1="9" y2="9"></line>
-                                <line x1="15" x2="15.01" y1="9" y2="9"></line>
-                            </svg>
+                            <i class="fa-solid fa-face-smile"></i>
                         </div>
                         <span>Rosto</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=maquiagem">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 3h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z">
-                                </path>
-                                <path d="M8 21h8"></path>
-                                <path d="M12 17v4"></path>
-                                <path d="M9 11h.01"></path>
-                                <path d="M12 11h.01"></path>
-                                <path d="M15 11h.01"></path>
-                            </svg>
+                            <i class="fa-solid fa-palette"></i>
                         </div>
                         <span>Maquiagem</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=kits">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                                </path>
-                            </svg>
+                            <i class="fa-solid fa-gift"></i>
                         </div>
                         <span>Kits</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=casa">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
+                            <i class="fa-solid fa-house"></i>
                         </div>
                         <span>Casa</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=perfumaria">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
-                                <path d="M10 13v-2"></path>
-                                <path d="M17 10h2v7a2 2 0 0 1-2 2v0a2 2 0 0 1-2-2v-7h2Z"></path>
-                                <path d="M7 3h6"></path>
-                            </svg>
+                            <i class="fa-solid fa-spray-can"></i>
                         </div>
                         <span>Perfumaria</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=vegano">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2 22c1.25-1.25 2.5-2.5 3.5-4 .83-1.25 1.5-2.5 2-4 .5-1.5.5-3 0-4.5-.5-1.5-1.17-2.75-2-4C4.5 4 3.25 2.75 2 2c0 0 5 2 8 5s5 8 5 8-2 5-5 8-8 5-8 5Z">
-                                </path>
-                                <path d="M17 8c.5 1.5.5 3 0 4.5-.5 1.5-1.17 2.75-2 4-.83 1.25-1.75 2.25-3 3"></path>
-                                <path d="M22 2c-1.25.75-2.5 1.75-3.5 3-.83 1.25-1.5 2.5-2 4"></path>
-                            </svg>
+                            <i class="fa-solid fa-seedling"></i>
                         </div>
                         <span>Vegano</span>
                     </a>
                     <a class="category-card" href="produtos.html?categoria=organico">
                         <div class="category-icon">
-                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
-                                <path d="M8.5 8.5v.01"></path>
-                                <path d="M16 15.5v.01"></path>
-                                <path d="M12 12v.01"></path>
-                                <path d="M11 17v.01"></path>
-                                <path d="M7 14v.01"></path>
-                            </svg>
+                            <i class="fa-solid fa-leaf"></i>
                         </div>
                         <span>Orgânico</span>
                     </a>
@@ -259,7 +174,7 @@
         <section class="products-section">
             <div class="section-header">
                 <h2>PRODUTOS EM DESTAQUE</h2>
-                <a class="see-all" href="produtos.html">Ver todos</a>
+                <a class="see-all" href="produtos.html">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div id="featured-products" class="product-grid">
                 <!-- Os produtos serão carregados dinamicamente pelo JavaScript -->
@@ -270,7 +185,7 @@
         <section class="products-section">
             <div class="section-header">
                 <h2>MAIS VENDIDOS</h2>
-                <a class="see-all" href="produtos.html?sort=bestseller">Ver todos</a>
+                <a class="see-all" href="produtos.html?sort=bestseller">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div id="best-sellers" class="product-grid">
                 <!-- Os produtos serão carregados dinamicamente pelo JavaScript -->
@@ -293,39 +208,16 @@
                 <h3>Siga-nos nas redes sociais</h3>
                 <div class="social-icons">
                     <a class="social-icon" href="javascript:void(0)">
-                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
+                        <i class="fa-brands fa-facebook-f"></i>
                     </a>
                     <a class="social-icon" href="javascript:void(0)">
-                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                        </svg>
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
                     <a class="social-icon" href="javascript:void(0)">
-                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                            </path>
-                        </svg>
+                        <i class="fa-brands fa-twitter"></i>
                     </a>
                     <a class="social-icon" href="javascript:void(0)">
-                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
-                            </path>
-                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                        </svg>
+                        <i class="fa-brands fa-youtube"></i>
                     </a>
                 </div>
             </div>

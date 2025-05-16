@@ -141,7 +141,7 @@
   align-items: center;
 }
 
-.value-card h3 svg {
+.value-card h3 i {
   margin-right: 10px;
 }
 
@@ -190,26 +190,72 @@
 .method-icon {
   width: 70px;
   height: 70px;
-  background-color: rgba(76, 175, 80, 0.1);
+  background-color: #f5f5f5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: none;
 }
 
-.method-icon svg {
-  stroke: var(--verde);
+.method-icon i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: #444;
+  transition: none;
+}
+
+/* Ajustes específicos para ícones de contato */
+.method-icon .fa-phone {
+  font-size: 1.4rem;
+}
+
+.method-icon .fa-envelope {
+  font-size: 1.4rem;
+}
+
+.method-icon .fa-whatsapp {
+  font-size: 1.6rem;
 }
 
 .method-card {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 30px 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.method-card:hover .method-icon,
+.method-card:hover .method-icon i {
+  transform: none;
+}
+
+.method-card:hover .method-icon i {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .method-card h3 {
   color: #333;
   margin-bottom: 15px;
   font-size: 1.3rem;
+}
+
+.method-card p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 6px;
 }
 
 .method-card a {
@@ -331,4 +377,606 @@
   .form-group {
     flex: 1 0 calc(100% - 20px);
   }
+}
+
+/* Estilos para ícones em contextos específicos de páginas */
+
+/* Página de Produtos */
+.filters-sidebar .filter-section h3 i {
+  margin-right: 8px;
+  color: #444;
+  font-size: 0.9em;
+}
+
+/* Ícones na página de produto */
+.product-detail-info .product-meta i {
+  margin-right: 8px;
+  color: #444;
+}
+
+.product-actions i {
+  margin-right: 6px;
+  color: #444;
+}
+
+.review-rating i.fa-star {
+  font-size: 0.9rem;
+}
+
+/* Ícones para botões */
+.btn-wishlist-large i,
+.btn-add-cart-large i {
+  margin-right: 8px;
+}
+
+/* Página de parceiros */
+.partner-card .partner-social i {
+  font-size: 1.2rem;
+  margin: 0 8px;
+  color: #444;
+  transition: transform 0.3s ease;
+}
+
+.partner-card .partner-social i:hover {
+  transform: scale(1.2);
+  color: var(--verde);
+}
+
+/* Página de contato */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px);
+}
+
+.contact-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.contact-icon i {
+  color: #444;
+  font-size: 1.75rem;
+}
+
+/* Ícones para FAQ */
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 1rem 0;
+}
+
+.faq-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+}
+
+/* Página de rastreamento (tracking) */
+.timeline-item i {
+  margin-right: 10px;
+  color: #444;
+}
+
+.timeline-item.completed i {
+  color: #4CAF50;
+}
+
+/* Melhorias adicionais aos ícones em cards e elementos interativos */
+.card-icon i,
+.feature-icon i {
+  font-size: 2.5rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.interactive-icon {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.interactive-icon:hover {
+  transform: scale(1.1);
+  color: var(--verde);
+}
+
+/* Benefícios da Parceria */
+.benefits-container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-item i {
+    font-size: 3rem;
+    color: var(--verde);
+    margin-bottom: 15px;
+}
+
+.benefit-item h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.benefit-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .benefits-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* Estilos específicos para a página de parceiros */
+.partners-hero {
+    background-color: #e9f7e9;
+}
+
+.partners-hero .diamond-shape {
+    background-color: #6abf69;
+}
+
+.partners-cards-section {
+    background-color: #f9fcf9;
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.partner-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-top: 4px solid #4caf50;
+    height: 100%;
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.partner-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #f2f2f2;
+}
+
+.partner-name {
+    color: #4caf50;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 12px 0;
+}
+
+.partner-description {
+    color: #555;
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.partner-link {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    padding: 8px 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.partner-link:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+}
+
+.partner-link:hover:after {
+    width: 100%;
+}
+
+.values-section-colorful {
+    background-color: #f2f9ed;
+}
+
+.value-card-1 {
+    border-top: 4px solid #8bc34a;
+}
+
+.value-card-1 .method-icon {
+    background-color: #f1f8e9;
+}
+
+.value-card-1 h3 {
+    color: #7cb342;
+}
+
+.value-card-2 {
+    border-top: 4px solid #26a69a;
+}
+
+.value-card-2 .method-icon {
+    background-color: #e0f2f1;
+}
+
+.value-card-2 h3 {
+    color: #26a69a;
+}
+
+.value-card-3 {
+    border-top: 4px solid #ffa726;
+}
+
+.value-card-3 .method-icon {
+    background-color: #fff3e0;
+}
+
+.value-card-3 h3 {
+    color: #fb8c00;
+}
+
+.partner-form-section {
+    background-color: #f8fbf8;
+}
+
+.partner-form-section .form-container {
+    border-top: 5px solid #4caf50;
+}
+
+.benefits-section {
+    background-color: #e8f5e9;
+}
+
+.benefit-item-1 {
+    background-color: #e8f5e9;
+    border-bottom: 4px solid #4caf50;
+}
+
+.benefit-item-2 {
+    background-color: #e0f7fa;
+    border-bottom: 4px solid #00bcd4;
+}
+
+.benefit-item-2 i {
+    color: #00acc1;
+}
+
+.benefit-item-2 h3 {
+    color: #00acc1;
+}
+
+.benefit-item-3 {
+    background-color: #f9fbe7;
+    border-bottom: 4px solid #cddc39;
+}
+
+.benefit-item-3 i {
+    color: #afb42b;
+}
+
+.benefit-item-3 h3 {
+    color: #afb42b;
+}
+
+.submit-btn {
+    background-color: #4caf50;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.submit-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s ease;
+    z-index: -1;
+}
+
+.submit-btn:hover:before {
+    left: 100%;
+}
+
+@media (max-width: 768px) {
+    .partner-card {
+        max-width: 100%;
+    }
+}
+
+/* Estilos para a página de Contato */
+.contact-colorful-section {
+    background-color: #f5f9f5;
+}
+
+.contact-card-1 {
+    border-top: 4px solid #4caf50;
+}
+
+.contact-card-1 .method-icon {
+    background-color: #e8f5e9;
+}
+
+.contact-card-1 h3 {
+    color: #4caf50;
+}
+
+.contact-card-2 {
+    border-top: 4px solid #2196f3;
+}
+
+.contact-card-2 .method-icon {
+    background-color: #e3f2fd;
+}
+
+.contact-card-2 h3 {
+    color: #2196f3;
+}
+
+.contact-card-3 {
+    border-top: 4px solid #25d366;
+}
+
+.contact-card-3 .method-icon {
+    background-color: #e6f9ef;
+}
+
+.contact-card-3 h3 {
+    color: #25d366;
+}
+
+.contact-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    padding: 8px 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.contact-link:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+.contact-link:hover:after {
+    width: 100%;
+}
+
+.contact-form-colorful .form-container {
+    border-top: 5px solid #4caf50;
+}
+
+.contact-map-section {
+    background-color: #f0f7f0;
+}
+
+/* Estilos para a página Sobre Nós */
+.about-mission-section {
+    background-color: #e8f5e9;
+}
+
+.about-values-section {
+    background-color: #fff;
+}
+
+.about-commitment-section {
+    background-color: #f1f8e9;
+}
+
+.value-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.value-card h3 {
+    display: flex;
+    align-items: center;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.value-card h3 i {
+    margin-right: 10px;
+    color: inherit;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.value-card p {
+    flex-grow: 1;
+}
+
+.about-link {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    padding: 8px 0;
+    margin-top: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.about-link:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+}
+
+.about-link:hover:after {
+    width: 100%;
+}
+
+/* Cores para os cards da página Sobre Nós */
+.about-card-1 {
+    border-top: 4px solid #4caf50;
+}
+
+.about-card-1 h3 {
+    color: #4caf50;
+}
+
+.about-card-2 {
+    border-top: 4px solid #2196f3;
+}
+
+.about-card-2 h3 {
+    color: #2196f3;
+}
+
+.about-card-3 {
+    border-top: 4px solid #8bc34a;
+}
+
+.about-card-3 h3 {
+    color: #8bc34a;
+}
+
+.about-card-4 {
+    border-top: 4px solid #e91e63;
+}
+
+.about-card-4 h3 {
+    color: #e91e63;
+}
+
+.about-card-5 {
+    border-top: 4px solid #00bcd4;
+}
+
+.about-card-5 h3 {
+    color: #00bcd4;
+}
+
+.about-card-6 {
+    border-top: 4px solid #673ab7;
+}
+
+.about-card-6 h3 {
+    color: #673ab7;
+}
+
+.about-card-7 {
+    border-top: 4px solid #ff9800;
+}
+
+.about-card-7 h3 {
+    color: #ff9800;
+}
+
+.about-card-8 {
+    border-top: 4px solid #009688;
+}
+
+.about-card-8 h3 {
+    color: #009688;
+}
+
+.about-card-9 {
+    border-top: 4px solid #4caf50;
+}
+
+.about-card-9 h3 {
+    color: #4caf50;
+}
+
+.about-card-10 {
+    border-top: 4px solid #795548;
+}
+
+.about-card-10 h3 {
+    color: #795548;
+}
+
+.about-card-11 {
+    border-top: 4px solid #3f51b5;
+}
+
+.about-card-11 h3 {
+    color: #3f51b5;
 }

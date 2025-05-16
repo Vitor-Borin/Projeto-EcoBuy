@@ -102,6 +102,35 @@ window.productsDatabase = {
   }
 };
 
+// Código para o slider de informações
+document.addEventListener('DOMContentLoaded', function() {
+  initInfoSlider();
+  // ... outras funções que já existem
+});
+
+function initInfoSlider() {
+  // Apenas inicializa o slider - agora as animações são controladas pelo CSS
+  const slides = document.querySelectorAll('.info-slide');
+  if (!slides.length) return;
+  
+  // Não precisa fazer nada aqui, pois a animação é gerenciada pelo CSS
+  // Se precisar pausar a animação quando o mouse estiver sobre o slider:
+  const slider = document.querySelector('.info-slider');
+  if (slider) {
+    slider.addEventListener('mouseenter', () => {
+      slides.forEach(slide => {
+        slide.style.animationPlayState = 'paused';
+      });
+    });
+    
+    slider.addEventListener('mouseleave', () => {
+      slides.forEach(slide => {
+        slide.style.animationPlayState = 'running';
+      });
+    });
+  }
+}
+
 // Função para carregar produtos em destaque
 function loadFeaturedProducts() {
   const container = document.querySelector("#featured-products");
@@ -155,13 +184,7 @@ function createProductCard(product) {
   const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
   const isInWishlist = wishlist.includes(product.id);
 
-  wishlistButton.innerHTML = isInWishlist
-    ? `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ff6b6b" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
-    : `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
-
-  if (isInWishlist) {
-    wishlistButton.classList.add("active");
-  }
+  wishlistButton.innerHTML = createWishlistIcon(isInWishlist);
 
   wishlistButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -172,6 +195,10 @@ function createProductCard(product) {
 
   // Adicionar conteúdo do card
   const productContent = document.createElement("div");
+  productContent.style.display = "flex";
+  productContent.style.flexDirection = "column";
+  productContent.style.height = "100%";
+  
   productContent.innerHTML = `
     <a href="produto.html?id=${product.id}">
       <div class="product-image">
@@ -179,14 +206,16 @@ function createProductCard(product) {
       </div>
     </a>
     <div class="product-info">
-      <h3>${product.name}</h3>
-      <div class="product-price">
-        <span class="current-price">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
-        ${product.originalPrice ? `<span class="original-price">R$ ${product.originalPrice.toFixed(2).replace('.', ',')}</span>` : ""}
-      </div>
-      <div class="product-rating">
-        ${generateStarRating(product.rating)}
-        <span class="rating-value">${product.rating.toFixed(1)}</span>
+      <div>
+        <h3>${product.name}</h3>
+        <div class="product-price">
+          <span class="current-price">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
+          ${product.originalPrice ? `<span class="original-price">R$ ${product.originalPrice.toFixed(2).replace('.', ',')}</span>` : ""}
+        </div>
+        <div class="product-rating">
+          ${createStarsHTML(product.rating)}
+          <span class="rating-value">${product.rating.toFixed(1)}</span>
+        </div>
       </div>
       <button class="btn btn-add-cart" data-id="${product.id}">Adicionar ao carrinho</button>
     </div>
@@ -208,30 +237,49 @@ function createProductCard(product) {
   return productCard;
 }
 
-// Função para gerar classificação por estrelas
-function generateStarRating(rating) {
-  const fullStars = Math.floor(rating);
-  const halfStar = rating % 1 >= 0.5;
-  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+// Função auxiliar para criar ícones de favorito
+function createWishlistIcon(isFavorite) {
+    if (isFavorite) {
+        return '<i class="fa-solid fa-heart" style="color: #ff6b6b;"></i>';
+    } else {
+        return '<i class="fa-regular fa-heart"></i>';
+    }
+}
 
-  let starsHTML = "";
+// Função auxiliar para criar estrelas de avaliação
+function createStarsHTML(rating) {
+    let starsHTML = '';
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+    // Estrela cheia
+    for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fa-solid fa-star" style="color: #ffc107;"></i>';
+    }
+    
+    // Meia estrela
+    if (hasHalfStar) {
+        starsHTML += '<i class="fa-solid fa-star-half-stroke" style="color: #ffc107;"></i>';
+    }
+    
+    // Estrela vazia
+    for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="fa-regular fa-star" style="color: #ffc107;"></i>';
+    }
+    
+    return starsHTML;
+}
 
-  // Full stars
-  for (let i = 0; i < fullStars; i++) {
-    starsHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#ffc107" stroke="#ffc107" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
-  }
-
-  // Half star
-  if (halfStar) {
-    starsHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#ffc107" stroke="#ffc107" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></path><path d="M12 2L12 17.77" fill="none"></path></svg>`;
-  }
-
-  // Empty stars
-  for (let i = 0; i < emptyStars; i++) {
-    starsHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffc107" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
-  }
-
-  return starsHTML;
+// Função para atualizar o botão de favoritos
+function updateWishlistButton(button, isFavorite) {
+    if (isFavorite) {
+        button.innerHTML = '<i class="fa-solid fa-heart" style="color: #ff6b6b;"></i>';
+        button.classList.add('active');
+    } else {
+        button.innerHTML = '<i class="fa-regular fa-heart"></i>';
+        button.classList.remove('active');
+    }
 }
 
 // Função para filtrar produtos por termo de busca
@@ -356,25 +404,13 @@ function checkWishlistStatus(productId) {
   // Atualizar botões de favoritos na página
   const wishlistButtons = document.querySelectorAll(`.btn-wishlist[data-id="${productId}"]`);
   wishlistButtons.forEach((button) => {
-    if (isInWishlist) {
-      button.classList.add("active");
-      button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ff6b6b" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
-    } else {
-      button.classList.remove("active");
-      button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
-    }
+    updateWishlistButton(button, isInWishlist);
   });
 
   // Atualizar botão grande de favoritos na página de detalhes do produto
   const wishlistButtonLarge = document.querySelector(`.btn-wishlist-large[data-id="${productId}"]`);
   if (wishlistButtonLarge) {
-    if (isInWishlist) {
-      wishlistButtonLarge.classList.add("active");
-      wishlistButtonLarge.textContent = "❤️ Remover dos favoritos";
-    } else {
-      wishlistButtonLarge.classList.remove("active");
-      wishlistButtonLarge.textContent = "❤ Adicionar aos favoritos";
-    }
+    updateWishlistButton(wishlistButtonLarge, isInWishlist);
   }
 }
 
@@ -455,7 +491,7 @@ function loadProductDetails(productId) {
     const ratingContainer = document.querySelector(".product-rating");
     if (ratingContainer) {
       ratingContainer.innerHTML = `
-        ${generateStarRating(product.rating)}
+        ${createStarsHTML(product.rating)}
         <span class="rating-value">${product.rating.toFixed(1)}</span>
         <span class="rating-count">(${Math.floor(product.rating * 10)} avaliações)</span>
       `;
@@ -463,7 +499,7 @@ function loadProductDetails(productId) {
       const newRatingContainer = document.createElement("div");
       newRatingContainer.className = "product-rating";
       newRatingContainer.innerHTML = `
-        ${generateStarRating(product.rating)}
+        ${createStarsHTML(product.rating)}
         <span class="rating-value">${product.rating.toFixed(1)}</span>
         <span class="rating-count">(${Math.floor(product.rating * 10)} avaliações)</span>
       `;
@@ -806,22 +842,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Duplicar categorias para carrossel infinito
-  const slider = document.querySelector('.categories-slider');
-  if (slider && slider.children.length > 0) {
-    slider.innerHTML += slider.innerHTML;
-  }
-
-  // FAVORITOS NO MENU
-  const headerIcons = document.querySelectorAll('.header-icons .icon-link');
-  if (headerIcons.length > 1) {
-    const favIcon = headerIcons[1]; // O segundo ícone é o de favoritos
-    favIcon.addEventListener('click', (e) => {
-      e.preventDefault();
-      showFavoritesModal();
+  // Duplicar categorias para carrossel infinito  
+  const slider = document.querySelector('.categories-slider');  
+  if (slider && slider.children.length > 0) {    
+    slider.innerHTML += slider.innerHTML;  
+  }  
+  
+  // FAVORITOS NO MENU - Solução específica que vai funcionar
+  window.addEventListener('DOMContentLoaded', function() {
+    // Adicionar evento ao link que contém o ícone de coração no header
+    document.querySelectorAll('.header-icons .icon-link').forEach(link => {
+      if (link.innerHTML.includes('fa-heart')) {
+        console.log('Link de favoritos encontrado e configurado');
+        link.href = 'javascript:void(0)';
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('Ícone de coração clicado!');
+          showFavoritesModal();
+          return false;
+        });
+      }
     });
-  }
-
+  });
+  
   // Destacar menu ativo
   const path = window.location.pathname.split('/').pop();
   const navLinks = document.querySelectorAll('.nav-link');
@@ -855,10 +899,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function showFavoritesModal() {
-  // Remove modal antigo se existir
-  const oldModal = document.getElementById('favorites-modal');
-  if (oldModal) oldModal.remove();
+function showFavoritesModal() {  console.log('Função showFavoritesModal chamada!');    // Remove modal antigo se existir  const oldModal = document.getElementById('favorites-modal');  if (oldModal) oldModal.remove();
 
   const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
   const products = window.productsDatabase || {};

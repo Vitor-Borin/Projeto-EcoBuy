@@ -7,26 +7,36 @@
   <link href="./assets/css/styles.css" rel="stylesheet" />
   <link href="./assets/css/pages.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-  <!-- Banner de frete -->
-  <div class="shipping-banner">
-    <div class="container">
-      <p>Frete grátis para compras acima de R$ 150,00. <a href="javascript:void(0)">Saiba mais</a></p>
-    </div>
+    <!-- Banner de frete com slider -->    
+    <div class="shipping-banner">        
+      <div class="container">            
+          <div class="info-slider">                
+              <div class="info-slide">                    
+                  <p><i class="fa-solid fa-truck-fast"></i> Frete grátis para compras acima de R$ 150,00. <a href="javascript:void(0)">Saiba mais</a></p>                
+              </div>                
+              <div class="info-slide">                    
+                  <p><i class="fa-solid fa-map-location-dot"></i> FRETE GRÁTIS para Regiões Sul e Sudeste: compras acima de R$399,90 | <a href="javascript:void(0)">Confira as regras</a></p>                
+              </div>                
+              <div class="info-slide">                    
+                  <p><i class="fa-solid fa-tags"></i> PAGUE COM PIX E TENHA +5% OFF* em compras acima de R$150,00 | <a href="javascript:void(0)">Consulte as condições</a></p>                
+              </div>                
+              <div class="info-slide">                    
+                  <p><i class="fa-solid fa-rotate-left"></i> COMUNICADO: Trocas e Devoluções | <a href="javascript:void(0)">Saiba mais</a></p>                
+              </div>            
+          </div>        
+      </div>    
   </div>
 
   <!-- Header -->
   <header class="header">
     <div class="header-container">
       <button aria-label="Botão" class="menu-button mobile-only">
-        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-          stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-          <line x1="3" x2="21" y1="12" y2="12"></line>
-          <line x1="3" x2="21" y1="6" y2="6"></line>
-          <line x1="3" x2="21" y1="18" y2="18"></line>
-        </svg>
+        <i class="fa-solid fa-bars"></i>
       </button>
       <a class="logo" href="index.html">
         <img src="./assets/img/Logo.svg" alt="Logo da Ecobuy">
@@ -38,11 +48,7 @@
           <li><a class="nav-link active" href="index.html">Home</a></li>
           <li><a class="nav-link" href="sobre.html">Sobre nós</a></li>
           <li class="dropdown">
-            <a class="nav-link" href="produtos.html">Produtos <svg fill="none" height="16" stroke="currentColor"
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"
-                xmlns="http://www.w3.org/2000/svg">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg></a>
+            <a class="nav-link" href="produtos.html">Produtos <i class="fa-solid fa-chevron-down"></i></a>
             <div class="dropdown-content">
               <a href="produtos.html?categoria=skincare">Skincare</a>
               <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
@@ -62,27 +68,10 @@
       </nav>
       <div class="header-icons">
         <a class="icon-link" href="javascript:void(0)">
-          <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
-          </svg>
-        </a>
-        <a class="icon-link" href="javascript:void(0)">
-          <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-            </path>
-          </svg>
+          <i class="fa-solid fa-heart"></i>
         </a>
         <a class="icon-link cart-icon" href="cart.html">
-          <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
+          <i class="fa-solid fa-cart-shopping"></i>
           <span class="cart-count">0</span>
         </a>
       </div>
@@ -91,11 +80,7 @@
       <div class="search-box">
         <input placeholder="O que você está procurando?" type="text" />
         <button aria-label="Botão" class="search-button">
-          <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
-          </svg>
+          <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
     </div>
@@ -126,122 +111,86 @@
     </section>
 
     <!-- Missão e Visão -->
-    <section class="values-section" id="valores">
+    <section class="values-section about-mission-section" id="valores">
       <div class="container">
         <div class="section-title">
           <h2>Nossa Missão e Visão</h2>
           <p>Conheça os princípios que guiam nosso trabalho e nosso compromisso com a sustentabilidade</p>
         </div>
         <div class="values-grid">
-          <div class="value-card">
+          <div class="value-card about-card-1">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
+              <i class="fa-solid fa-shield-alt"></i>
               Nossa Missão
             </h3>
             <p>Proporcionar acesso a produtos de qualidade que sejam veganos, cruelty-free e sustentáveis, incentivando
               um estilo de vida mais consciente e responsável com o planeta.</p>
+            <a href="javascript:void(0)" class="about-link">Saiba mais</a>
           </div>
-          <div class="value-card">
+          <div class="value-card about-card-2">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>
+              <i class="fa-solid fa-eye"></i>
               Nossa Visão
             </h3>
             <p>Ser referência no mercado de produtos sustentáveis, promovendo a conscientização ambiental e contribuindo
               para um mundo mais equilibrado e saudável.</p>
+            <a href="javascript:void(0)" class="about-link">Saiba mais</a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Nossos Valores -->
-    <section class="team-section">
+    <section class="team-section about-values-section">
       <div class="container">
         <div class="section-title">
           <h2>Nossos Valores</h2>
           <p>Princípios que norteiam nossas decisões e ações no dia a dia</p>
         </div>
         <div class="values-grid">
-          <div class="value-card">
+          <div class="value-card about-card-3">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M2 22c1.25-1.25 2.5-2.5 3.5-4 .83-1.25 1.5-2.5 2-4 .5-1.5.5-3 0-4.5-.5-1.5-1.17-2.75-2-4C4.5 4 3.25 2.75 2 2c0 0 5 2 8 5s5 8 5 8-2 5-5 8-8 5-8 5Z">
-                </path>
-                <path d="M17 8c.5 1.5.5 3 0 4.5-.5 1.5-1.17 2.75-2 4-.83 1.25-1.75 2.25-3 3"></path>
-                <path d="M22 2c-1.25.75-2.5 1.75-3.5 3-.83 1.25-1.5 2.5-2 4"></path>
-              </svg>
+              <i class="fa-solid fa-seedling"></i>
               Sustentabilidade
             </h3>
             <p>Comprometimento com práticas que minimizam o impacto ambiental em toda nossa cadeia de produção e
               distribuição.</p>
           </div>
-          <div class="value-card">
+          <div class="value-card about-card-4">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                </path>
-              </svg>
+              <i class="fa-solid fa-heart"></i>
               Ética
             </h3>
             <p>Respeito aos animais, com produtos 100% veganos e cruelty-free, garantindo que nenhum ser vivo seja
               prejudicado.</p>
           </div>
-          <div class="value-card">
+          <div class="value-card about-card-5">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 2H3v18h18z"></path>
-                <path d="M21 9H3"></path>
-                <path d="M21 16H3"></path>
-              </svg>
+              <i class="fa-solid fa-table"></i>
               Transparência
             </h3>
             <p>Informações claras sobre a composição e origem dos produtos, permitindo que nossos clientes façam
               escolhas conscientes.</p>
           </div>
-          <div class="value-card">
+          <div class="value-card about-card-6">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                <path d="m9 12 2 2 4-4"></path>
-              </svg>
+              <i class="fa-solid fa-shield-alt"></i>
               Qualidade
             </h3>
             <p>Produtos eficientes que cumprem o que prometem, oferecendo resultados reais sem comprometer o meio
               ambiente.</p>
           </div>
-          <div class="value-card">
+          <div class="value-card about-card-7">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2v20"></path>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"></path>
-              </svg>
+              <i class="fa-solid fa-lightbulb"></i>
               Inovação
             </h3>
             <p>Busca constante por novas soluções sustentáveis, investindo em pesquisa e desenvolvimento de produtos
               eco-friendly.</p>
           </div>
-          <div class="value-card">
+          <div class="value-card about-card-8">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
+              <i class="fa-solid fa-users"></i>
               Comunidade
             </h3>
             <p>Valorização das relações com clientes, fornecedores e parceiros, construindo uma comunidade engajada com
@@ -252,46 +201,32 @@
     </section>
 
     <!-- Nosso Compromisso -->
-    <section class="values-section">
+    <section class="values-section about-commitment-section">
       <div class="container">
         <div class="section-title">
           <h2>Nosso Compromisso</h2>
           <p>Conheça as iniciativas que fazem parte do nosso dia a dia</p>
         </div>
         <div class="values-grid">
-          <div class="value-card">
+          <div class="value-card about-card-9">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
+              <i class="fa-solid fa-leaf"></i>
               Embalagens Sustentáveis
             </h3>
             <p>Utilizamos embalagens biodegradáveis, recicláveis ou reutilizáveis em todos os nossos produtos, reduzindo
               o impacto ambiental.</p>
           </div>
-          <div class="value-card">
+          <div class="value-card about-card-10">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
+              <i class="fa-solid fa-truck"></i>
               Logística Verde
             </h3>
             <p>Otimizamos nossas rotas de entrega e utilizamos materiais sustentáveis para embalagem de transporte,
               minimizando nossa pegada de carbono.</p>
           </div>
-          <div class="value-card">
+          <div class="value-card about-card-11">
             <h3>
-              <svg fill="none" height="24" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 6v18h18V6"></path>
-                <path d="M19 6V4a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2"></path>
-                <path d="M8 11h8"></path>
-                <path d="M8 15h8"></path>
-                <path d="M8 19h8"></path>
-              </svg>
+              <i class="fa-solid fa-book"></i>
               Educação Ambiental
             </h3>
             <p>Promovemos conteúdos educativos sobre sustentabilidade e consumo consciente, incentivando práticas mais
@@ -317,39 +252,16 @@
                 <h3>Siga-nos nas redes sociais</h3>
                 <div class="social-icons">
                     <a class="social-icon" href="javascript:void(0)">
-                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
+                        <i class="fa-brands fa-facebook-f"></i>
                     </a>
                     <a class="social-icon" href="javascript:void(0)">
-                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                        </svg>
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
                     <a class="social-icon" href="javascript:void(0)">
-                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                            </path>
-                        </svg>
+                        <i class="fa-brands fa-twitter"></i>
                     </a>
                     <a class="social-icon" href="javascript:void(0)">
-                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
-                            </path>
-                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                        </svg>
+                        <i class="fa-brands fa-youtube"></i>
                     </a>
                 </div>
             </div>

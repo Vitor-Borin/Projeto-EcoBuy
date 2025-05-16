@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Configurar cálculo de frete
   setupShippingCalculator()
+  
+  // Carregar produtos relacionados (apenas 3)
+  loadRelatedProducts()
 })
 
 function loadCartItems() {
@@ -48,8 +51,6 @@ function loadCartItems() {
             <h3>${item.name || ''}</h3>
             <div class="cart-item-actions">
               <button class="cart-action remove-item">Excluir</button>
-              <button class="cart-action save-for-later">Salvar</button>
-              <!-- <a href="produtos.html?id=${item.id}" class="cart-action">Comprar</a> -->
             </div>
           </div>
           <div class="cart-item-bottom">
@@ -88,7 +89,7 @@ function updateCartSummary() {
   const shippingEl = document.querySelector('.cart-summary-shipping')
   const totalEl = document.querySelector('.cart-summary-total')
   if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2)}`
-  if (shippingEl) shippingEl.textContent = shipping > 0 ? `R$ ${shipping.toFixed(2)}` : '--'
+  if (shippingEl) shippingEl.textContent = shipping > 0 ? `R$ ${shipping.toFixed(2)}` : 'GRÁTIS'
   if (totalEl) totalEl.textContent = `R$ ${total.toFixed(2)}`
 }
 
@@ -128,23 +129,7 @@ function setupCartActions() {
         updateCartSummary();
       }
     }
-    // Salvar para depois
-    if (target.classList.contains("save-for-later")) {
-      const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
-      if (!wishlist.includes(itemId)) {
-        wishlist.push(itemId);
-        localStorage.setItem("wishlist", JSON.stringify(wishlist));
-      }
-      removeCartItem(itemId);
-      cartItem.remove();
-      showNotification("Item salvo para comprar depois!");
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-      if (cart.length === 0) {
-        loadCartItems();
-      } else {
-        updateCartSummary();
-      }
-    }
+        // Código para "Salvar para depois" removido
     // Comprar (ir para página do produto)
     if (target.classList.contains("cart-action") && target.textContent.trim().toLowerCase() === "comprar") {
       window.location.href = `produtos.html?id=${itemId}`;
@@ -306,58 +291,75 @@ function applyCoupon() {
 
 function setupShippingCalculator() {
   // Adicionar campo de CEP e botão de calcular frete
-  const cartSummary = document.querySelector(".cart-summary") || document.createElement("div")
+  const cartSummary = document.querySelector(".cart-summary") || document.createElement("div");
 
-  if (!cartSummary) return
+  if (!cartSummary) return;
 
   // Verificar se já existe um calculador de frete
-  if (cartSummary.querySelector(".shipping-calculator")) return
+  const existingCalculator = document.querySelector(".shipping-calculator");
+  if (existingCalculator) {
+    setupShippingCalculatorEvents(existingCalculator);
+    return;
+  }
 
   // Criar calculador de frete
-  const shippingCalculator = document.createElement("div")
-  shippingCalculator.className = "shipping-calculator"
+  const shippingCalculator = document.createElement("div");
+  shippingCalculator.className = "shipping-calculator";
   shippingCalculator.innerHTML = `
     <h3>Calcular Frete</h3>
     <div class="shipping-form">
-      <input type="text" placeholder="Digite seu CEP" maxlength="9">
-      <button class="btn btn-shipping">Calcular</button>
+      <input type="text" placeholder="Digite seu CEP" maxlength="9" id="shipping-cep">
+      <button class="btn btn-shipping" id="calculate-shipping">Calcular</button>
     </div>
-  `
+  `;
 
   // Inserir antes do botão de checkout
-  const checkoutButton = cartSummary.querySelector(".btn-checkout")
+  const checkoutButton = cartSummary.querySelector(".btn-checkout");
   if (checkoutButton) {
-    checkoutButton.before(shippingCalculator)
+    checkoutButton.before(shippingCalculator);
   } else {
-    cartSummary.appendChild(shippingCalculator)
+    cartSummary.appendChild(shippingCalculator);
   }
 
+  // Configurar event listeners
+  setupShippingCalculatorEvents(shippingCalculator);
+}
+
+function setupShippingCalculatorEvents(calculator) {
   // Adicionar event listener para o botão de calcular frete
-  const calculateButton = shippingCalculator.querySelector(".btn-shipping")
-  calculateButton.addEventListener("click", () => {
-    const cepInput = shippingCalculator.querySelector("input")
-    const cepRaw = cepInput.value.replace(/\D/g, "")
-    if (cepRaw.length !== 8) {
-      showNotification("Por favor, digite um CEP válido.")
-      cepInput.focus()
-      return
+  const calculateButton = calculator.querySelector(".btn-shipping");
+  if (!calculateButton) return;
+  
+  // Remover event listeners antigos para evitar duplicação
+  const newButton = calculateButton.cloneNode(true);
+  calculateButton.parentNode.replaceChild(newButton, calculateButton);
+  
+  newButton.addEventListener("click", () => {
+    const cepInput = calculator.querySelector("input");
+    if (!cepInput) return;
+    
+    const cepRaw = cepInput.value.replace(/\D/g, "");
+    
+    // Validação mais robusta de CEP
+    if (!validateCEP(cepRaw)) {
+      showNotification("Por favor, digite um CEP válido de 8 dígitos.");
+      cepInput.focus();
+      return;
     }
+    
     // Simular cálculo de frete
-    const shippingValue = calculateShipping(cepRaw)
-    // Exibir valor do frete formatado
-    const shippingResult = shippingCalculator.querySelector('.shipping-result')
-    if (shippingResult) {
-      shippingResult.textContent = `Frete: R$ ${shippingValue.toFixed(2)}`
-    }
-    // Salvar valor do frete selecionado
-    localStorage.setItem("selectedShipping", shippingValue)
-    // Atualizar resumo do carrinho
-    if (typeof updateCartSummary === 'function') updateCartSummary();
-  })
+    calculateShipping(cepRaw);
+  });
 
   // Máscara e validação de CEP ao digitar
-  const cepInput = shippingCalculator.querySelector("input")
-  cepInput.addEventListener("input", function () {
+  const cepInput = calculator.querySelector("input");
+  if (!cepInput) return;
+  
+  // Remover event listeners antigos para evitar duplicação
+  const newInput = cepInput.cloneNode(true);
+  cepInput.parentNode.replaceChild(newInput, cepInput);
+  
+  newInput.addEventListener("input", function() {
     let value = this.value.replace(/\D/g, "");
     if (value.length > 8) value = value.slice(0, 8);
     if (value.length > 5) {
@@ -365,7 +367,8 @@ function setupShippingCalculator() {
     }
     this.value = value;
   });
-  cepInput.addEventListener("paste", function (e) {
+  
+  newInput.addEventListener("paste", function(e) {
     let paste = (e.clipboardData || window.clipboardData).getData('text');
     paste = paste.replace(/\D/g, "").slice(0, 8);
     if (paste.length > 5) {
@@ -374,69 +377,81 @@ function setupShippingCalculator() {
     this.value = paste;
     e.preventDefault();
   });
+  
+  // Adicionar evento para calcular ao pressionar Enter
+  newInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      newButton.click();
+    }
+  });
+}
+
+// Função para validar CEP
+function validateCEP(cep) {
+  // CEP deve ter 8 dígitos
+  if (cep.length !== 8) return false;
+  
+  // CEP não pode ter todos os dígitos iguais
+  if (/^(\d)\1+$/.test(cep)) return false;
+  
+  // CEP deve começar com dígitos válidos (0-9)
+  if (!/^[0-9]/.test(cep)) return false;
+  
+  return true;
 }
 
 function calculateShipping(cep) {
   // Simular carregamento
-  showNotification("Calculando frete...")
+  showNotification("Calculando frete...");
 
+  // Remover opções de frete anteriores
+  const existingOptions = document.querySelector(".shipping-options-container");
+  if (existingOptions) {
+    existingOptions.remove();
+  }
+
+  // Simular uma chamada de API real com setTimeout
   setTimeout(() => {
-    // Verificar se já existe uma tabela de fretes
-    let shippingTable = document.querySelector(".shipping-options-container")
+    // Criar tabela de fretes
+    let shippingTable = document.createElement("div");
+    shippingTable.className = "shipping-options-container";
 
-    if (!shippingTable) {
-      // Criar tabela de fretes
-      shippingTable = document.createElement("div")
-      shippingTable.className = "shipping-options-container"
-
-      // Inserir após o calculador de frete
-      const shippingCalculator = document.querySelector(".shipping-calculator")
-      if (shippingCalculator) {
-        shippingCalculator.appendChild(shippingTable)
-      }
+    // Inserir após o calculador de frete
+    const shippingCalculator = document.querySelector(".shipping-calculator");
+    if (shippingCalculator) {
+      shippingCalculator.appendChild(shippingTable);
     }
 
     // Garantir formatação do CEP
-    let cepFormatado = cep.replace(/\D/g, "")
+    let cepFormatado = cep.replace(/\D/g, "");
     if (cepFormatado.length === 8) {
-      cepFormatado = cepFormatado.substring(0,5) + '-' + cepFormatado.substring(5)
+      cepFormatado = cepFormatado.substring(0, 5) + '-' + cepFormatado.substring(5);
     }
 
-    // Gerar opções de frete aleatórias
-    const shippingOptions = [
-      {
-        id: "economic",
-        name: "Econômico",
-        price: Math.random() * 15 + 5, // Entre R$ 5 e R$ 20
-        days: Math.floor(Math.random() * 5) + 6, // Entre 6 e 10 dias
-      },
-      {
-        id: "standard",
-        name: "Padrão",
-        price: Math.random() * 20 + 15, // Entre R$ 15 e R$ 35
-        days: Math.floor(Math.random() * 3) + 3, // Entre 3 e 5 dias
-      },
-      {
-        id: "express",
-        name: "Expresso",
-        price: Math.random() * 25 + 30, // Entre R$ 30 e R$ 55
-        days: Math.floor(Math.random() * 2) + 1, // Entre 1 e 2 dias
-      },
-    ]
+    // Identificar a região baseada no CEP
+    const region = getRegionFromCEP(cepFormatado);
+    
+    // Definir prazos e preços com base na região
+    const shippingOptions = getShippingOptionsByRegion(region);
 
-    // Verificar se o CEP está na região de frete grátis (começando com 0, 1, 2, 3, 4)
-    const firstDigit = cepFormatado.charAt(0)
-    const isFreeShipping = ["0", "1", "2", "3", "4"].includes(firstDigit)
+    // Verificar se o CEP está na região de frete grátis (Sul e Sudeste para compras acima de R$ 150)
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const isFreeShippingRegion = ["Sudeste", "Sul", "São Paulo", "Rio de Janeiro", "Minas Gerais"].includes(region);
+    const isFreeShippingValue = subtotal >= 150;
+    const hasFreeShipping = isFreeShippingRegion && isFreeShippingValue;
 
     // Renderizar tabela de fretes
     let tableHTML = `
       <h3>Opções de entrega para o CEP ${cepFormatado}</h3>
+      <p style="font-size: 13px; color: #666; margin-bottom: 10px;">Região: ${region}</p>
       <div class="shipping-options">
-    `
+    `;
 
     shippingOptions.forEach((option, idx) => {
-      const price = isFreeShipping && option.name === "Padrão" ? 0 : option.price
-      const priceText = price === 0 ? "Grátis" : `R$ ${price.toFixed(2)}`
+      const price = hasFreeShipping && option.name === "Padrão" ? 0 : option.price;
+      const priceText = price === 0 ? `<span style="color: #2e7d32; font-weight: bold;">GRÁTIS</span>` : `R$ ${price.toFixed(2)}`;
       tableHTML += `
         <div class="shipping-option">
           <label>
@@ -448,43 +463,157 @@ function calculateShipping(cep) {
             </div>
           </label>
         </div>
-      `
-    })
+      `;
+    });
 
-    tableHTML += `</div>`
+    tableHTML += `</div>`;
 
     // Adicionar mensagem de frete grátis se aplicável
-    if (isFreeShipping) {
+    if (hasFreeShipping) {
       tableHTML += `
-        <div class="free-shipping-message">
-          <p>Seu CEP está na região de frete grátis para a opção Padrão!</p>
+        <div class="free-shipping-message" style="background-color: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 4px; margin-top: 10px; font-weight: bold; border: 1px solid #a5d6a7;">
+          <p style="margin: 0;"><i class="fas fa-truck" style="margin-right: 8px;"></i>Frete grátis para a opção Padrão em compras acima de R$ 150!</p>
         </div>
-      `
+      `;
+    } else if (isFreeShippingRegion && !isFreeShippingValue) {
+      tableHTML += `
+        <div class="free-shipping-message" style="background-color: #f8f9fa; color: #666; padding: 10px; border-radius: 4px; margin-top: 10px; border: 1px dashed #ccc;">
+          <p style="margin: 0;"><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Adicione mais R$ ${(150 - subtotal).toFixed(2)} ao carrinho para ganhar frete grátis na opção Padrão!</p>
+        </div>
+      `;
     }
 
-    shippingTable.innerHTML = tableHTML
+    shippingTable.innerHTML = tableHTML;
 
     // Selecionar o primeiro frete por padrão
-    const firstRadio = shippingTable.querySelector('input[type="radio"]')
+    const firstRadio = shippingTable.querySelector('input[type="radio"]');
     if (firstRadio) {
-      localStorage.setItem("selectedShipping", firstRadio.getAttribute("data-price"))
+      localStorage.setItem("selectedShipping", firstRadio.getAttribute("data-price"));
       if (typeof updateCartSummary === 'function') updateCartSummary();
+    }
+    
+    // Se houver frete grátis, selecionar automaticamente a opção padrão
+    if (hasFreeShipping) {
+      const standardShippingRadio = shippingTable.querySelector('input[value="standard"]');
+      if (standardShippingRadio) {
+        standardShippingRadio.checked = true;
+        localStorage.setItem("selectedShipping", standardShippingRadio.getAttribute("data-price"));
+        if (typeof updateCartSummary === 'function') updateCartSummary();
+      }
     }
 
     // Adicionar event listeners para as opções de frete
-    const shippingRadios = shippingTable.querySelectorAll('input[type="radio"]')
+    const shippingRadios = shippingTable.querySelectorAll('input[type="radio"]');
     shippingRadios.forEach((radio) => {
       radio.addEventListener("change", function () {
         if (this.checked) {
-          const shippingPrice = Number.parseFloat(this.getAttribute("data-price"))
+          const shippingPrice = Number.parseFloat(this.getAttribute("data-price"));
           // Salvar opção de frete selecionada
-          localStorage.setItem("selectedShipping", shippingPrice)
+          localStorage.setItem("selectedShipping", shippingPrice);
           // Atualizar resumo do carrinho imediatamente
           if (typeof updateCartSummary === 'function') updateCartSummary();
         }
-      })
-    })
-  }, 1000)
+      });
+    });
+  }, 1500); // Aumentando o delay para simular melhor uma API real
+
+  // Retorna um valor padrão para atualizar a UI imediatamente enquanto "carrega"
+  return 0;
+}
+
+// Função para identificar a região com base no CEP
+function getRegionFromCEP(cep) {
+  const firstDigit = cep.charAt(0);
+  
+  // Lógica baseada nos primeiros dígitos do CEP para regiões do Brasil
+  switch (firstDigit) {
+    case "0":
+    case "1":
+      return "São Paulo";
+    case "2":
+      return "Rio de Janeiro";
+    case "3":
+      return "Minas Gerais";
+    case "4":
+      return "Sudeste";
+    case "5":
+      return "Sul";
+    case "6":
+      return "Centro-Oeste";
+    case "7":
+      return "Nordeste";
+    case "8":
+    case "9":
+      return "Norte";
+    default:
+      return "Outra região";
+  }
+}
+
+// Função para obter opções de frete com base na região
+function getShippingOptionsByRegion(region) {
+  const baseOptions = [
+    {
+      id: "economic",
+      name: "Econômico"
+    },
+    {
+      id: "standard",
+      name: "Padrão"
+    },
+    {
+      id: "express",
+      name: "Expresso"
+    }
+  ];
+
+  // Definir prazos e preços com base na região
+  switch (region) {
+    case "São Paulo":
+      return baseOptions.map(option => ({
+        ...option,
+        price: option.id === "economic" ? 12.90 : option.id === "standard" ? 18.90 : 32.90,
+        days: option.id === "economic" ? 3 : option.id === "standard" ? 2 : 1
+      }));
+    case "Rio de Janeiro":
+    case "Minas Gerais":
+      return baseOptions.map(option => ({
+        ...option,
+        price: option.id === "economic" ? 15.90 : option.id === "standard" ? 22.90 : 38.90,
+        days: option.id === "economic" ? 4 : option.id === "standard" ? 3 : 2
+      }));
+    case "Sudeste":
+    case "Sul":
+      return baseOptions.map(option => ({
+        ...option,
+        price: option.id === "economic" ? 18.90 : option.id === "standard" ? 25.90 : 42.90,
+        days: option.id === "economic" ? 5 : option.id === "standard" ? 3 : 2
+      }));
+    case "Centro-Oeste":
+      return baseOptions.map(option => ({
+        ...option,
+        price: option.id === "economic" ? 22.90 : option.id === "standard" ? 32.90 : 48.90,
+        days: option.id === "economic" ? 7 : option.id === "standard" ? 5 : 3
+      }));
+    case "Nordeste":
+      return baseOptions.map(option => ({
+        ...option,
+        price: option.id === "economic" ? 28.90 : option.id === "standard" ? 38.90 : 58.90,
+        days: option.id === "economic" ? 8 : option.id === "standard" ? 6 : 4
+      }));
+    case "Norte":
+      return baseOptions.map(option => ({
+        ...option,
+        price: option.id === "economic" ? 35.90 : option.id === "standard" ? 48.90 : 68.90,
+        days: option.id === "economic" ? 10 : option.id === "standard" ? 8 : 5
+      }));
+    default:
+      return baseOptions.map(option => ({
+        ...option,
+        price: option.id === "economic" ? 25.90 : option.id === "standard" ? 35.90 : 55.90,
+        days: option.id === "economic" ? 7 : option.id === "standard" ? 5 : 3
+      }));
+  }
 }
 
 function removeCartItem(itemId) {
@@ -544,5 +673,163 @@ function addToCartAndReload(productId) {
   if (window.location.pathname.includes('cart.html')) {
     loadCartItems();
   }
+}
+
+// Função para carregar produtos relacionados na seção "VOCÊ PODE GOSTAR TAMBÉM"
+function loadRelatedProducts() {
+  const productGrid = document.querySelector(".product-grid");
+  if (!productGrid || !window.productsDatabase) return;
+  
+  // Limpar grid de produtos
+  productGrid.innerHTML = "";
+  
+  // Obter todos os produtos disponíveis
+  const allProducts = Object.values(window.productsDatabase);
+  
+  // Embaralhar produtos para selecionar aleatoriamente
+  const shuffledProducts = allProducts.sort(() => 0.5 - Math.random());
+  
+  // Limitar a apenas 3 produtos
+  const limitedProducts = shuffledProducts.slice(0, 3);
+  
+  // Adicionar os 3 produtos à grade
+  limitedProducts.forEach(product => {
+    const card = createProductCard(product);
+    productGrid.appendChild(card);
+  });
+}
+
+// Função auxiliar para criar cartão de produto (replicando a função do scripts.js)
+function createProductCard(product) {
+  const productCard = document.createElement("div");
+  productCard.className = "product-card";
+
+  // Adicionar badge de desconto se houver
+  if (product.originalPrice) {
+    const discount = Math.round(100 - (product.price / product.originalPrice * 100));
+    const discountBadge = document.createElement("div");
+    discountBadge.className = "discount-badge";
+    discountBadge.textContent = `-${discount}%`;
+    productCard.appendChild(discountBadge);
+  }
+
+  // Adicionar botão de favoritos
+  const wishlistButton = document.createElement("button");
+  wishlistButton.className = "btn-wishlist";
+  wishlistButton.setAttribute("data-id", product.id);
+
+  // Verificar se o produto está na lista de desejos
+  const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+  const isInWishlist = wishlist.includes(product.id);
+
+  wishlistButton.innerHTML = isInWishlist ? 
+    '<i class="fa-solid fa-heart" style="color: #ff6b6b;"></i>' : 
+    '<i class="fa-regular fa-heart"></i>';
+
+  wishlistButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleWishlist(product.id);
+  });
+
+  productCard.appendChild(wishlistButton);
+
+  // Adicionar conteúdo do card
+  const productContent = document.createElement("div");
+  productContent.style.display = "flex";
+  productContent.style.flexDirection = "column";
+  productContent.style.height = "100%";
+  
+  productContent.innerHTML = `
+    <a href="produto.html?id=${product.id}">
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.name}" onerror="this.src='./assets/img/placeholder.jpg'">
+      </div>
+    </a>
+    <div class="product-info">
+      <div>
+        <h3>${product.name}</h3>
+        <div class="product-price">
+          <span class="current-price">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
+          ${product.originalPrice ? `<span class="original-price">R$ ${product.originalPrice.toFixed(2).replace('.', ',')}</span>` : ""}
+        </div>
+        <div class="product-rating">
+          ${createStarsHTML(product.rating)}
+          <span class="rating-value">${product.rating.toFixed(1)}</span>
+        </div>
+      </div>
+      <button class="btn btn-add-cart" data-id="${product.id}">Adicionar ao carrinho</button>
+    </div>
+  `;
+
+  productCard.appendChild(productContent);
+
+  // Adicionar evento ao botão de adicionar ao carrinho
+  setTimeout(() => {
+    const addToCartBtn = productCard.querySelector('.btn-add-cart');
+    if (addToCartBtn) {
+      addToCartBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        addToCartAndReload(product.id);
+      });
+    }
+  }, 0);
+
+  return productCard;
+}
+
+// Função auxiliar para criar estrelas de avaliação
+function createStarsHTML(rating) {
+  let starsHTML = '';
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+  
+  // Estrela cheia
+  for (let i = 0; i < fullStars; i++) {
+    starsHTML += '<i class="fa-solid fa-star" style="color: #ffc107;"></i>';
+  }
+  
+  // Meia estrela
+  if (hasHalfStar) {
+    starsHTML += '<i class="fa-solid fa-star-half-stroke" style="color: #ffc107;"></i>';
+  }
+  
+  // Estrela vazia
+  for (let i = 0; i < emptyStars; i++) {
+    starsHTML += '<i class="fa-regular fa-star" style="color: #ffc107;"></i>';
+  }
+  
+  return starsHTML;
+}
+
+// Função para alternar produto na lista de desejos
+function toggleWishlist(productId) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+  const isInWishlist = wishlist.includes(productId);
+  
+  if (isInWishlist) {
+    // Remover da lista de desejos
+    wishlist = wishlist.filter(id => id !== productId);
+    showNotification("Produto removido dos favoritos!");
+  } else {
+    // Adicionar à lista de desejos
+    wishlist.push(productId);
+    showNotification("Produto adicionado aos favoritos!");
+  }
+  
+  // Salvar lista de desejos atualizada
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  
+  // Atualizar ícones de favorito na página
+  const wishlistButtons = document.querySelectorAll(`.btn-wishlist[data-id="${productId}"]`);
+  wishlistButtons.forEach(button => {
+    if (!isInWishlist) {
+      button.innerHTML = '<i class="fa-solid fa-heart" style="color: #ff6b6b;"></i>';
+      button.classList.add('active');
+    } else {
+      button.innerHTML = '<i class="fa-regular fa-heart"></i>';
+      button.classList.remove('active');
+    }
+  });
 }
 

@@ -15,22 +15,40 @@ document.addEventListener("DOMContentLoaded", () => {
     loadOrderDetails(orderNumber)
   
     // Adicionar event listeners para botões
-    const btnFull = document.querySelector(".btn-full");
-  if (btnFull) btnFull.addEventListener("click", () => {
+    const btnOrderDetails = document.querySelector(".btn-outline");
+    if (btnOrderDetails) btnOrderDetails.addEventListener("click", () => {
       showOrderDetails(orderNumber)
     })
   
     const btnCancel = document.querySelector(".btn-outline-red");
-  if (btnCancel) btnCancel.addEventListener("click", () => {
+    if (btnCancel) btnCancel.addEventListener("click", () => {
       if (confirm("Tem certeza que deseja cancelar esta compra?")) {
         cancelOrder(orderNumber)
       }
     })
   
     const helpBtn = document.querySelector(".help-button");
-  if (helpBtn) helpBtn.addEventListener("click", () => {
+    if (helpBtn) helpBtn.addEventListener("click", () => {
       showPaymentProblemForm()
     })
+  
+    // Toggle para detalhes do envio
+    const detailsToggle = document.querySelector(".tracking-details-toggle");
+    if (detailsToggle) {
+      const detailsContent = document.querySelector(".tracking-details-content");
+      let isExpanded = true;
+      
+      detailsToggle.addEventListener("click", () => {
+        if (isExpanded) {
+          detailsContent.style.display = "none";
+          detailsToggle.textContent = "Ver mais";
+        } else {
+          detailsContent.style.display = "block";
+          detailsToggle.textContent = "Ver menos";
+        }
+        isExpanded = !isExpanded;
+      });
+    }
   })
   
   function loadOrderDetails(orderNumber) {
@@ -55,6 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Atualizar título da página
     document.title = `Rastreio do Pedido ${orderNumber} - ecobuy`
   
+    // Atualizar número do pedido
+    document.getElementById("order-number").textContent = `Pedido: ${orderNumber}`
+  
     // Obter o primeiro item do pedido (para exibir na página)
     const firstItem = order.items[0]
   
@@ -62,6 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".product-title").textContent = firstItem.name
     document.querySelector(".quantity-info").textContent =
       `${order.items.length > 1 ? order.items.length + " itens" : "1 quantidade"}`
+    
+    // Atualizar imagem do produto se disponível
+    if (firstItem.image) {
+      const productImage = document.getElementById("product-image");
+      if (productImage) productImage.src = firstItem.image;
+    }
   
     // Simular status de entrega
     const currentDate = new Date()
@@ -89,19 +116,38 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Determinar status atual
     let currentStatus
+    let statusClass
   
     if (currentDate < preparationDate) {
       currentStatus = "Em preparação"
+      statusClass = "preparation"
     } else if (currentDate < shippingDate) {
       currentStatus = "Enviado"
+      statusClass = "shipped"
     } else if (currentDate < deliveryDate) {
       currentStatus = "A Caminho"
+      statusClass = "on-the-way"
     } else {
       currentStatus = "Entregue"
+      statusClass = "delivered"
     }
   
     // Atualizar status no histórico de pedidos
     updateOrderStatus(orderNumber, currentStatus)
+  
+    // Atualizar status na página
+    const statusElement = document.querySelector(".tracking-status");
+    if (statusElement) {
+      let statusIcon = "fa-box";
+      
+      if (statusClass === "shipped" || statusClass === "on-the-way") {
+        statusIcon = "fa-truck";
+      } else if (statusClass === "delivered") {
+        statusIcon = "fa-check-circle";
+      }
+      
+      statusElement.innerHTML = `<i class="fa-solid ${statusIcon}"></i> ${currentStatus}`;
+    }
   
     // Formatar data de entrega para exibição
     const deliveryDateFormatted = deliveryDate.toLocaleDateString("pt-BR", {
@@ -132,6 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (timelineItems[1]) {
       if (currentStatus === "Enviado" || currentStatus === "A Caminho" || currentStatus === "Entregue") {
         timelineItems[1].classList.add("completed")
+        timelineItems[1].classList.remove("active")
+        
+        if (currentStatus === "A Caminho") {
+          timelineItems[1].classList.add("active")
+        }
+        
         timelineItems[1].querySelector(".timeline-content").innerHTML = `
           <h3>A Caminho</h3>
           <p>O vendedor despachou o seu pacote.</p>
@@ -144,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (timelineItems[2]) {
       if (currentStatus === "Entregue") {
         timelineItems[2].classList.add("completed")
+        timelineItems[2].classList.add("active")
         timelineItems[2].querySelector(".timeline-content").innerHTML = `
           <h3>Entregue</h3>
           <p>Seu pedido foi entregue com sucesso!</p>
@@ -151,8 +204,22 @@ document.addEventListener("DOMContentLoaded", () => {
         `
       } else {
         timelineItems[2].querySelector(".timeline-content").innerHTML = `
-          <h3>Chegará ${deliveryDateFormatted}</h3>
+          <h3>Entrega</h3>
+          <p>Chegará ${deliveryDateFormatted}</p>
         `
+      }
+    }
+    
+    // Atualizar endereço de entrega
+    if (order.address) {
+      const contactInfo = document.querySelector(".tracking-contact-info div");
+      if (contactInfo) {
+        contactInfo.innerHTML = `
+          <p>${order.address.name}</p>
+          <p>${order.address.street}, ${order.address.number} ${order.address.complement ? '- ' + order.address.complement : ''}</p>
+          <p>${order.address.neighborhood} - ${order.address.city}/${order.address.state}</p>
+          <p>CEP: ${order.address.zipCode}</p>
+        `;
       }
     }
   }
@@ -248,11 +315,12 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `
   
-    // Adicionar modal ao body
+    // Adicionar modal ao DOM
     document.body.appendChild(modal)
   
-    // Adicionar event listener para fechar o modal
-    modal.querySelectorAll(".close-modal").forEach((button) => {
+    // Adicionar event listeners para fechar o modal
+    const closeButtons = modal.querySelectorAll(".close-modal")
+    closeButtons.forEach((button) => {
       button.addEventListener("click", () => {
         modal.remove()
       })
@@ -280,18 +348,18 @@ document.addEventListener("DOMContentLoaded", () => {
       // Salvar no localStorage
       localStorage.setItem("orderHistory", JSON.stringify(orderHistory))
   
-      // Mostrar mensagem de sucesso
+      // Mostrar notificação
       showNotification("Pedido cancelado com sucesso!")
   
-      // Redirecionar para a página inicial após 2 segundos
+      // Recarregar a página após 1.5 segundos
       setTimeout(() => {
-        window.location.href = "index.html"
-      }, 2000)
+        window.location.reload()
+      }, 1500)
     }
   }
   
   function showPaymentProblemForm() {
-    // Criar modal de formulário
+    // Criar modal do formulário
     const modal = document.createElement("div")
     modal.className = "modal"
   
@@ -299,7 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.innerHTML = `
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Relatar Problema com Pagamento</h2>
+          <h2>Relatar problema com pagamento</h2>
           <button class="close-modal">✕</button>
         </div>
         <div class="modal-body">
@@ -309,35 +377,34 @@ document.addEventListener("DOMContentLoaded", () => {
               <select id="problem-type" required>
                 <option value="">Selecione o tipo de problema</option>
                 <option value="double-charge">Cobrança em duplicidade</option>
+                <option value="not-processed">Pagamento não processado</option>
                 <option value="wrong-amount">Valor incorreto</option>
-                <option value="payment-not-recognized">Pagamento não reconhecido</option>
-                <option value="other">Outro</option>
+                <option value="other">Outro problema</option>
               </select>
             </div>
-            
             <div class="form-group">
               <label for="problem-description">Descrição do problema:</label>
-              <textarea id="problem-description" rows="4" required></textarea>
+              <textarea id="problem-description" rows="5" required></textarea>
             </div>
-            
             <div class="form-group">
               <label for="contact-email">E-mail para contato:</label>
-              <input type="email" id="contact-email" required>
+              <input type="email" id="contact-email" required />
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button class="btn btn-outline close-modal">Cancelar</button>
-          <button class="btn btn-purple" id="submit-problem">Enviar</button>
+          <button class="btn btn-primary" id="submit-problem">Enviar</button>
         </div>
       </div>
     `
   
-    // Adicionar modal ao body
+    // Adicionar modal ao DOM
     document.body.appendChild(modal)
   
-    // Adicionar event listener para fechar o modal
-    modal.querySelectorAll(".close-modal").forEach((button) => {
+    // Adicionar event listeners para fechar o modal
+    const closeButtons = modal.querySelectorAll(".close-modal")
+    closeButtons.forEach((button) => {
       button.addEventListener("click", () => {
         modal.remove()
       })
@@ -350,23 +417,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   
-    // Adicionar event listener para o botão de enviar
-    document.getElementById("submit-problem").addEventListener("click", () => {
+    // Adicionar event listener para enviar o formulário
+    const submitButton = modal.querySelector("#submit-problem")
+    submitButton.addEventListener("click", () => {
       const form = document.getElementById("payment-problem-form")
+      const problemType = document.getElementById("problem-type").value
+      const problemDescription = document.getElementById("problem-description").value
+      const contactEmail = document.getElementById("contact-email").value
   
-      // Verificar se o formulário é válido
-      if (form.checkValidity()) {
+      if (problemType && problemDescription && contactEmail) {
         // Simular envio do formulário
-        showNotification("Seu problema foi registrado. Entraremos em contato em breve!")
-  
-        // Fechar modal
+        showNotification("Problema relatado com sucesso! Entraremos em contato em breve.")
         modal.remove()
       } else {
         // Mostrar mensagem de erro
         showNotification("Por favor, preencha todos os campos obrigatórios.")
-  
-        // Forçar validação visual do formulário
-        form.reportValidity()
       }
     })
   }

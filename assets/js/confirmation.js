@@ -42,14 +42,19 @@ document.addEventListener("DOMContentLoaded", () => {
     displayPurchaseDetails(orderNumber, cart, subtotal, discount, shippingCost, total, appliedCoupon)
   
     // Adicionar event listeners para botões
-    const btn = document.querySelector(".btn-outline");
-  if (btn) btn.addEventListener("click", () => {
-      window.location.href = "index.html"
-    })
+    const btnContinue = document.querySelector(".btn-outline")
+    if (btnContinue) {
+      btnContinue.addEventListener("click", () => {
+        window.location.href = "index.html"
+      })
+    }
   
-    document.querySelector(".btn-purple").addEventListener("click", () => {
-      window.location.href = `tracking.html?order=${orderNumber}`
-    })
+    const btnTrack = document.querySelector(".btn-primary")
+    if (btnTrack) {
+      btnTrack.addEventListener("click", () => {
+        window.location.href = `tracking.html?order=${orderNumber}`
+      })
+    }
   
     // Limpar o carrinho após a compra
     localStorage.removeItem("cart")
@@ -78,6 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
       items: cart,
       total: total,
       status: "Em preparação",
+      address: generateRandomAddress(),
+      estimatedDelivery: generateEstimatedDelivery()
     }
   
     // Adicionar ao histórico
@@ -91,59 +98,69 @@ document.addEventListener("DOMContentLoaded", () => {
     // Atualizar título da página
     document.title = `Pedido ${orderNumber} - ecobuy`
   
-    // Obter o primeiro item do carrinho (para exibir na mensagem de confirmação)
-    const firstItem = cart[0]
-    let confirmationMessage = `Você comprou ${firstItem.name}`
-  
-    // Se houver mais itens, adicionar "e mais X itens"
-    if (cart.length > 1) {
-      confirmationMessage += ` e mais ${cart.length - 1} ${cart.length - 1 === 1 ? "item" : "itens"}`
+    // Atualizar número do pedido
+    const orderNumberElement = document.getElementById("order-number")
+    if (orderNumberElement) {
+      orderNumberElement.textContent = orderNumber
     }
   
-    // Atualizar mensagem de confirmação
-    document.querySelector(".confirmation-box p").textContent = confirmationMessage
-  
-    // Adicionar número do pedido
-    const orderNumberElement = document.createElement("div")
-    orderNumberElement.className = "order-number"
-    orderNumberElement.textContent = `Pedido: ${orderNumber}`
-    document.querySelector(".confirmation-box").appendChild(orderNumberElement)
-  
-    // Atualizar resumo da compra
-    const paymentInfo = document.querySelector(".payment-info")
-    if (paymentInfo) {
-      const paymentDetails = paymentInfo.querySelector(".payment-details")
-      if (paymentDetails) {
-        // Atualizar valor total
-        const paymentAmount = paymentDetails.querySelector(".payment-amount")
-        if (paymentAmount) {
-          paymentAmount.textContent = `Você pagou R$ ${total.toFixed(2)}`
-        }
-  
-        // Adicionar detalhes do pagamento
-        const paymentMethod = paymentDetails.querySelector(".payment-method")
-        if (paymentMethod) {
-          // Simular método de pagamento
-          const cardTypes = ["VISA", "MASTERCARD", "ELO", "AMERICAN EXPRESS"]
-          const randomCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)]
-          const randomCardNumber = Math.floor(Math.random() * 10000)
-            .toString()
-            .padStart(4, "0")
-  
-          paymentMethod.textContent = `1x SEM JUROS com o cartão de crédito ${randomCardType} terminado em ${randomCardNumber}`
-        }
-      }
+    // Atualizar data do pedido
+    const orderDateElement = document.getElementById("order-date")
+    if (orderDateElement) {
+      const today = new Date()
+      const formattedDate = today.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      })
+      orderDateElement.textContent = `Realizado em ${formattedDate}`
     }
   
-    // Adicionar detalhes dos itens comprados
-    const purchaseSummary = document.querySelector(".purchase-summary")
-    if (purchaseSummary) {
-      // Criar lista de itens
-      const itemsList = document.createElement("div")
-      itemsList.className = "purchased-items"
+    // Atualizar endereço de entrega
+    const address = generateRandomAddress()
+    const deliveryAddressContent = document.querySelector(".delivery-address .info-content")
+    if (deliveryAddressContent) {
+      deliveryAddressContent.innerHTML = `
+        <p>${address.name}</p>
+        <p>${address.street}, ${address.number} ${address.complement ? '- ' + address.complement : ''}</p>
+        <p>${address.neighborhood} - ${address.city}/${address.state}</p>
+        <p>CEP: ${address.zipCode}</p>
+      `
+    }
   
-      // Adicionar cabeçalho
-      itemsList.innerHTML = `<h3>Itens do pedido:</h3>`
+    // Atualizar método de entrega e data estimada
+    const estimatedDate = generateEstimatedDelivery()
+    const deliveryMethodContent = document.querySelector(".delivery-method .info-content")
+    if (deliveryMethodContent) {
+      const shippingOption = shippingCost === 0 ? "Entrega Padrão (Frete Grátis)" : "Entrega Padrão"
+      deliveryMethodContent.innerHTML = `
+        <p>${shippingOption}</p>
+        <p class="delivery-estimate">Previsão de entrega: ${estimatedDate}</p>
+      `
+    }
+  
+    // Atualizar informações de pagamento
+    const paymentAmount = document.querySelector(".payment-amount")
+    if (paymentAmount) {
+      paymentAmount.textContent = `Pagamento de R$ ${total.toFixed(2)}`
+    }
+  
+    const paymentMethod = document.querySelector(".payment-method")
+    if (paymentMethod) {
+      // Simular método de pagamento
+      const cardTypes = ["VISA", "MASTERCARD", "ELO", "AMERICAN EXPRESS"]
+      const randomCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)]
+      const randomCardNumber = Math.floor(Math.random() * 10000).toString().padStart(4, "0")
+      paymentMethod.textContent = `1x SEM JUROS com o cartão de crédito ${randomCardType} terminado em ${randomCardNumber}`
+    }
+  
+    // Adicionar itens comprados
+    const purchasedItems = document.querySelector(".purchased-items")
+    if (purchasedItems) {
+      // Manter apenas o título h3
+      const h3 = purchasedItems.querySelector("h3")
+      purchasedItems.innerHTML = ""
+      if (h3) purchasedItems.appendChild(h3)
   
       // Adicionar cada item
       cart.forEach((item) => {
@@ -151,22 +168,21 @@ document.addEventListener("DOMContentLoaded", () => {
         itemElement.className = "purchased-item"
         itemElement.innerHTML = `
           <div class="item-image">
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${item.image || './assets/img/placeholder.jpg'}" alt="${item.name || ''}">
           </div>
           <div class="item-details">
-            <div class="item-name">${item.name}</div>
+            <div class="item-name">${item.name || ''}</div>
             <div class="item-quantity">Quantidade: ${item.quantity}</div>
             <div class="item-price">R$ ${(item.price * item.quantity).toFixed(2)}</div>
           </div>
         `
-  
-        itemsList.appendChild(itemElement)
+        purchasedItems.appendChild(itemElement)
       })
+    }
   
-      // Adicionar resumo de valores
-      const valuesSummary = document.createElement("div")
-      valuesSummary.className = "values-summary"
-  
+    // Adicionar resumo de valores
+    const valuesSummary = document.querySelector(".values-summary")
+    if (valuesSummary) {
       let summaryHTML = `
         <div class="summary-row">
           <span>Subtotal:</span>
@@ -195,10 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
       `
   
       valuesSummary.innerHTML = summaryHTML
-  
-      // Adicionar à página
-      purchaseSummary.appendChild(itemsList)
-      purchaseSummary.appendChild(valuesSummary)
     }
   
     // Atualizar produtos recomendados
@@ -216,43 +228,79 @@ document.addEventListener("DOMContentLoaded", () => {
       (product) => !purchasedIds.includes(product.id),
     )
   
-    // Selecionar 2 produtos aleatórios
+    // Selecionar 4 produtos aleatórios
     const recommendedProducts = []
   
-    while (recommendedProducts.length < 2 && availableProducts.length > 0) {
+    while (recommendedProducts.length < 4 && availableProducts.length > 0) {
       const randomIndex = Math.floor(Math.random() * availableProducts.length)
       recommendedProducts.push(availableProducts[randomIndex])
       availableProducts.splice(randomIndex, 1)
     }
   
     // Atualizar a seção de produtos recomendados
-    const bundleProducts = document.querySelectorAll(".bundle-product")
+    const recommendationsContainer = document.querySelector(".product-recommendations")
+    if (recommendationsContainer && recommendedProducts.length > 0) {
+      recommendationsContainer.innerHTML = ""
   
-    if (bundleProducts.length >= 2 && recommendedProducts.length >= 2) {
-      // Atualizar primeiro produto recomendado
-      updateBundleProduct(bundleProducts[0], recommendedProducts[0])
+      // Adicionar cada produto recomendado
+      recommendedProducts.forEach(product => {
+        const card = document.createElement("div")
+        card.className = "recommendation-card"
+        card.innerHTML = `
+          <div class="recommendation-image">
+            <img src="${product.image || './assets/img/placeholder.jpg'}" alt="${product.name || ''}">
+          </div>
+          <div class="recommendation-name">${product.name || ''}</div>
+          <div class="recommendation-price">R$ ${product.price.toFixed(2)}</div>
+          <button class="btn-add-cart" data-id="${product.id}">Adicionar ao carrinho</button>
+        `
+        recommendationsContainer.appendChild(card)
   
-      // Atualizar segundo produto recomendado
-      updateBundleProduct(bundleProducts[1], recommendedProducts[1])
-  
-      // Atualizar preço total
-      const totalPrice = recommendedProducts[0].price + recommendedProducts[1].price
-      const bundleTotalPrice = document.querySelector(".bundle-total-price")
-      if (bundleTotalPrice) {
-        bundleTotalPrice.textContent = `R$ ${totalPrice.toFixed(2)}`
-      }
+        // Adicionar evento ao botão de adicionar ao carrinho
+        const addButton = card.querySelector(".btn-add-cart")
+        if (addButton) {
+          addButton.addEventListener("click", () => {
+            addToCart(product.id)
+            showNotification("Produto adicionado ao carrinho!")
+            updateCartCount()
+          })
+        }
+      })
     }
   }
   
-  function updateBundleProduct(bundleElement, product) {
-    const image = bundleElement.querySelector("img")
-    const name = bundleElement.querySelector("h3")
-    const price = bundleElement.querySelector(".bundle-price")
+  function generateRandomAddress() {
+    const names = ["Maria Silva", "João Santos", "Ana Oliveira", "Carlos Souza", "Juliana Lima"]
+    const streets = ["Rua das Flores", "Avenida Brasil", "Rua dos Pinheiros", "Avenida Paulista", "Rua Augusta"]
+    const neighborhoods = ["Centro", "Jardim Primavera", "Vila Nova", "Bela Vista", "Moema"]
+    const cities = ["São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", "Porto Alegre"]
+    const states = ["SP", "RJ", "MG", "PR", "RS"]
+    const complements = ["Apto 101", "Casa 2", "Bloco B", "Sala 304", ""]
   
-    if (image) image.src = product.image
-    if (image) image.alt = product.name
-    if (name) name.textContent = product.name
-    if (price) price.textContent = `R$ ${product.price.toFixed(2)}`
+    return {
+      name: names[Math.floor(Math.random() * names.length)],
+      street: streets[Math.floor(Math.random() * streets.length)],
+      number: Math.floor(Math.random() * 1000) + 1,
+      complement: complements[Math.floor(Math.random() * complements.length)],
+      neighborhood: neighborhoods[Math.floor(Math.random() * neighborhoods.length)],
+      city: cities[Math.floor(Math.random() * cities.length)],
+      state: states[Math.floor(Math.random() * states.length)],
+      zipCode: `${Math.floor(Math.random() * 90000) + 10000}-${Math.floor(Math.random() * 900) + 100}`
+    }
+  }
+  
+  function generateEstimatedDelivery() {
+    // Gerar data de entrega estimada (entre 3 e 10 dias a partir de hoje)
+    const today = new Date()
+    const deliveryDays = Math.floor(Math.random() * 8) + 3
+    const estimatedDate = new Date(today)
+    estimatedDate.setDate(today.getDate() + deliveryDays)
+    
+    return estimatedDate.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    })
   }
   
   function updateCartCount() {
@@ -260,9 +308,63 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0)
   
     // Atualizar o ícone do carrinho
-    const cartIcon = document.querySelector(".cart-icon")
-    if (cartIcon) {
-      cartIcon.textContent = totalItems > 0 ? `🛒 ${totalItems}` : "🛒"
+    const cartCountElement = document.querySelector(".cart-count")
+    if (cartCountElement) {
+      cartCountElement.textContent = totalItems > 0 ? totalItems : "0"
     }
+  }
+  
+  function addToCart(productId) {
+    // Verificar se o produto existe
+    if (!window.productsDatabase || !window.productsDatabase[productId]) return
+  
+    const product = window.productsDatabase[productId]
+  
+    // Obter carrinho atual
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]")
+  
+    // Verificar se o produto já está no carrinho
+    const existingItemIndex = cart.findIndex((item) => item.id === productId)
+  
+    if (existingItemIndex !== -1) {
+      // Incrementar quantidade
+      cart[existingItemIndex].quantity += 1
+    } else {
+      // Adicionar novo item
+      cart.push({
+        id: productId,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+        image: product.image
+      })
+    }
+  
+    // Salvar carrinho atualizado
+    localStorage.setItem("cart", JSON.stringify(cart))
+  
+    // Atualizar contador do carrinho
+    updateCartCount()
+  }
+  
+  function showNotification(message) {
+    // Verificar se já existe uma notificação
+    let notification = document.querySelector(".notification")
+  
+    if (!notification) {
+      // Criar elemento de notificação
+      notification = document.createElement("div")
+      notification.className = "notification"
+      document.body.appendChild(notification)
+    }
+  
+    // Atualizar mensagem e mostrar
+    notification.textContent = message
+    notification.classList.add("show")
+  
+    // Esconder após 3 segundos
+    setTimeout(() => {
+      notification.classList.remove("show")
+    }, 3000)
   }
   
