@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pagamento - EcoBuy</title>
+    <link href="./assets/css/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+</head>
+<body>
+    <!-- Banner de frete com slider -->
+    <div class="shipping-banner">
+        <div class="container">
+            <div class="info-slider">
+                <div class="info-slide">
+                    <p><i class="fa-solid fa-truck-fast"></i> Frete grátis para compras acima de R$ 150,00. <a href="javascript:void(0)">Saiba mais</a></p>
+                </div>
+                <div class="info-slide">
+                    <p><i class="fa-solid fa-map-location-dot"></i> FRETE GRÁTIS para Regiões Sul e Sudeste: compras acima de R$399,90 | <a href="javascript:void(0)">Confira as regras</a></p>
+                </div>
+                <div class="info-slide">
+                    <p><i class="fa-solid fa-tags"></i> PAGUE COM PIX E TENHA +5% OFF* em compras acima de R$150,00 | <a href="javascript:void(0)">Consulte as condições</a></p>
+                </div>
+                <div class="info-slide">
+                    <p><i class="fa-solid fa-rotate-left"></i> COMUNICADO: Trocas e Devoluções | <a href="javascript:void(0)">Saiba mais</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <button aria-label="Botão" class="menu-button mobile-only">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a class="logo" href="index.html">
+                <img src="./assets/img/Logo.svg" alt="Logo da Ecobuy">
+            </a>
+            <nav class="desktop-nav">
+                <ul class="nav-menu">
+                    <li><a class="nav-link" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="sobre.html">Sobre nós</a></li>
+                    <li class="dropdown">
+                        <a class="nav-link" href="produtos.html">Produtos <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="produtos.html?categoria=skincare">Skincare</a>
+                            <a href="produtos.html?categoria=corpo">Corpo e Banho</a>
+                            <a href="produtos.html?categoria=cabelo">Cabelos</a>
+                            <a href="produtos.html?categoria=rosto">Rosto</a>
+                            <a href="produtos.html?categoria=maquiagem">Maquiagem Natural</a>
+                            <a href="produtos.html?categoria=kits">Kits e Presentes</a>
+                            <a href="produtos.html?categoria=casa">Casa Sustentável</a>
+                            <a href="produtos.html?categoria=perfumaria">Perfumaria</a>
+                            <a href="produtos.html?categoria=vegano">Vegano</a>
+                            <a href="produtos.html?categoria=organico">Orgânico</a>
+                        </div>
+                    </li>
+                    <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
+                    <li><a class="nav-link" href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a class="icon-link" href="javascript:void(0)">
+                    <i class="fa-solid fa-heart"></i>
+                </a>
+                <a class="icon-link cart-icon" href="cart.html">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input placeholder="O que você está buscando hoje?" type="text" />
+                <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <div class="checkout-container">
+            <div class="checkout-main">
+                <h1 class="page-title">Finalizar Pagamento</h1>
+                <form id="checkout-form">
+                    <div class="checkout-section">
+                        <h2>Endereço de Entrega</h2>
+                        <div class="address-form" autocomplete="on">
+                            <div class="form-group">
+                                <label for="address-name">Nome completo</label>
+                                <input type="text" id="address-name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="address-street">Rua</label>
+                                <input type="text" id="address-street" required />
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="address-number">Número</label>
+                                    <input type="text" id="address-number" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-complement">Complemento</label>
+                                    <input type="text" id="address-complement" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address-neighborhood">Bairro</label>
+                                <input type="text" id="address-neighborhood" required />
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="address-city">Cidade</label>
+                                    <input type="text" id="address-city" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-state">Estado</label>
+                                    <input type="text" id="address-state" maxlength="2" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address-zip">CEP</label>
+                                <input type="text" id="address-zip" maxlength="9" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-section">
+                        <h2>Forma de Pagamento</h2>
+                        <div class="payment-methods">
+                            <label class="payment-method-option">
+                                <input type="radio" name="payment-method" value="card" checked>
+                                <i class="fa-solid fa-credit-card"></i> Cartão de Crédito
+                            </label>
+                            <label class="payment-method-option">
+                                <input type="radio" name="payment-method" value="pix">
+                                <i class="fa-brands fa-pix"></i> Pix
+                            </label>
+                            <label class="payment-method-option">
+                                <input type="radio" name="payment-method" value="boleto">
+                                <i class="fa-solid fa-barcode"></i> Boleto
+                            </label>
+                        </div>
+                        <div id="payment-details-card" class="payment-details">
+                            <div class="form-group">
+                                <label for="card-number">Número do cartão</label>
+                                <input type="text" id="card-number" maxlength="19" placeholder="0000 0000 0000 0000" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">Validade</label>
+                                    <input type="text" id="card-expiry" maxlength="5" placeholder="MM/AA" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV</label>
+                                    <input type="text" id="card-cvv" maxlength="4" placeholder="CVV" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-name">Nome impresso no cartão</label>
+                                <input type="text" id="card-name" required>
+                            </div>
+                        </div>
+                        <div id="payment-details-pix" class="payment-details" style="display:none">
+                            <div class="pix-info">
+                                <i class="fa-brands fa-pix"></i>
+                                <span>Você receberá um QR Code para pagamento instantâneo.</span>
+                            </div>
+                        </div>
+                        <div id="payment-details-boleto" class="payment-details" style="display:none">
+                            <div class="boleto-info">
+                                <i class="fa-solid fa-barcode"></i>
+                                <span>O boleto será gerado após a finalização do pedido.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-section">
+                        <h2>Cupom de Desconto</h2>
+                        <div class="coupon-input">
+                            <input type="text" id="coupon-code" placeholder="Digite seu cupom">
+                            <button type="button" class="apply-coupon" id="apply-coupon">Aplicar</button>
+                        </div>
+                        <div id="coupon-message"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="checkout-summary">
+                <div class="order-summary-box">
+                    <h2>Resumo do Pedido</h2>
+                    <div class="order-items-list" id="order-items-list">
+                        <!-- Itens do pedido serão inseridos via JS -->
+                    </div>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="summary-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Frete:</span>
+                        <span id="summary-shipping">R$ 0,00</span>
+                    </div>
+                    <div class="summary-row discount-row" id="summary-discount-row" style="display:none">
+                        <span>Desconto:</span>
+                        <span id="summary-discount">-R$ 0,00</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total:</span>
+                        <span id="summary-total">R$ 0,00</span>
+                    </div>
+                    <button type="button" class="btn btn-checkout" id="finish-payment">
+                        <i class="fa-solid fa-lock"></i> Finalizar Pagamento
+                    </button>
+                    <div class="checkout-security">
+                        <i class="fa-solid fa-shield-halved"></i> Ambiente 100% seguro
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="newsletter-box">
+                <h3>Receba nossas novidades</h3>
+                <p>Cadastre-se para receber ofertas exclusivas e dicas de sustentabilidade</p>
+                <form class="newsletter-form">
+                    <input placeholder="Seu e-mail" type="email" />
+                    <button class="btn btn-primary" type="submit">Cadastrar</button>
+                </form>
+            </div>
+            <div class="social-media">
+                <h3>Siga-nos nas redes sociais</h3>
+                <div class="social-icons">
+                    <a class="social-icon" href="javascript:void(0)">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a class="social-icon" href="javascript:void(0)">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <a href="sobre.html">Sobre nós</a>
+                    <a href="javascript:void(0)">Sustentabilidade</a>
+                    <a href="javascript:void(0)">Trabalhe conosco</a>
+                    <a href="javascript:void(0)">Termos de uso</a>
+                    <a href="javascript:void(0)">Política de privacidade</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Ajuda</h3>
+                    <a href="contato.html">Central de atendimento</a>
+                    <a href="javascript:void(0)">Como comprar</a>
+                    <a href="javascript:void(0)">Prazos de entrega</a>
+                    <a href="javascript:void(0)">Trocas e devoluções</a>
+                    <a href="javascript:void(0)">Pagamentos</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Minha conta</h3>
+                    <a href="javascript:void(0)">Meus pedidos</a>
+                    <a href="javascript:void(0)">Meus dados</a>
+                    <a href="javascript:void(0)">Minhas avaliações</a>
+                    <a href="javascript:void(0)">Favoritos</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Ecobuy - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/scripts.js"></script>
+    <script src="./assets/js/checkout.js"></script>
+
+    <!-- Modal de edição de endereço -->
+    <div id="address-modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Editar Endereço de Entrega</h2>
+          <button class="close-modal" id="close-address-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="address-form">
+            <div class="form-group">
+              <label for="modal-address-name">Nome completo</label>
+              <input type="text" id="modal-address-name" required />
+            </div>
+            <div class="form-group">
+              <label for="modal-address-street">Rua</label>
+              <input type="text" id="modal-address-street" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="modal-address-number">Número</label>
+                <input type="text" id="modal-address-number" required />
+              </div>
+              <div class="form-group">
+                <label for="modal-address-complement">Complemento</label>
+                <input type="text" id="modal-address-complement" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="modal-address-neighborhood">Bairro</label>
+              <input type="text" id="modal-address-neighborhood" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="modal-address-city">Cidade</label>
+                <input type="text" id="modal-address-city" required />
+              </div>
+              <div class="form-group">
+                <label for="modal-address-state">Estado</label>
+                <input type="text" id="modal-address-state" maxlength="2" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="modal-address-zip">CEP</label>
+              <input type="text" id="modal-address-zip" maxlength="9" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-save-address">Salvar Endereço</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+</html> 

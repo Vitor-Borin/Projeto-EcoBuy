@@ -107,7 +107,7 @@ function setupCartActions() {
       }
 
       // Simular checkout - em uma aplicação real, isso enviaria para uma página de pagamento
-      window.location.href = "confirmation.html"
+      window.location.href = "checkout.html"
     })
   }
 
